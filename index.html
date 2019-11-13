@@ -212,7 +212,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-11-13 10:43:31 / Modified: 19:28:16" itemprop="dateCreated datePublished" datetime="2019-11-13T10:43:31+09:00">2019-11-13</time>
+              <time title="Created: 2019-11-13 10:43:31 / Modified: 19:40:22" itemprop="dateCreated datePublished" datetime="2019-11-13T10:43:31+09:00">2019-11-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -298,45 +298,42 @@
 
 <h4 id="Q"><a href="#Q" class="headerlink" title="Q."></a>Q.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> [&quot;p&quot;, &quot;u&quot;, &quot;p&quot;, &quot;p&quot;, &quot;y&quot;] 라는 배열에서 마지막 &quot;p&quot; 문자 하나만 삭제하기</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">var puppy = [&quot;p&quot;, &quot;u&quot;, &quot;p&quot;, &quot;p&quot;, &quot;y&quot;]</span><br><span class="line">if let lastIndexOfP = puppy.lastIndex(of: &quot;p&quot;) &#123;</span><br><span class="line">  puppy.remove(at: lastIndexOfP)</span><br><span class="line">&#125;</span><br><span class="line">puppy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> 정수 타입의 배열을 2개 선언하고 두 배열의 값 중 겹치는 숫자들로만 이루어진 배열 만들기</span><br><span class="line"> ex) [1, 2, 4, 8, 9, 12, 13] , [2, 5, 6, 9, 13]  --&gt;  [2, 9, 13]</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">let firstArray = [1, 2, 4, 8, 9, 12, 13]</span><br><span class="line">let secondArray = [2, 5, 6, 9, 13]</span><br><span class="line"></span><br><span class="line">var result: [Int] = []</span><br><span class="line">for i in firstArray &#123;</span><br><span class="line">  for j in secondArray &#123;</span><br><span class="line">    if i == j &#123;</span><br><span class="line">      result.append(j)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> 정수 타입의 배열을 선언하고 해당 배열 요소 중 가장 큰 값을 반환하는 함수 만들기</span><br><span class="line"> ex) [50, 23, 29, 1, 45, 39, 59, 19, 15] -&gt; 59</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">// 1) Swift 에서 제공하는 기본 함수인 max() 를 이용하는 방법</span><br><span class="line">let arr = [50, 23, 29, 1, 45, 39, 59, 19, 15]</span><br><span class="line">arr.max()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 2) 두 수 중 높은 값을 반환하는 max 를 이용하거나, 3항 연산자를 이용하는 방법</span><br><span class="line">func maximumValue(in list: [Int]) -&gt; Int &#123;</span><br><span class="line">  var maxValue = Int.min</span><br><span class="line">  for number in list &#123;</span><br><span class="line">    maxValue = max(maxValue, number)</span><br><span class="line">    </span><br><span class="line">    // 위 함수는 다음의 3항 연산자와 동일</span><br><span class="line">    // maxValue = maxValue &lt; number ? number : maxValue</span><br><span class="line">  &#125;</span><br><span class="line">  return maxValue</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">maximumValue(in: [50, 23, 29, 1, 45, 39, 59, 19, 15])</span><br><span class="line">maximumValue(in: [10, 20, 30, 80, 50, 40])</span><br><span class="line">maximumValue(in: [-6, -5, -4, -3, -2, -1])</span><br></pre></td></tr></table></figure>
 
-
-
-
-
+<hr>
 <h1 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h1><ul>
 <li>Element = Unique Key + Value</li>
 <li>Unordered Collection</li>
 </ul>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// value는 같아도 상관없지만, key는 중복되면 안됨</span></span><br><span class="line"><span class="keyword">var</span> dictFromLiteral = [<span class="string">"key 1"</span>: <span class="string">"value 1"</span>, <span class="string">"key 2"</span>: <span class="string">"value 2"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// key의 타입과 value의 타입이 같을 필요는 없다</span></span><br><span class="line"><span class="keyword">var</span> dictFromLiteral = [<span class="number">1</span>: <span class="string">"value 1"</span>, <span class="number">2</span>: <span class="string">"value 2"</span>]</span><br><span class="line"><span class="keyword">var</span> dictFromLiteral = [<span class="string">"1"</span>: <span class="number">1</span>, <span class="string">"2"</span>: <span class="number">2</span>]</span><br><span class="line">dictFromLiteral = [:]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 오류</span></span><br><span class="line"><span class="comment">//var dictFromLiteral = [:]</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="Q-키가-String이고-Int-타입인-자료가-없는-상태의-빈-딕셔너리를-만드세요"><a href="#Q-키가-String이고-Int-타입인-자료가-없는-상태의-빈-딕셔너리를-만드세요" class="headerlink" title="Q. 키가 String이고, Int 타입인, 자료가 없는 상태의 빈 딕셔너리를 만드세요"></a>Q. 키가 String이고, Int 타입인, 자료가 없는 상태의 빈 딕셔너리를 만드세요</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> emptyDic : [<span class="type">String</span>:<span class="type">Int</span>] = [:]</span><br></pre></td></tr></table></figure>
+<h3 id="Q-키가-String이고-Int-타입인-자료가-없는-상태의-빈-딕셔너리를-만드세요"><a href="#Q-키가-String이고-Int-타입인-자료가-없는-상태의-빈-딕셔너리를-만드세요" class="headerlink" title="Q. 키가 String이고, Int 타입인, 자료가 없는 상태의 빈 딕셔너리를 만드세요"></a>Q. 키가 String이고, Int 타입인, 자료가 없는 상태의 빈 딕셔너리를 만드세요</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> emptyDic : [<span class="type">String</span>:<span class="type">Int</span>] = [:]</span><br></pre></td></tr></table></figure>
 
-<h4 id="Type-Annotation-과-Type-Inference-방식을-모두-이용해-여러-가지-데이터를-넣어-딕셔너리를-만들어보세요"><a href="#Type-Annotation-과-Type-Inference-방식을-모두-이용해-여러-가지-데이터를-넣어-딕셔너리를-만들어보세요" class="headerlink" title="Type Annotation 과 Type Inference 방식을 모두 이용해 여러 가지 데이터를 넣어 딕셔너리를 만들어보세요."></a>Type Annotation 과 Type Inference 방식을 모두 이용해 여러 가지 데이터를 넣어 딕셔너리를 만들어보세요.</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> variousDic = [<span class="number">1</span> : <span class="string">"커피"</span>, <span class="number">2</span> : <span class="string">"고기"</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="Type-Annotation-과-Type-Inference-방식을-모두-이용해-여러-가지-데이터를-넣어-딕셔너리를-만들어보세요"><a href="#Type-Annotation-과-Type-Inference-방식을-모두-이용해-여러-가지-데이터를-넣어-딕셔너리를-만들어보세요" class="headerlink" title="Type Annotation 과 Type Inference 방식을 모두 이용해 여러 가지 데이터를 넣어 딕셔너리를 만들어보세요."></a>Type Annotation 과 Type Inference 방식을 모두 이용해 여러 가지 데이터를 넣어 딕셔너리를 만들어보세요.</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> variousDic = [<span class="number">1</span> : <span class="string">"커피"</span>, <span class="number">2</span> : <span class="string">"고기"</span>]</span><br></pre></td></tr></table></figure>
 
-<h3 id="Number-of-Elements-1"><a href="#Number-of-Elements-1" class="headerlink" title="Number of Elements"></a>Number of Elements</h3><p>Count 속성으로 키와 값 쌍의 갯수를 반환할 수 있다</p>
+<h2 id="Number-of-Elements-1"><a href="#Number-of-Elements-1" class="headerlink" title="Number of Elements"></a>Number of Elements</h2><p>Count 속성으로 키와 값 쌍의 갯수를 반환할 수 있다</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> words = [<span class="string">"A"</span>: <span class="string">"Apple"</span>, <span class="string">"B"</span>: <span class="string">"Banana"</span>, <span class="string">"C"</span>: <span class="string">"City"</span>]</span><br><span class="line"><span class="keyword">let</span> countOfWords = words.<span class="built_in">count</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> !words.isEmpty &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(countOfWords) element(s)"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"empty dictionary"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Retrieve-회수하다-an-Element"><a href="#Retrieve-회수하다-an-Element" class="headerlink" title="Retrieve(회수하다) an Element"></a>Retrieve(회수하다) an Element</h3><p>키를 이용하여 값을 조회할 수 있다.</p>
+<h2 id="Retrieve-회수하다-an-Element"><a href="#Retrieve-회수하다-an-Element" class="headerlink" title="Retrieve(회수하다) an Element"></a>Retrieve(회수하다) an Element</h2><p>키를 이용하여 값을 조회할 수 있다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> words = [<span class="string">"A"</span>: <span class="string">"Apple"</span>, <span class="string">"B"</span>: <span class="string">"Banana"</span>, <span class="string">"C"</span>: <span class="string">"City"</span>]</span><br><span class="line"></span><br><span class="line">words[<span class="string">"A"</span>]</span><br><span class="line">words[<span class="string">"Q"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> aValue = words[<span class="string">"A"</span>] &#123;</span><br><span class="line">  <span class="built_in">print</span>(aValue)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Not found"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> zValue = words[<span class="string">"Z"</span>] &#123;</span><br><span class="line">  <span class="built_in">print</span>(zValue)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Not found"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>키만 출력하는 것도 가능, 조회한 키들을 배열에 담는 것도 가능</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(words.keys)</span><br><span class="line"><span class="built_in">print</span>(words.values)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> keys = <span class="type">Array</span>(words.keys)</span><br><span class="line"><span class="keyword">let</span> values = <span class="type">Array</span>(words.values)</span><br></pre></td></tr></table></figure>
 
-<h3 id="Enumerating-나열하기-an-Dictionary"><a href="#Enumerating-나열하기-an-Dictionary" class="headerlink" title="Enumerating(나열하기) an Dictionary"></a>Enumerating(나열하기) an Dictionary</h3><p>For 문을 이용하여 키와 값을 순회탐색 할 수 있다</p>
+<h2 id="Enumerating-나열하기-an-Dictionary"><a href="#Enumerating-나열하기-an-Dictionary" class="headerlink" title="Enumerating(나열하기) an Dictionary"></a>Enumerating(나열하기) an Dictionary</h2><p>For 문을 이용하여 키와 값을 순회탐색 할 수 있다</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dict = [<span class="string">"A"</span>: <span class="string">"Apple"</span>, <span class="string">"B"</span>: <span class="string">"Banana"</span>, <span class="string">"C"</span>: <span class="string">"City"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">//키 &amp; 값 조회</span></span><br><span class="line"><span class="keyword">for</span> (key, value) <span class="keyword">in</span> dict &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(key): \(value)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//A: Apple</span></span><br><span class="line"><span class="comment">//C: City</span></span><br><span class="line"><span class="comment">//B: Banana</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 키만 조회</span></span><br><span class="line"><span class="keyword">for</span> (key, <span class="number">_</span>) <span class="keyword">in</span> dict &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Key :"</span>, key)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Key : A</span></span><br><span class="line"><span class="comment">//Key : C</span></span><br><span class="line"><span class="comment">//Key : B</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 값만 조회</span></span><br><span class="line"><span class="keyword">for</span> (<span class="number">_</span>, value) <span class="keyword">in</span> dict &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Value :"</span>, value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Value : Apple</span></span><br><span class="line"><span class="comment">//Value : City</span></span><br><span class="line"><span class="comment">//Value : Banana</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// values 속성을 이용하여 값만 조회</span></span><br><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> dict.values &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Value :"</span>, value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Value : Apple</span></span><br><span class="line"><span class="comment">//Value : City</span></span><br><span class="line"><span class="comment">//Value : Banana</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Searching-1"><a href="#Searching-1" class="headerlink" title="Searching"></a>Searching</h3><p>키 값 검색</p>
+<h2 id="Searching-1"><a href="#Searching-1" class="headerlink" title="Searching"></a>Searching</h2><p>키 값 검색</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> words = [<span class="string">"A"</span>: <span class="string">"Apple"</span>, <span class="string">"B"</span>: <span class="string">"Banana"</span>, <span class="string">"C"</span>: <span class="string">"City"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (key, <span class="number">_</span>) <span class="keyword">in</span> words &#123;</span><br><span class="line">  <span class="keyword">if</span> key == <span class="string">"A"</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"contains A key."</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// contains A key.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> words.<span class="built_in">contains</span>(<span class="keyword">where</span>: &#123; (key, value) -&gt; <span class="type">Bool</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">return</span> key == <span class="string">"A"</span></span><br><span class="line">  &#125;) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"contains A key."</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// contains A key.</span></span><br></pre></td></tr></table></figure>
 
 <p>추가 / 변경</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">words = [<span class="string">"A"</span>: <span class="string">"A"</span>]</span><br><span class="line">words</span><br><span class="line"><span class="comment">// 키 A의 값 A로 변경</span></span><br><span class="line">words[<span class="string">"A"</span>]    <span class="comment">// Key -&gt; Unique</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 키 A의 값 Apple 로 변경</span></span><br><span class="line">words[<span class="string">"A"</span>] = <span class="string">"Apple"</span></span><br><span class="line">words</span><br><span class="line"></span><br><span class="line">words[<span class="string">"B"</span>] = <span class="string">"Banana"</span></span><br><span class="line">words</span><br><span class="line"></span><br><span class="line"><span class="comment">// 값을 변경한다.</span></span><br><span class="line">words[<span class="string">"B"</span>] = <span class="string">"Blue"</span></span><br><span class="line">words</span><br><span class="line"><span class="comment">// 키 B의 값 Banana로 변경</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Change-an-Existing-Element-1"><a href="#Change-an-Existing-Element-1" class="headerlink" title="Change an Existing Element"></a>Change an Existing Element</h3><p>기존의 딕셔너리에 키가 이미 존재하면 value를 업데이트 한 후 기존 값을 반환한다.</p>
+<h2 id="Change-an-Existing-Element-1"><a href="#Change-an-Existing-Element-1" class="headerlink" title="Change an Existing Element"></a>Change an Existing Element</h2><p>기존의 딕셔너리에 키가 이미 존재하면 value를 업데이트 한 후 기존 값을 반환한다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">words[<span class="string">"A"</span>] = <span class="string">"App"</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> oldValue = words.updateValue(<span class="string">"Apple"</span>, forKey: <span class="string">"A"</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(oldValue) =&gt; \(words["</span><span class="type">A</span><span class="string">"]!)"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Insert \(words["</span><span class="type">A</span><span class="string">"]!)"</span>)</span><br><span class="line">&#125;</span><br><span class="line">words</span><br><span class="line"><span class="comment">// App =&gt; Apple 출력</span></span><br></pre></td></tr></table></figure>
 
 <p>기존의 딕셔너리에 키가 없으면 value를 추가한 후 nil을 반환한다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> oldValue = words.updateValue(<span class="string">"Steve Jobs"</span>, forKey: <span class="string">"S"</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(oldValue) =&gt; \(words["</span><span class="type">S</span><span class="string">"]!)"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Add S Key with \(words["</span><span class="type">S</span><span class="string">"]!)"</span>)</span><br><span class="line">&#125;</span><br><span class="line">words</span><br><span class="line"><span class="comment">// S는 추가 되었지만</span></span><br><span class="line"><span class="comment">// Add S Key with Steve Jobs 가 출력된다</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Remove-an-Element-1"><a href="#Remove-an-Element-1" class="headerlink" title="Remove an Element"></a>Remove an Element</h3><p>삭제하기!</p>
+<h2 id="Remove-an-Element-1"><a href="#Remove-an-Element-1" class="headerlink" title="Remove an Element"></a>Remove an Element</h2><p>삭제하기!</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">words = [<span class="string">"A"</span>: <span class="string">"Apple"</span>, <span class="string">"I"</span>: <span class="string">"IPhone"</span>, <span class="string">"S"</span>: <span class="string">"Steve Jobs"</span>, <span class="string">"T"</span>: <span class="string">"Timothy Cook"</span>]</span><br><span class="line">words[<span class="string">"S"</span>] = <span class="literal">nil</span></span><br><span class="line">words[<span class="string">"Z"</span>] = <span class="literal">nil</span></span><br><span class="line">words</span><br><span class="line"><span class="comment">// S와 Z의 키와 값이 모두 사라짐</span></span><br></pre></td></tr></table></figure>
 
 
@@ -344,7 +341,7 @@
 <p>지우려는 키가 존재하면 데이터를 지운 후 지운 데이터 반환, 없으면 nil 반환</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> removedValue = words.removeValue(forKey: <span class="string">"T"</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(removedValue) removed!"</span>)</span><br><span class="line">&#125;</span><br><span class="line">words</span><br><span class="line"><span class="comment">// Timothy Cook removed! 반환</span></span><br><span class="line"></span><br><span class="line">words.removeAll() <span class="comment">// 모두 제거</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Nested"><a href="#Nested" class="headerlink" title="Nested"></a>Nested</h3><p>딕셔너리 내부에 딕셔너리, 그 딕셔너리 내부에 딕셔너리</p>
+<h2 id="Nested"><a href="#Nested" class="headerlink" title="Nested"></a>Nested</h2><p>딕셔너리 내부에 딕셔너리, 그 딕셔너리 내부에 딕셔너리</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dict1 = [<span class="type">String</span>: [<span class="type">String</span>]]()</span><br><span class="line"><span class="comment">//dict1["arr"] = "A"</span></span><br><span class="line">dict1[<span class="string">"arr1"</span>] = [<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>]</span><br><span class="line">dict1[<span class="string">"arr2"</span>] = [<span class="string">"D"</span>, <span class="string">"E"</span>, <span class="string">"F"</span>]</span><br><span class="line"><span class="built_in">print</span>(dict1)</span><br><span class="line"></span><br><span class="line"><span class="comment">//["arr1": ["A", "B", "C"], "arr2": ["D", "E", "F"]]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dict2 = [<span class="type">String</span>: [<span class="type">String</span>: <span class="type">String</span>]]()</span><br><span class="line">dict2[<span class="string">"user"</span>] = [</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"나개발"</span>,</span><br><span class="line">  <span class="string">"job"</span>: <span class="string">"iOS 개발자"</span>,</span><br><span class="line">  <span class="string">"hobby"</span>: <span class="string">"코딩"</span>,</span><br><span class="line">]</span><br><span class="line"><span class="built_in">print</span>(dict2)</span><br><span class="line"><span class="comment">//["user": ["name": "나개발", "job": "iOS 개발자", "hobby": "코딩"]]</span></span><br></pre></td></tr></table></figure>
 
 <p>값의 타입이 다양한 딕셔너리도 가능하다</p>
@@ -352,19 +349,19 @@
 
 
 
-<h4 id="Q-Dictionary-로-저장되어-있는-시험-성적의-평균-점수-구하기"><a href="#Q-Dictionary-로-저장되어-있는-시험-성적의-평균-점수-구하기" class="headerlink" title="Q. Dictionary 로 저장되어 있는 시험 성적의 평균 점수 구하기"></a>Q. Dictionary 로 저장되어 있는 시험 성적의 평균 점수 구하기</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> scores = [<span class="string">"kor"</span>: <span class="number">92</span>,<span class="string">"eng"</span>: <span class="number">88</span>, <span class="string">"math"</span>: <span class="number">96</span>, <span class="string">"science"</span>: <span class="number">89</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> score <span class="keyword">in</span> scores.values &#123;</span><br><span class="line">  sum += score</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> average = <span class="type">Double</span>(sum) / <span class="type">Double</span>(scores.values.<span class="built_in">count</span>)</span><br><span class="line"><span class="built_in">print</span>(average)</span><br></pre></td></tr></table></figure>
+<h3 id="Q-Dictionary-로-저장되어-있는-시험-성적의-평균-점수-구하기"><a href="#Q-Dictionary-로-저장되어-있는-시험-성적의-평균-점수-구하기" class="headerlink" title="Q. Dictionary 로 저장되어 있는 시험 성적의 평균 점수 구하기"></a>Q. Dictionary 로 저장되어 있는 시험 성적의 평균 점수 구하기</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> scores = [<span class="string">"kor"</span>: <span class="number">92</span>,<span class="string">"eng"</span>: <span class="number">88</span>, <span class="string">"math"</span>: <span class="number">96</span>, <span class="string">"science"</span>: <span class="number">89</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> score <span class="keyword">in</span> scores.values &#123;</span><br><span class="line">  sum += score</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> average = <span class="type">Double</span>(sum) / <span class="type">Double</span>(scores.values.<span class="built_in">count</span>)</span><br><span class="line"><span class="built_in">print</span>(average)</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="Q-Dictionary로-저장된-scores-데이터를-튜플-타입을-지닌-배열로-변환하여-저장하기"><a href="#Q-Dictionary로-저장된-scores-데이터를-튜플-타입을-지닌-배열로-변환하여-저장하기" class="headerlink" title="Q. Dictionary로 저장된 scores 데이터를 튜플 타입을 지닌 배열로 변환하여 저장하기"></a>Q. Dictionary로 저장된 scores 데이터를 튜플 타입을 지닌 배열로 변환하여 저장하기</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> scores = [<span class="string">"kor"</span>: <span class="number">92</span>,<span class="string">"eng"</span>: <span class="number">88</span>, <span class="string">"math"</span>: <span class="number">96</span>, <span class="string">"science"</span>: <span class="number">89</span>]</span><br><span class="line"><span class="keyword">var</span> scoreArr: [(<span class="type">String</span>, <span class="type">Int</span>)] = []</span><br><span class="line"></span><br><span class="line"><span class="comment">// case 1</span></span><br><span class="line"><span class="keyword">for</span> (key, value) <span class="keyword">in</span> scores &#123;</span><br><span class="line">  scoreArr.append((key, value))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// case 2</span></span><br><span class="line"><span class="keyword">for</span> dict <span class="keyword">in</span> scores &#123;</span><br><span class="line">  scoreArr.append(dict)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// case 3</span></span><br><span class="line">scoreArr = <span class="type">Array</span>(scores)</span><br></pre></td></tr></table></figure>
+<h3 id="Q-Dictionary로-저장된-scores-데이터를-튜플-타입을-지닌-배열로-변환하여-저장하기"><a href="#Q-Dictionary로-저장된-scores-데이터를-튜플-타입을-지닌-배열로-변환하여-저장하기" class="headerlink" title="Q. Dictionary로 저장된 scores 데이터를 튜플 타입을 지닌 배열로 변환하여 저장하기"></a>Q. Dictionary로 저장된 scores 데이터를 튜플 타입을 지닌 배열로 변환하여 저장하기</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> scores = [<span class="string">"kor"</span>: <span class="number">92</span>,<span class="string">"eng"</span>: <span class="number">88</span>, <span class="string">"math"</span>: <span class="number">96</span>, <span class="string">"science"</span>: <span class="number">89</span>]</span><br><span class="line"><span class="keyword">var</span> scoreArr: [(<span class="type">String</span>, <span class="type">Int</span>)] = []</span><br><span class="line"></span><br><span class="line"><span class="comment">// case 1</span></span><br><span class="line"><span class="keyword">for</span> (key, value) <span class="keyword">in</span> scores &#123;</span><br><span class="line">  scoreArr.append((key, value))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// case 2</span></span><br><span class="line"><span class="keyword">for</span> dict <span class="keyword">in</span> scores &#123;</span><br><span class="line">  scoreArr.append(dict)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// case 3</span></span><br><span class="line">scoreArr = <span class="type">Array</span>(scores)</span><br></pre></td></tr></table></figure>
 
-<h4 id="Q-주어진-자료를-보고-Dictionary-자료형에-맞게-데이터를-변수에-저장하기"><a href="#Q-주어진-자료를-보고-Dictionary-자료형에-맞게-데이터를-변수에-저장하기" class="headerlink" title="Q. 주어진 자료를 보고 Dictionary 자료형에 맞게 데이터를 변수에 저장하기"></a>Q. 주어진 자료를 보고 Dictionary 자료형에 맞게 데이터를 변수에 저장하기</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 패스트캠퍼스</span></span><br><span class="line"><span class="comment">  - 스쿨</span></span><br><span class="line"><span class="comment">    * iOS 스쿨</span></span><br><span class="line"><span class="comment">    * 백엔드 스쿨</span></span><br><span class="line"><span class="comment">    * 프론트엔드 스쿨</span></span><br><span class="line"><span class="comment">  - 캠프</span></span><br><span class="line"><span class="comment">    * A 강의</span></span><br><span class="line"><span class="comment">    * B 강의</span></span><br><span class="line"><span class="comment">  - 온라인</span></span><br><span class="line"><span class="comment">    * C 강의</span></span><br><span class="line"><span class="comment">    * D 강의</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h3 id="Q-주어진-자료를-보고-Dictionary-자료형에-맞게-데이터를-변수에-저장하기"><a href="#Q-주어진-자료를-보고-Dictionary-자료형에-맞게-데이터를-변수에-저장하기" class="headerlink" title="Q. 주어진 자료를 보고 Dictionary 자료형에 맞게 데이터를 변수에 저장하기"></a>Q. 주어진 자료를 보고 Dictionary 자료형에 맞게 데이터를 변수에 저장하기</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 패스트캠퍼스</span></span><br><span class="line"><span class="comment">  - 스쿨</span></span><br><span class="line"><span class="comment">    * iOS 스쿨</span></span><br><span class="line"><span class="comment">    * 백엔드 스쿨</span></span><br><span class="line"><span class="comment">    * 프론트엔드 스쿨</span></span><br><span class="line"><span class="comment">  - 캠프</span></span><br><span class="line"><span class="comment">    * A 강의</span></span><br><span class="line"><span class="comment">    * B 강의</span></span><br><span class="line"><span class="comment">  - 온라인</span></span><br><span class="line"><span class="comment">    * C 강의</span></span><br><span class="line"><span class="comment">    * D 강의</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fastcampus = [</span><br><span class="line">  <span class="string">"패스트캠퍼스"</span>: [</span><br><span class="line">    <span class="string">"스쿨"</span>: [<span class="string">"iOS 스쿨"</span>, <span class="string">"백엔드 스쿨"</span>, <span class="string">"프론트엔드 스쿨"</span>],</span><br><span class="line">    <span class="string">"캠프"</span>: [<span class="string">"A 강의"</span>, <span class="string">"B 강의"</span>],</span><br><span class="line">    <span class="string">"온라인"</span>: [<span class="string">"C 강의"</span>, <span class="string">"D 강의"</span>],</span><br><span class="line">  ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="Q-위-문제에서-정의한-변수의-데이터-중-스쿨-배열에-저장된-첫번째-데이터를-꺼내어-출력하기-자세한-내용은-Optional-시간에"><a href="#Q-위-문제에서-정의한-변수의-데이터-중-스쿨-배열에-저장된-첫번째-데이터를-꺼내어-출력하기-자세한-내용은-Optional-시간에" class="headerlink" title="Q. 위 문제에서 정의한 변수의 데이터 중 스쿨 배열에 저장된 첫번째 데이터를 꺼내어 출력하기 (자세한 내용은 Optional 시간에!)"></a>Q. 위 문제에서 정의한 변수의 데이터 중 스쿨 배열에 저장된 첫번째 데이터를 꺼내어 출력하기 (자세한 내용은 Optional 시간에!)</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> 패캠 = fastcampus[<span class="string">"패스트캠퍼스"</span>] &#123;</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">let</span> 스쿨 = 패캠[<span class="string">"스쿨"</span>] &#123;</span><br><span class="line">    <span class="built_in">print</span>(스쿨[<span class="number">0</span>])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> 패캠 = fastcampus[<span class="string">"패스트캠퍼스"</span>], <span class="keyword">let</span> 스쿨 = 패캠[<span class="string">"스쿨"</span>], <span class="keyword">let</span> iOS = 스쿨.first &#123;</span><br><span class="line">  <span class="built_in">print</span>(iOS)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fastcampus[<span class="string">"패스트캠퍼스"</span>]![<span class="string">"스쿨"</span>]![<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 결과는 모두 동일하다.</span></span><br><span class="line"><span class="comment">// iOS 스쿨</span></span><br></pre></td></tr></table></figure>
+<h3 id="Q-위-문제에서-정의한-변수의-데이터-중-스쿨-배열에-저장된-첫번째-데이터를-꺼내어-출력하기-자세한-내용은-Optional-시간에"><a href="#Q-위-문제에서-정의한-변수의-데이터-중-스쿨-배열에-저장된-첫번째-데이터를-꺼내어-출력하기-자세한-내용은-Optional-시간에" class="headerlink" title="Q. 위 문제에서 정의한 변수의 데이터 중 스쿨 배열에 저장된 첫번째 데이터를 꺼내어 출력하기 (자세한 내용은 Optional 시간에!)"></a>Q. 위 문제에서 정의한 변수의 데이터 중 스쿨 배열에 저장된 첫번째 데이터를 꺼내어 출력하기 (자세한 내용은 Optional 시간에!)</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> 패캠 = fastcampus[<span class="string">"패스트캠퍼스"</span>] &#123;</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">let</span> 스쿨 = 패캠[<span class="string">"스쿨"</span>] &#123;</span><br><span class="line">    <span class="built_in">print</span>(스쿨[<span class="number">0</span>])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> 패캠 = fastcampus[<span class="string">"패스트캠퍼스"</span>], <span class="keyword">let</span> 스쿨 = 패캠[<span class="string">"스쿨"</span>], <span class="keyword">let</span> iOS = 스쿨.first &#123;</span><br><span class="line">  <span class="built_in">print</span>(iOS)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fastcampus[<span class="string">"패스트캠퍼스"</span>]![<span class="string">"스쿨"</span>]![<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 결과는 모두 동일하다.</span></span><br><span class="line"><span class="comment">// iOS 스쿨</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -379,10 +376,10 @@
 
 
 
-<h3 id="Number-of-Elements-2"><a href="#Number-of-Elements-2" class="headerlink" title="Number of Elements"></a>Number of Elements</h3><p>데이터의 갯수 반환하기! 배열과 같음 count 속성을 이용한다.</p>
+<h2 id="Number-of-Elements-2"><a href="#Number-of-Elements-2" class="headerlink" title="Number of Elements"></a>Number of Elements</h2><p>데이터의 갯수 반환하기! 배열과 같음 count 속성을 이용한다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fruitsSet: <span class="type">Set</span>&lt;<span class="type">String</span>&gt; = [<span class="string">"Apple"</span>, <span class="string">"Orange"</span>, <span class="string">"Melon"</span>]</span><br><span class="line">fruitsSet.<span class="built_in">count</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> !fruitsSet.isEmpty &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(fruitsSet.count) element(s)"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"empty set"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//3 element(s) 출력</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Searching-2"><a href="#Searching-2" class="headerlink" title="Searching"></a>Searching</h3><p>배열과는 달리 순서가 정렬되어 있는 것이 아니기 때문에 인덱스 주소로 검색할 수 없다.</p>
+<h2 id="Searching-2"><a href="#Searching-2" class="headerlink" title="Searching"></a>Searching</h2><p>배열과는 달리 순서가 정렬되어 있는 것이 아니기 때문에 인덱스 주소로 검색할 수 없다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x: <span class="type">Set</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="keyword">let</span> y: <span class="type">Set</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">x</span><br><span class="line">y</span><br><span class="line"><span class="comment">// 출력해 보면 같은 모양의 집합이지만 순서는 엉망진창이다. 완전 다름</span></span><br><span class="line"></span><br><span class="line">fruitsSet[<span class="number">0</span>]    <span class="comment">// 오류!!!!!!</span></span><br><span class="line">x.first   <span class="comment">// 첫 번째 값만 반환한다</span></span><br></pre></td></tr></table></figure>
 
 <p>contains 속성을 이용하여 참조 가능하다</p>
@@ -391,18 +388,18 @@
 <p>Has prefix 속성을 이용하여 첫 번째 글자를 통해 참조도 가능하다</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> productSet: <span class="type">Set</span> = [<span class="string">"iPhone"</span>, <span class="string">"iPad"</span>, <span class="string">"Mac Pro"</span>, <span class="string">"iPad Pro"</span>, <span class="string">"Macbook Pro"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> element <span class="keyword">in</span> productSet &#123;</span><br><span class="line">  <span class="keyword">if</span> element.hasPrefix(<span class="string">"i"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(element)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// iPad Pro</span></span><br><span class="line"><span class="comment">// iPhone</span></span><br><span class="line"><span class="comment">// iPad</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Add-a-New-Element"><a href="#Add-a-New-Element" class="headerlink" title="Add a New Element"></a>Add a New Element</h3><p>역시 배열과 달리 인덱싱을 통해 데이터를 추가하는 append 속성과 at 속성은 사용할 수 없다.</p>
+<h2 id="Add-a-New-Element"><a href="#Add-a-New-Element" class="headerlink" title="Add a New Element"></a>Add a New Element</h2><p>역시 배열과 달리 인덱싱을 통해 데이터를 추가하는 append 속성과 at 속성은 사용할 수 없다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].append(<span class="number">1</span>)</span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].insert(<span class="number">2</span>, at: <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 둘다 에러!!!!!</span></span><br></pre></td></tr></table></figure>
 
 <p>Insert 속성을 통해 밀어넣는다</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stringSet: <span class="type">Set</span>&lt;<span class="type">String</span>&gt; = []</span><br><span class="line">stringSet.insert(<span class="string">"Apple"</span>)</span><br><span class="line">stringSet</span><br><span class="line"></span><br><span class="line">stringSet.insert(<span class="string">"Orange"</span>)</span><br><span class="line">stringSet</span><br><span class="line"></span><br><span class="line">stringSet.insert(<span class="string">"Orange"</span>)</span><br><span class="line">stringSet</span><br><span class="line"></span><br><span class="line"><span class="comment">// 물론 넣은 순서대로 정렬되지는 않는다.</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Remove-an-Element-2"><a href="#Remove-an-Element-2" class="headerlink" title="Remove an Element"></a>Remove an Element</h3><p>데이터를 지울 때 역시 인덱스를 통하지 않고 직접 remove 속성을 이용하여 지운다.</p>
+<h2 id="Remove-an-Element-2"><a href="#Remove-an-Element-2" class="headerlink" title="Remove an Element"></a>Remove an Element</h2><p>데이터를 지울 때 역시 인덱스를 통하지 않고 직접 remove 속성을 이용하여 지운다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">stringSet = [<span class="string">"Apple"</span>, <span class="string">"Orange"</span>, <span class="string">"Melon"</span>]</span><br><span class="line"></span><br><span class="line">stringSet.remove(<span class="string">"Apple"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> removed = stringSet.remove(<span class="string">"Orange"</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(removed) has been removed!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stringSet</span><br><span class="line"></span><br><span class="line">stringSet.removeAll()</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="Compare-two-sets"><a href="#Compare-two-sets" class="headerlink" title="Compare two sets"></a>Compare two sets</h3><p>비교 연산자를 사용하여 두 개의 집합을 비교할 수 있다. bool 타입을 반환한다.</p>
+<h2 id="Compare-two-sets"><a href="#Compare-two-sets" class="headerlink" title="Compare two sets"></a>Compare two sets</h2><p>비교 연산자를 사용하여 두 개의 집합을 비교할 수 있다. bool 타입을 반환한다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> favoriteFruits = <span class="type">Set</span>([<span class="string">"Apple"</span>, <span class="string">"Orange"</span>, <span class="string">"Melon"</span>])</span><br><span class="line"><span class="keyword">var</span> tropicalFruits = <span class="type">Set</span>([<span class="string">"Banana"</span>, <span class="string">"Papaya"</span>, <span class="string">"Kiwi"</span>, <span class="string">"Pineapple"</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> favoriteFruits == tropicalFruits &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"favoriteFruits == tropicalFruits"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"favoriteFruits != tropicalFruits"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// favoriteFruits != tropicalFruits 출력</span></span><br></pre></td></tr></table></figure>
 
 <p>그런데 elementsEqual 속성은 순서까지 같아야 한다.</p>
@@ -410,14 +407,14 @@
 
 
 
-<h4 id="Fundamental-Set-Operations"><a href="#Fundamental-Set-Operations" class="headerlink" title="Fundamental Set Operations"></a>Fundamental Set Operations</h4><ul>
+<h2 id="Fundamental-Set-Operations"><a href="#Fundamental-Set-Operations" class="headerlink" title="Fundamental Set Operations"></a>Fundamental Set Operations</h2><ul>
 <li>intersection - 교집합</li>
 <li>symmetricDifference - 교집합의 여집합</li>
 <li>union - 합집합</li>
 <li>subtracting - 차집합</li>
 </ul>
 <p>관련 업계 종사자가 아닌 이상 딱히 쓸 기능은 아니므로 이런게 있다고만 알고 넘어간다.</p>
-<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h4 id="Q-배열의-크기를-‘굳이’-상수에-할당하여-순회탐색을-하는-이유가-뭔가요"><a href="#Q-배열의-크기를-‘굳이’-상수에-할당하여-순회탐색을-하는-이유가-뭔가요" class="headerlink" title="Q. 배열의 크기를 ‘굳이’ 상수에 할당하여 순회탐색을 하는 이유가 뭔가요?"></a>Q. 배열의 크기를 ‘굳이’ 상수에 할당하여 순회탐색을 하는 이유가 뭔가요?</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cities = [<span class="string">"Seoul"</span>, <span class="string">"Newyork"</span>, <span class="string">"LA"</span>, <span class="string">"Santiago"</span>]</span><br><span class="line"><span class="keyword">let</span> length = cities.<span class="built_in">count</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;length &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"\(i)번째 배열 원소는 \(cities[i]입니다)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h3 id="Q-배열의-크기를-‘굳이’-상수에-할당하여-순회탐색을-하는-이유가-뭔가요"><a href="#Q-배열의-크기를-‘굳이’-상수에-할당하여-순회탐색을-하는-이유가-뭔가요" class="headerlink" title="Q. 배열의 크기를 ‘굳이’ 상수에 할당하여 순회탐색을 하는 이유가 뭔가요?"></a>Q. 배열의 크기를 ‘굳이’ 상수에 할당하여 순회탐색을 하는 이유가 뭔가요?</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cities = [<span class="string">"Seoul"</span>, <span class="string">"Newyork"</span>, <span class="string">"LA"</span>, <span class="string">"Santiago"</span>]</span><br><span class="line"><span class="keyword">let</span> length = cities.<span class="built_in">count</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;length &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"\(i)번째 배열 원소는 \(cities[i]입니다)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>이와 같이 상수 length에 담아서 탐색하지 않고,</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;cities.<span class="built_in">count</span> &#123;</span><br><span class="line"><span class="comment">// ~~~</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -428,7 +425,7 @@
 <p>배열의 크기가 작다면 크게 문제가 되진 않겠지만, 배열이 크다면 매번 배열의 크기를 계산하는 것은 <em>전체적으로</em></p>
 <p><em>실행 속도를 떨어뜨리는 원인이 된다.</em></p>
 <hr>
-<h4 id="무슨-차이인건가요"><a href="#무슨-차이인건가요" class="headerlink" title="무슨 차이인건가요?"></a>무슨 차이인건가요?</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 특정 값의 위치를 알고 싶을 때</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> index = alphabet.firstIndex(of: <span class="string">"D"</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"index of D: \(index)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> idx1 = alphabet.firstIndex(of: <span class="string">"D"</span>)</span><br><span class="line"><span class="comment">//print(idx1)</span></span><br></pre></td></tr></table></figure>
+<h3 id="무슨-차이인건가요"><a href="#무슨-차이인건가요" class="headerlink" title="무슨 차이인건가요?"></a>무슨 차이인건가요?</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 특정 값의 위치를 알고 싶을 때</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> index = alphabet.firstIndex(of: <span class="string">"D"</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"index of D: \(index)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> idx1 = alphabet.firstIndex(of: <span class="string">"D"</span>)</span><br><span class="line"><span class="comment">//print(idx1)</span></span><br></pre></td></tr></table></figure>
 
 <p>위 두 가지 코드는 if로 감싼 것 외에는 별 다른 차이가 없다.</p>
 <p>설명하기 위해서는 Optional 이라는 개념을 이해해야 하니 내일로 넘어간다. </p>
@@ -451,7 +448,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/2019-11-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -465,7 +462,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2019/11/2019-11-12/" class="post-title-link" itemprop="url">hexo / github</a>
         </h1>
 
         <div class="post-meta">
@@ -475,7 +472,25 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-11-12 18:33:40" itemprop="dateCreated datePublished" datetime="2019-11-12T18:33:40+09:00">2019-11-12</time>
+              <time title="Created: 2019-11-12 17:25:51" itemprop="dateCreated datePublished" datetime="2019-11-12T17:25:51+09:00">2019-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-13 19:34:47" itemprop="dateModified" datetime="2019-11-13T19:34:47+09:00">2019-11-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
             </span>
 
           
@@ -489,19 +504,153 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+          <h1 id="hexo-블로그-테마-적용하기"><a href="#hexo-블로그-테마-적용하기" class="headerlink" title="hexo 블로그 테마 적용하기"></a>hexo 블로그 테마 적용하기</h1><p>한국어 지원 안하는 테마들 지원해주는 경험도 좋음</p>
+<p>Ghblog 디렉토리에 클론  경로 주의!</p>
+<p>vi _config.yml</p>
+<p>켜서 theme 수정</p>
+<p>나와서</p>
+<p>hexo clean &amp;&amp; hexo generate</p>
+<p>hexo server 로 로컬 서버 돌리고</p>
+<p>확인</p>
+<p>성공!</p>
+<p>iTerm 이런저런 설정은 ulgoon.github.io 가서 확인!</p>
+<hr>
+<h1 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h1><ul>
+<li>어떤 시점에 분기점을 치는 행위 -&gt; 브랜치를 친다</li>
+<li>분기점을 생성하고 독립적으로 코드를 변경할 수 있도록 도와주는 모델</li>
+</ul>
+<p>일단 로컬 저장소로 이동!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd iOS-git-first</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>마블 멀티 유니버스의 개념이랑 유사함</p>
+<p>스파이더맨이라는 캐릭터가 있는데 유니버스마다 스파이더맨의 성향이 다르게 설정할 수 있음</p>
+<p>브랜치도 이와 유사함</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>위 명령어를 치면 현재 브랜치 목록 출력</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch earth123</span><br></pre></td></tr></table></figure>
+
+<p>earth123 브랜치 생성</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout earth123</span><br></pre></td></tr></table></figure>
+
+<p>Earth123 브랜치로 이동!</p>
+<ul>
+<li>readme.md 수정하고 저장</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add README.md</span><br></pre></td></tr></table></figure>
+
+<p>git status 를 찍어서 상황을 확인해보자</p>
+<p>Commit..</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;docs: remove contents from README.md&quot; branch test</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>작업한 내용이 마음에 안들면 브랜치 날려버리면 된다.</li>
+<li>Earth123 브랜치의 작업 내용이 맘에 안든다! 날려버리자</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D earth123</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>연습해보자 </li>
+<li>Edit-readme 브랜치 생성</li>
+<li>checkout 하고 readme.md 수정</li>
+<li>add, commit</li>
+<li>확인</li>
+</ul>
+<p>master 브랜치로 이동한 상태에서 git diff edit-readme 명령어를치면 차이점을 확인 할 수 있다</p>
+<hr>
+<h1 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h1><ul>
+<li>Edit-readme의 작업이 맘에 든다! Master 로 병합하자!</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge edit-readme</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>과제</p>
+<ul>
+<li>Add-profile 브랜치 생성해서 readme.md 수정 하고 병합</li>
+<li>마스터에 병합이 끝나면 해당 기능 개발에 대한 작업이 완료 된 것이기 때문에 이미 완료된 브랜치들이 남아있을 필요가 없음</li>
+<li>완료된 브랜치들 날려버리자</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -D add-profile</span><br><span class="line">git branch -D edit-readme</span><br><span class="line">git branch // 현재 브랜치 상태 확인</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h1 id="git-flow-strategy"><a href="#git-flow-strategy" class="headerlink" title="git flow strategy"></a>git flow strategy</h1><p>브랜치 목록</p>
+<ol>
+<li>master</li>
+<li>develop</li>
+<li>feature : 기능 개발 브랜치</li>
+<li>feature 기능 개발 브랜치</li>
+</ol>
+<h2 id="version-naming"><a href="#version-naming" class="headerlink" title="version naming"></a>version naming</h2><ul>
+<li>마스터 브랜치가 진행 될 수록 버전이 진행 되는 개념 매니저가 release 합시다! 하면 알아서 할것 우리가 건드릴 일은 별로 없음, 팀장급이 아니라면.</li>
+<li>Ex) v1.0.1 맨 앞에 최초 상용 버전이 되었을때 1이 됨</li>
+<li>맨 앞 숫자는 메이저한 변화를 반영한다.</li>
+<li>완전 새로운데 앱 이름만 바뀐 경우 등</li>
+<li>뭔가 기능(feature)가 추가 되면 가운데 숫자 올라감 v1.2.1, v1.3.1</li>
+</ul>
+<ul>
+<li>Develop 을 앞에서 배운 master 브랜치 느낌으로 이해하면 됨</li>
+</ul>
+<h1 id="git-flow"><a href="#git-flow" class="headerlink" title="git flow"></a>git flow</h1><p>프로젝트를 시작할 때</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow init</span><br></pre></td></tr></table></figure>
+
+<p>으로 시작</p>
+<p>후 엔터엔터엔터엔터…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow feature start flow-init</span><br></pre></td></tr></table></figure>
+
+
+
+<p>touch main.swift</p>
+<p>// 작업 끝</p>
+<p>git gi</p>
+<p>콜라보레이터</p>
+<p>사용 잘 안함</p>
+<h3 id="팀장"><a href="#팀장" class="headerlink" title="팀장"></a>팀장</h3><p>today lunch 레포를 생성하자 </p>
+<p>리드미파일 수정하는 식으로 해볼거임</p>
+<p>클론 하자</p>
+<p>Today-lunch 들어가서 git flow init</p>
+<p>git branch</p>
+<p>Readme.md 수정</p>
+<p>날짜 적을 것</p>
+<p>git status</p>
+<p>git add readme.md</p>
+<p>git commit -m “docs: add date for today”</p>
+<p>git push origin -u develop</p>
+<h3 id="팀원"><a href="#팀원" class="headerlink" title="팀원"></a>팀원</h3><p>팀장 레포 들어가서 Fork</p>
+<p>: 남의 레포에 push를 하려면 접근이 안됨,</p>
+<p>그래서 사본을 만드는 거임 fork를 뜨는거다!</p>
+<p>Fork를 하면 팀장꺼를 복사해서 팀원이 사용한다.</p>
+<p>그리고 팀장레포에 가서 issue를 하나 만들면 된다.</p>
+<p>Issue 에서는 제안, 신고 등 의견을 내는 곳임</p>
+<p>실습에서는 점심메뉴를 적는 것으로 업데이트 한다.</p>
+<p>이슈넘버가 생성된다. </p>
+<p>복사한 레포, git clone</p>
+<p> 그런데 팀장은 분명 branch를 쳤는데 반영이 안되어있다.</p>
+<p>Readme도 팀장이 수정한 내용이 없음</p>
+<p>그랴서 팀장의 상태를 땡겨와야함!</p>
+<p>git flow init </p>
+<p>git pull origin develop</p>
+<p>요렇게 해서 팀장의 레포와 상태를 똑같이 만들어 놓고 팀원 본인의 기능 개발을 시작한다.</p>
+<p>git flow feature start 1112-팀원명</p>
+<p>이 실습은 readme.md 파일에 점심메뉴를 적는것으로 한다.</p>
+<p>git add README.md</p>
+<p>git commit -m “docs: blah blah”</p>
+<p>git flow feature finish </p>
+<p>git push origin develop</p>
+<p>다 끝나면 팀장의 develop으로 pull 요청해야함. 접근권한이 없어서 사본을 떴으니깐. (master로 요청하면 안됨! 확인 주의)</p>
+<p>pull request</p>
+<p>solved #1 (이슈넘버)</p>
+<h3 id="팀장-1"><a href="#팀장-1" class="headerlink" title="팀장"></a>팀장</h3><p>pull request를 확인한다</p>
+<p>merge를 눌러주면 팀원의 작업 내용이 팀장의 레포에 반영이 됨</p>
 
       
     </div>
@@ -521,7 +670,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19-11-11/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/2019-11-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -535,7 +684,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/19-11-11/" class="post-title-link" itemprop="url">11.11</a>
+            <a href="/2019/11/2019-11-11/" class="post-title-link" itemprop="url">조건문 / 반복문</a>
         </h1>
 
         <div class="post-meta">
@@ -545,15 +694,26 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-11-11 15:45:50" itemprop="dateCreated datePublished" datetime="2019-11-11T15:45:50+09:00">2019-11-11</time>
+              <time title="Created: 2019-11-11 10:43:31" itemprop="dateCreated datePublished" datetime="2019-11-11T10:43:31+09:00">2019-11-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-12 19:45:39" itemprop="dateModified" datetime="2019-11-12T19:45:39+09:00">2019-11-12</time>
+                <time title="Modified: 2019-11-13 19:33:52" itemprop="dateModified" datetime="2019-11-13T19:33:52+09:00">2019-11-13</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
+            </span>
 
           
 
@@ -742,7 +902,7 @@
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
