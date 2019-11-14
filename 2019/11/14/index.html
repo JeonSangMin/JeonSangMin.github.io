@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Let's Swift!" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Optional Optional은 값이 없을 수 있는 상황에 사용  옵셔널 타입은 2가지 가능성을 지닌다    값을 전혀 가지고 있지 않음 nil 값이 있으며, 그 값에 접근하기 위해 옵셔널을 벗겨 낼 수 있음   값이 없는 것과 0인 것의 차이?  0 은 0이라는 값이 엄연히 존재하는 것임. nil은 진짜 값이 ‘없는’ 것 숫자로 바꾸니까 int형으로 바">
+<meta name="keywords" content="swift, iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optional &#x2F; Enumeration">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;14&#x2F;index.html">
+<meta property="og:site_name" content="Let&#39;s Swift!">
+<meta property="og:description" content="Optional Optional은 값이 없을 수 있는 상황에 사용  옵셔널 타입은 2가지 가능성을 지닌다    값을 전혀 가지고 있지 않음 nil 값이 있으며, 그 값에 접근하기 위해 옵셔널을 벗겨 낼 수 있음   값이 없는 것과 0인 것의 차이?  0 은 0이라는 값이 엄연히 존재하는 것임. nil은 진짜 값이 ‘없는’ 것 숫자로 바꾸니까 int형으로 바">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-14T07:29:53.064Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/14/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Optional / Enumeration | Let's Swift!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Let's Swift!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">SangMin's study blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Optional / Enumeration
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-14 10:33:27 / Modified: 16:29:53" itemprop="dateCreated datePublished" datetime="2019-11-14T10:33:27+09:00">2019-11-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h1><ul>
+<li><p>Optional은 값이 없을 수 있는 상황에 사용</p>
+</li>
+<li><p>옵셔널 타입은 2가지 가능성을 지닌다</p>
+</li>
+</ul>
+<ol>
+<li>값을 전혀 가지고 있지 않음 nil</li>
+<li>값이 있으며, 그 값에 접근하기 위해 옵셔널을 벗겨 낼 수 있음</li>
+</ol>
+<ul>
+<li>값이 없는 것과 0인 것의 차이?</li>
+</ul>
+<p>0 은 0이라는 값이 엄연히 존재하는 것임. nil은 진짜 값이 ‘없는’ 것</p>
+<p>숫자로 바꾸니까 int형으로 바뀌는 이유는?</p>
+<p>123 이라는 문자열은 정수형으로 바꿀 수 있지만, 다른 문자열은 숫자로 못바꿀 수도 있는 ‘가능성’이 있기 때문에</p>
+<p>형변환을 하면 옵셔널이 된다.</p>
+<p>그런데 Double 타입은 비록 소수부는 사라질 지언정 int로 바꾸면 무조건 int로 바뀔 수 있기 때문에 옵셔널이 아님</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> possibleNumber = <span class="string">"123"</span></span><br><span class="line"><span class="keyword">var</span> convertedNumber = <span class="type">Int</span>(possibleNumber)</span><br><span class="line">type(of: convertedNumber)</span><br><span class="line"></span><br><span class="line">type(of: <span class="type">Int</span>(<span class="number">3.14</span>))</span><br><span class="line"><span class="comment">// Optional&lt;Int&gt;.type</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>선언 방법</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> optionalType1: <span class="type">String?</span></span><br><span class="line"><span class="keyword">var</span> optionalType2: <span class="type">Optional</span>&lt;<span class="type">Int</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li>옵셔널 Int와 Int는 엄연히 다른 타입이다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nonOptionalInt = <span class="number">10</span></span><br><span class="line"><span class="keyword">var</span> optionalInt : <span class="type">Int?</span> = <span class="number">100</span></span><br><span class="line"></span><br><span class="line">nonOptionalInt + optionalInt <span class="comment">// 에러</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>그렇기 때문에 연산도 할수없고, unoptional 타입의 변수에는 nil값을 할당할 수도 없다.</li>
+</ul>
+<ul>
+<li>옵셔널 변수의 초기화는</li>
+<li>옵셔널이 아닌 변수와 똑같다.</li>
+</ul>
+<h2 id="Optional-Binding-and-Forced-Unwrapping"><a href="#Optional-Binding-and-Forced-Unwrapping" class="headerlink" title="Optional Binding and Forced Unwrapping"></a>Optional Binding and Forced Unwrapping</h2><h3 id="Optional-Binding"><a href="#Optional-Binding" class="headerlink" title="Optional Binding"></a>Optional Binding</h3><ul>
+<li>조건문을 이용하여 래핑을 벗겨내는 방식이다. </li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nilValue: <span class="type">String?</span> = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> someValue = <span class="string">"100"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> number = <span class="type">Int</span>(someValue) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\"\(someValue)\" has an integer value of \(number)"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Could not be converted to an integer"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>nil이면 아래의 구문을 출력하고, 값이 있으면 위의 구문을 출력한다.</p>
+<ul>
+<li>옵셔널 바인딩을 사용 할 때도 변수, 상수의 법칙은 지켜진다.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var optionalStr: String? = &quot;Hello, Optional&quot;</span><br><span class="line"></span><br><span class="line">// let</span><br><span class="line">if let optionalStr = optionalStr &#123;</span><br><span class="line">//  optionalStr += &quot;😍&quot;</span><br><span class="line">  optionalStr</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  &quot;valueless string&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// var</span><br><span class="line">if var str = optionalStr &#123;</span><br><span class="line">  str += &quot;😍&quot;</span><br><span class="line">  str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Let 이기 때문에 optionalStr 의 값을 변경할 수 없다.</p>
+<p>아래의 // var 부분은 변경 가능</p>
+<h2 id="Forced-Unwrapping"><a href="#Forced-Unwrapping" class="headerlink" title="Forced Unwrapping"></a>Forced Unwrapping</h2><ul>
+<li>끝에 !를 붙임으로서 강제로 언래핑하는 방식!</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">if convertedNumber != nil &#123;</span><br><span class="line">//  print(&quot;convertedNumber has an integer value of \(convertedNumber).&quot;)</span><br><span class="line">  print(&quot;convertedNumber has an integer value of \(convertedNumber!).&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">print(convertedNumber)</span><br><span class="line">print(convertedNumber!)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Forced unwrap of nil value</span><br><span class="line"></span><br><span class="line">convertedNumber = nil</span><br><span class="line">convertedNumber</span><br><span class="line">//convertedNumber!</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Q. 이렇게 하면 간단한데 왜 바인딩 같은 복잡한 방식을 사용할까?</li>
+</ul>
+<p>nil 값을 가지고 있는 옵셔널을 강제로 언래핑한다면 오류가 발생하니깐!</p>
+<p>그렇기 때문에 반드시 nil 값이 들어가지 않을것이다! 라고 확신이 가능 할 때만 사용하는것이 좋다.</p>
+<p>바인딩을 이용하여 안전하게 벗겨내는 것을 권장한다.</p>
+<h2 id="IUO-Implicitly-Unwrapped-Optionals"><a href="#IUO-Implicitly-Unwrapped-Optionals" class="headerlink" title="IUO (Implicitly Unwrapped Optionals)"></a>IUO (Implicitly Unwrapped Optionals)</h2><ul>
+<li>위에서는 뒤에 ! 를 붙여서 언래핑하였지만, 이번엔 미리 변수의 선언부에 붙여서 사용한다!</li>
+<li>? 대신 !를 붙여서 선언하는 것인데, 옵셔널 타입이지만 일반 타입의 변수에 할당이 가능하다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> assumedString: <span class="type">String!</span> = <span class="string">"An implicitly unwrapped optional string."</span></span><br><span class="line"><span class="keyword">let</span> implicitString: <span class="type">String</span> = assumedString</span><br><span class="line"><span class="keyword">let</span> stillOptionalString = assumedString</span><br><span class="line"></span><br><span class="line">type(of: assumedString) <span class="comment">// 옵셔널이지만 일반 String 변수에 할당 가능</span></span><br><span class="line">type(of: implicitString)</span><br><span class="line">type(of: stillOptionalString)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>옵셔널 타입을 사용해야 하지만 반드시 nil이 아니라는 보장이 있을 때 사용한다.</li>
+<li>Nil value를 체크 해야 할 일이 생길 경우에는 그냥 일반적인 옵셔널을 사용한다.</li>
+<li>프로퍼티 지연 초기화에 많이 사용한다. (뭔진 모르겠지만)</li>
+</ul>
+<hr>
+<h2 id="Nil-coalescing-Operator"><a href="#Nil-coalescing-Operator" class="headerlink" title="Nil-coalescing Operator"></a>Nil-coalescing Operator</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">optionalStr = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// nil이 아니라는 걸 확인한 후 변수에 할당!</span></span><br><span class="line"><span class="keyword">var</span> result = <span class="string">""</span></span><br><span class="line"><span class="keyword">if</span> optionalStr != <span class="literal">nil</span> &#123;</span><br><span class="line">   result = optionalStr!</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   result = <span class="string">"This is a nil value"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>옵셔널 바인딩 방식인데 코드가 꽤 귀찮게 생겼다. 아래와 같이 간단하게 써보자</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> anotherExpression = optionalStr ?? <span class="string">"This is a nil value"</span></span><br><span class="line"><span class="built_in">print</span>(optionalStr)</span><br><span class="line"><span class="built_in">print</span>(anotherExpression)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>?? 연산자를 사용하여 언래핑을 할 수 있다. </li>
+<li>삼항 연산자 ? 와 헷갈릴 수 있지만, 엄연히 다른 연산자이다.</li>
+<li>그렇지만 비슷하게 사용할 수 있다.</li>
+</ul>
+<ul>
+<li><p>어떤 경우에 사용할까?</p>
+</li>
+<li><pre><code class="ㄴ쟔">let defaultColorName = &quot;red&quot;
+var userDefinedColorName: String?
+
+var colorNameToUse = userDefinedColorName ?? defaultColorName
+print(colorNameToUse)
+
+userDefinedColorName = &quot;green&quot;
+colorNameToUse = userDefinedColorName ?? defaultColorName
+print(colorNameToUse)
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- 값이 nil 일때 할당할 값을 미리 따로 지정해 놓고 사용한다!</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### optionalStr ?? &quot;This is a nil value&quot; 를 3항 연산자로 바꿔보기</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line">let answer = optionalStr != nil ? optionalStr! : &quot;This is a nil value&quot;</span><br></pre></td></tr></table></figure>
+
+
+</code></pre>
+</li>
+</ul>
+<h2 id="Optional-Chaining"><a href="#Optional-Chaining" class="headerlink" title="Optional Chaining"></a>Optional Chaining</h2><ul>
+<li>하위 property에 옵셔널 값이 있는지 연속적으로 확인하면서, 중간에 하나라도 nil이 발견된다면 nil이 반환되는 형식</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Persion</span> </span>&#123;</span><br><span class="line">ver residence: <span class="type">Residence?</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Residence</span> </span>&#123;</span><br><span class="line"><span class="keyword">var</span> numberOfRooms = <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sangmin = person()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h2 id="Q-아래-두-옵셔널의-차이점"><a href="#Q-아래-두-옵셔널의-차이점" class="headerlink" title="Q. 아래 두 옵셔널의 차이점?"></a>Q. 아래 두 옵셔널의 차이점?</h2></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> optionalArr1: [<span class="type">Int</span>]? = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> optionalArr2: [<span class="type">Int?</span>] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>위에는 옵셔널 array 이기 때문에 optionalArr1 = nil 이 가능하다. 배열 자체를 nil 할당 가능</li>
+<li>아래는 배열 내부 요소의 값들의 타입이 옵셔널 int. 즉 nil 값을 append 해 줄 수 있음</li>
+</ul>
+<h2 id="Optional-Function-Types"><a href="#Optional-Function-Types" class="headerlink" title="Optional Function Types"></a>Optional Function Types</h2><p>어렵,,,</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aClosure: (() -&gt; <span class="type">Int?</span>)? = &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Q-연습"><a href="#Q-연습" class="headerlink" title="Q. 연습"></a>Q. 연습</h2><h3 id="2개의-정수를-입력받아-Modulo-연산-의-결과를-반환하는-함수를-만들되-2번째-파라미터와-결과값의-타입은-옵셔널로-정의-두-번째-파라미터-입력값으로-nil-이나-0이-들어오면-결과로-nil을-반환하고-그-외에는-계산-결과-반환"><a href="#2개의-정수를-입력받아-Modulo-연산-의-결과를-반환하는-함수를-만들되-2번째-파라미터와-결과값의-타입은-옵셔널로-정의-두-번째-파라미터-입력값으로-nil-이나-0이-들어오면-결과로-nil을-반환하고-그-외에는-계산-결과-반환" class="headerlink" title="2개의 정수를 입력받아 Modulo 연산(%)의 결과를 반환하는 함수를 만들되, 2번째 파라미터와 결과값의 타입은 옵셔널로 정의, 두 번째 파라미터 입력값으로 nil 이나 0이 들어오면 결과로 nil을 반환하고, 그 외에는 계산 결과 반환"></a>2개의 정수를 입력받아 Modulo 연산(%)의 결과를 반환하는 함수를 만들되, 2번째 파라미터와 결과값의 타입은 옵셔널로 정의, 두 번째 파라미터 입력값으로 nil 이나 0이 들어오면 결과로 nil을 반환하고, 그 외에는 계산 결과 반환</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">moduloValue</span> <span class="params">(a: Int, b: Int?)</span></span> -&gt; <span class="type">Int?</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> result: <span class="type">Int?</span></span><br><span class="line">    <span class="keyword">if</span> b != <span class="literal">nil</span> &#123;</span><br><span class="line">        result = a % b!</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> b == <span class="number">0</span> || b == <span class="literal">nil</span> &#123;</span><br><span class="line">        result = <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h1 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h1><ul>
+<li>연관 된 값의 그룹에 대해 공통 된 타입을 정의 한뒤, type-safe 하게 해당 값들을 사용 가능..?</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> north</span><br><span class="line">  <span class="keyword">case</span> south</span><br><span class="line">  <span class="keyword">case</span> east</span><br><span class="line">  <span class="keyword">case</span> west</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>보통은</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> north = <span class="string">"north"</span></span><br><span class="line"><span class="keyword">let</span> south = <span class="string">"south"</span></span><br></pre></td></tr></table></figure>
+
+<p>요렇게 쓰는데, 잘못 입력 할 수도 있고, 남들이 연관있는 값인지 모를 수도 있음</p>
+<p>하지만 enum을 사용하면, 안전하게 사용할 수 있다.</p>
+<p>어차피 네가지 밖에 없으니 서로 연관 값인것도 알 수 있고, 오타도 안날거임</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> directionToHead1 = <span class="type">CompassPoint</span>.west</span><br><span class="line">directionToHead1 = .east</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> directionToHead2: <span class="type">CompassPoint</span> = .north</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Matching-Enumeration-Values"><a href="#Matching-Enumeration-Values" class="headerlink" title="Matching Enumeration Values"></a>Matching Enumeration Values</h2><ul>
+<li>switch 와 같이 잘 쓰인다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> directionToHead = <span class="type">CompassPoint</span>.south</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> directionToHead &#123;</span><br><span class="line"><span class="keyword">case</span> .north:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Lots of planets have a north"</span>)</span><br><span class="line"><span class="keyword">case</span> .south:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Watch out for penguins"</span>)</span><br><span class="line"><span class="keyword">case</span> .east:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Where the sun rises"</span>)</span><br><span class="line"><span class="keyword">case</span> .west:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Where the skies are blue"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Associated-Values"><a href="#Associated-Values" class="headerlink" title="Associated Values"></a>Associated Values</h2><h3 id="Q-enum-Month-case-jan-feb-정의하되-2월은-윤년인지-아닌지-정보를-저장할-수-있도록-구현"><a href="#Q-enum-Month-case-jan-feb-정의하되-2월은-윤년인지-아닌지-정보를-저장할-수-있도록-구현" class="headerlink" title="Q. enum Month { case jan, feb } 정의하되 2월은 윤년인지 아닌지 정보를 저장할 수 있도록 구현"></a>Q. enum Month { case jan, feb } 정의하되 2월은 윤년인지 아닌지 정보를 저장할 수 있도록 구현</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Month</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> jan, feb(<span class="type">Bool</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> february = <span class="type">Month</span>.feb(<span class="literal">false</span>)</span><br><span class="line"><span class="keyword">switch</span> february &#123;</span><br><span class="line"><span class="keyword">case</span> .jan: <span class="keyword">break</span></span><br><span class="line"><span class="keyword">case</span> .feb(<span class="keyword">let</span> isLeafYear): <span class="built_in">print</span>(isLeafYear)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Raw-Value"><a href="#Raw-Value" class="headerlink" title="Raw Value"></a>Raw Value</h2><ul>
+<li><p>해당 enum에서 반드시 고유한 값이어야 함</p>
+</li>
+<li><p>Strings, Characters, or any of the Integer or Floating-point number types</p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Weekday</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> sunday, monday, tuesday, wednesday, thursday, friday, saturday</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Weekday</span>.wednesday</span><br><span class="line"><span class="type">Weekday</span>.wednesday.rawValue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">WeekdayName</span>: <span class="title">String</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> sunday, monday, tuesday, wednesday, thursday, friday, saturday</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">WeekdayName</span>.monday</span><br><span class="line"><span class="type">WeekdayName</span>.monday.rawValue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Gender</span>: <span class="title">String</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> male = <span class="string">"남자"</span>, female = <span class="string">"여자"</span>, other = <span class="string">"기타"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Gender</span>.male</span><br><span class="line"><span class="type">Gender</span>.male.rawValue</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Q-학점-A-B-C-D-F-을-enum-으로-표현하고-각-케이스에-알맞은-0-0-4-0-까지의-값-부여"><a href="#Q-학점-A-B-C-D-F-을-enum-으로-표현하고-각-케이스에-알맞은-0-0-4-0-까지의-값-부여" class="headerlink" title="Q. 학점(A, B, C, D, F)을 enum 으로 표현하고 각 케이스에 알맞은 0.0 ~ 4.0 까지의 값 부여"></a>Q. 학점(A, B, C, D, F)을 enum 으로 표현하고 각 케이스에 알맞은 0.0 ~ 4.0 까지의 값 부여</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">GradeScore</span>: <span class="title">Double</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">A</span> = <span class="number">4.0</span>, <span class="type">B</span> = <span class="number">3.0</span>, <span class="type">C</span> = <span class="number">2.0</span>, <span class="type">D</span> = <span class="number">1.0</span>, <span class="type">F</span> = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">GradeScore</span>.<span class="type">A</span></span><br><span class="line"><span class="type">GradeScore</span>.<span class="type">A</span>.rawValue</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Implicitly-Assigned-Raw-Values"><a href="#Implicitly-Assigned-Raw-Values" class="headerlink" title="Implicitly Assigned Raw Values"></a>Implicitly Assigned Raw Values</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">num WeekdayAgain: Int &#123;</span><br><span class="line">  case sunday = 5, monday, tuesday, wednesday, thursday, friday, saturday</span><br><span class="line">//  case sunday, monday = 100, tuesday = 101, wednesday, thursday, friday, saturday</span><br><span class="line">//  case sunday = 1, monday = 1, tuesday = 2, wednesday, thursday, friday, saturday</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">WeekdayAgain.wednesday</span><br><span class="line">WeekdayAgain.wednesday.rawValue</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>처음 sunday에 rawvalue를 5를 할당했기 때문에 순서대로 가서 8을 반환한다. </li>
+</ul>
+<h2 id="Initializing-from-a-Raw-Value"><a href="#Initializing-from-a-Raw-Value" class="headerlink" title="Initializing from a Raw Value"></a>Initializing from a Raw Value</h2><ul>
+<li>Raw vlaue를 이용하여 초기화 가능!</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PlanetIntRaw</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> mercury = <span class="number">1</span>, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">PlanetIntRaw</span>(rawValue: <span class="number">5</span>)</span><br><span class="line"><span class="type">PlanetIntRaw</span>(rawValue: <span class="number">7</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">PlanetIntRaw</span>(rawValue: <span class="number">0</span>) <span class="comment">// nil</span></span><br><span class="line"><span class="type">PlanetIntRaw</span>(rawValue: <span class="number">15</span>) <span class="comment">// nil</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>여기서 enum이 옵셔널의 속성을 가지고 있음을 알 수 있다. nil을 반환하니깐.</p>
+</li>
+<li><p>옵셔널 바인딩을 통해 ㅅㅏ용한다. </p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> somePlanet = <span class="type">PlanetIntRaw</span>(rawValue: positionToFind) &#123;</span><br><span class="line">  <span class="keyword">switch</span> somePlanet &#123;</span><br><span class="line">  <span class="keyword">case</span> .earth:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Mostly harmless"</span>)</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Not a safe place for humans"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"There isn't a planet at position \(positionToFind)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Nested"><a href="#Nested" class="headerlink" title="Nested"></a>Nested</h2><ul>
+<li>내부에 함수를 설정하여 사용도 할 수 있다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Device</span>: <span class="title">String</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> iPhone, iPad, tv, watch</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">printType</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> .iPad, .iPhone, .tv:</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"device :"</span>, <span class="keyword">self</span>)</span><br><span class="line">    <span class="keyword">case</span> .watch:</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"apple Watch"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> iPhone = <span class="type">Device</span>.tv</span><br><span class="line">iPhone.printType()</span><br><span class="line"></span><br><span class="line"><span class="comment">// tv 출력</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>enum 안에 enum 중첩 사용</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Wearable</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">Weight</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> light = <span class="number">1</span></span><br><span class="line">    <span class="keyword">case</span> heavy = <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">Armor</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> light = <span class="number">2</span></span><br><span class="line">    <span class="keyword">case</span> heavy = <span class="number">4</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">case</span> helmet(weight: <span class="type">Weight</span>, armor: <span class="type">Armor</span>)</span><br><span class="line">  <span class="keyword">case</span> boots</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">info</span><span class="params">()</span></span> -&gt; (weight: <span class="type">Int</span>, armor: <span class="type">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> .helmet(<span class="keyword">let</span> weight, <span class="keyword">let</span> armor):</span><br><span class="line">      <span class="keyword">return</span> (weight: weight.rawValue * <span class="number">2</span>, armor: armor.rawValue * <span class="number">5</span>)</span><br><span class="line">    <span class="keyword">case</span> .boots:</span><br><span class="line">      <span class="keyword">return</span> (<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Wearable</span>.boots</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> woodenHelmet = <span class="type">Wearable</span>.helmet(weight: .light, armor: .heavy)</span><br><span class="line">woodenHelmet.info()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Mutating"><a href="#Mutating" class="headerlink" title="Mutating"></a>Mutating</h2><ul>
+<li>enum 타입 내부 함수에서 자기 자신의 값을 변경해야 할 경우 mutating 키워드가 필요하다.</li>
+</ul>
+<h3 id="Q-on-과-off-값을-가진-enum-타입-RemoteControl-을-정의하고-그-내부에-호출-시마다-on-off-값을-바꿔주는-함수-구현"><a href="#Q-on-과-off-값을-가진-enum-타입-RemoteControl-을-정의하고-그-내부에-호출-시마다-on-off-값을-바꿔주는-함수-구현" class="headerlink" title="Q. on 과 off 값을 가진 enum 타입 RemoteControl 을 정의하고, 그 내부에 호출 시마다 on, off 값을 바꿔주는 함수 구현"></a>Q. on 과 off 값을 가진 enum 타입 RemoteControl 을 정의하고, 그 내부에 호출 시마다 on, off 값을 바꿔주는 함수 구현</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">RemmoteControl</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> on, off</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">switching</span><span class="params">()</span></span> &#123;</span><br><span class="line">      <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">      <span class="keyword">case</span> .on:</span><br><span class="line">        <span class="keyword">self</span> = .off</span><br><span class="line">      <span class="keyword">case</span> .off:</span><br><span class="line">        <span class="keyword">self</span> = .on</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> remocon = <span class="type">RemmoteControl</span>.on</span><br><span class="line"></span><br><span class="line">remocon.switching()</span><br><span class="line">remocon.switching()</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/swift-iOS/" rel="tag"># swift, iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/13/" rel="next" title="배열 / 집합 / 딕셔너리">
+                  <i class="fa fa-chevron-left"></i> 배열 / 집합 / 딕셔너리
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Optional"><span class="nav-number">1.</span> <span class="nav-text">Optional</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Binding-and-Forced-Unwrapping"><span class="nav-number">1.1.</span> <span class="nav-text">Optional Binding and Forced Unwrapping</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optional-Binding"><span class="nav-number">1.1.1.</span> <span class="nav-text">Optional Binding</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Forced-Unwrapping"><span class="nav-number">1.2.</span> <span class="nav-text">Forced Unwrapping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IUO-Implicitly-Unwrapped-Optionals"><span class="nav-number">1.3.</span> <span class="nav-text">IUO (Implicitly Unwrapped Optionals)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nil-coalescing-Operator"><span class="nav-number">1.4.</span> <span class="nav-text">Nil-coalescing Operator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Chaining"><span class="nav-number">1.5.</span> <span class="nav-text">Optional Chaining</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-아래-두-옵셔널의-차이점"><span class="nav-number">1.6.</span> <span class="nav-text">Q. 아래 두 옵셔널의 차이점?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Function-Types"><span class="nav-number">1.7.</span> <span class="nav-text">Optional Function Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-연습"><span class="nav-number">1.8.</span> <span class="nav-text">Q. 연습</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2개의-정수를-입력받아-Modulo-연산-의-결과를-반환하는-함수를-만들되-2번째-파라미터와-결과값의-타입은-옵셔널로-정의-두-번째-파라미터-입력값으로-nil-이나-0이-들어오면-결과로-nil을-반환하고-그-외에는-계산-결과-반환"><span class="nav-number">1.8.1.</span> <span class="nav-text">2개의 정수를 입력받아 Modulo 연산(%)의 결과를 반환하는 함수를 만들되, 2번째 파라미터와 결과값의 타입은 옵셔널로 정의, 두 번째 파라미터 입력값으로 nil 이나 0이 들어오면 결과로 nil을 반환하고, 그 외에는 계산 결과 반환</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enumeration"><span class="nav-number">2.</span> <span class="nav-text">Enumeration</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Matching-Enumeration-Values"><span class="nav-number">2.1.</span> <span class="nav-text">Matching Enumeration Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Associated-Values"><span class="nav-number">2.2.</span> <span class="nav-text">Associated Values</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q-enum-Month-case-jan-feb-정의하되-2월은-윤년인지-아닌지-정보를-저장할-수-있도록-구현"><span class="nav-number">2.2.1.</span> <span class="nav-text">Q. enum Month { case jan, feb } 정의하되 2월은 윤년인지 아닌지 정보를 저장할 수 있도록 구현</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Raw-Value"><span class="nav-number">2.3.</span> <span class="nav-text">Raw Value</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q-학점-A-B-C-D-F-을-enum-으로-표현하고-각-케이스에-알맞은-0-0-4-0-까지의-값-부여"><span class="nav-number">2.3.1.</span> <span class="nav-text">Q. 학점(A, B, C, D, F)을 enum 으로 표현하고 각 케이스에 알맞은 0.0 ~ 4.0 까지의 값 부여</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implicitly-Assigned-Raw-Values"><span class="nav-number">2.4.</span> <span class="nav-text">Implicitly Assigned Raw Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initializing-from-a-Raw-Value"><span class="nav-number">2.5.</span> <span class="nav-text">Initializing from a Raw Value</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nested"><span class="nav-number">2.6.</span> <span class="nav-text">Nested</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutating"><span class="nav-number">2.7.</span> <span class="nav-text">Mutating</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q-on-과-off-값을-가진-enum-타입-RemoteControl-을-정의하고-그-내부에-호출-시마다-on-off-값을-바꿔주는-함수-구현"><span class="nav-number">2.7.1.</span> <span class="nav-text">Q. on 과 off 값을 가진 enum 타입 RemoteControl 을 정의하고, 그 내부에 호출 시마다 on, off 값을 바꿔주는 함수 구현</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SangMin Jeon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SangMin Jeon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
