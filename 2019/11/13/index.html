@@ -25,7 +25,7 @@
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
@@ -51,13 +51,13 @@
   };
 </script>
 
-  <meta name="description" content="Collection array - 순서가 있는 값들의 모음 set - 순서가 없는, 정렬 되지 않은 특정 값 (unique values) dictionary - 키와 값의 쌍으로 정렬되지 않은 값들의 모음  배열 (Array) Zero-based integer Index 인덱스가 0부터 시작 대부분의 프로그래밍 언어들은 0부터 시작한다. 상수나 변수처럼 배">
+  <meta name="description" content="Collection array - 순서가 있는 값들의 모음 set - 순서가 없는, 정렬 되지 않은 특정 값 (unique values) dictionary - 키와 값의 쌍으로 정렬되지 않은 값들의 모음 배열 (Array) Zero-based integer Index 인덱스가 0부터 시작 대부분의 프로그래밍 언어들은 0부터 시작한다. 상수나 변수처럼 배열">
 <meta name="keywords" content="swift, iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="배열 &#x2F; 집합 &#x2F; 딕셔너리">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;index.html">
 <meta property="og:site_name" content="Let&#39;s Swift!">
-<meta property="og:description" content="Collection array - 순서가 있는 값들의 모음 set - 순서가 없는, 정렬 되지 않은 특정 값 (unique values) dictionary - 키와 값의 쌍으로 정렬되지 않은 값들의 모음  배열 (Array) Zero-based integer Index 인덱스가 0부터 시작 대부분의 프로그래밍 언어들은 0부터 시작한다. 상수나 변수처럼 배">
+<meta property="og:description" content="Collection array - 순서가 있는 값들의 모음 set - 순서가 없는, 정렬 되지 않은 특정 값 (unique values) dictionary - 키와 값의 쌍으로 정렬되지 않은 값들의 모음 배열 (Array) Zero-based integer Index 인덱스가 0부터 시작 대부분의 프로그래밍 언어들은 0부터 시작한다. 상수나 변수처럼 배열">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-11-13T10:40:22.642Z">
 <meta name="twitter:card" content="summary">
@@ -258,13 +258,13 @@
 <li>array - 순서가 있는 값들의 모음</li>
 <li>set - 순서가 없는, 정렬 되지 않은 특정 값 (unique values)</li>
 <li>dictionary - 키와 값의 쌍으로 정렬되지 않은 값들의 모음</li>
-</ul>
-<h1 id="배열-Array"><a href="#배열-Array" class="headerlink" title="배열 (Array)"></a>배열 (Array)</h1><ul>
+</ul><h1 id="배열-Array"><a href="#배열-Array" class="headerlink" title="배열 (Array)"></a>배열 (Array)</h1><ul>
 <li>Zero-based integer Index</li>
 <li>인덱스가 0부터 시작</li>
 <li>대부분의 프로그래밍 언어들은 0부터 시작한다.</li>
 <li>상수나 변수처럼 배열에 저장된 타입으로 타입추론이 된다.</li>
-</ul>
+</ul><a id="more"></a>
+
 <h3 id="초기화"><a href="#초기화" class="headerlink" title="초기화"></a>초기화</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Type Annotation</span></span><br><span class="line"><span class="keyword">let</span> strArray1: <span class="type">Array</span>&lt;<span class="type">String</span>&gt; = [<span class="string">"apple"</span>, <span class="string">"orange"</span>, <span class="string">"melon"</span>]</span><br><span class="line"><span class="keyword">let</span> strArray2: [<span class="type">String</span>] = [<span class="string">"apple"</span>, <span class="string">"orange"</span>, <span class="string">"melon"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// Type Inference</span></span><br><span class="line"><span class="keyword">let</span> strArray3 = [<span class="string">"apple"</span>, <span class="string">"orange"</span>, <span class="string">"melon"</span>]</span><br><span class="line"><span class="keyword">let</span> strArray4 = <span class="type">Array</span>&lt;<span class="type">String</span>&gt;(repeating: <span class="string">"iOS"</span>, <span class="built_in">count</span>: <span class="number">5</span>)</span><br><span class="line"><span class="comment">// [ios, ios, ios, ios, ios] 와 같은 뜻</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Error</span></span><br><span class="line"><span class="comment">//let strArray5 = ["apple", 3.14, 1] // 같은 타입의 값이 아니기 때문에 에러</span></span><br></pre></td></tr></table></figure>
 
 

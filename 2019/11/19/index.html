@@ -25,7 +25,7 @@
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
@@ -51,13 +51,13 @@
   };
 </script>
 
-  <meta name="description" content="Access Control &amp;amp; OOP 다른 모듈의 코드 또는 다른 소스 파일 등으로부터 접근을 제한하는 것 세부 구현 내용을 숨기고 접근할 수 있는 인터페이스 지정 가능   Access levels   open : class에만 붙일 수 있음 struct와 enum은 public 부터 가능 public :  internal : 정의 모듈의 모든 소스">
+  <meta name="description" content="Access Control &amp;amp; OOP 다른 모듈의 코드 또는 다른 소스 파일 등으로부터 접근을 제한하는 것 세부 구현 내용을 숨기고 접근할 수 있는 인터페이스 지정 가능  Access levels  open : class에만 붙일 수 있음 struct와 enum은 public 부터 가능 public :  internal : 정의 모듈의 모든 소스 파">
 <meta name="keywords" content="iOS,swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OOP &amp; Access Control">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;index.html">
 <meta property="og:site_name" content="Let&#39;s Swift!">
-<meta property="og:description" content="Access Control &amp;amp; OOP 다른 모듈의 코드 또는 다른 소스 파일 등으로부터 접근을 제한하는 것 세부 구현 내용을 숨기고 접근할 수 있는 인터페이스 지정 가능   Access levels   open : class에만 붙일 수 있음 struct와 enum은 public 부터 가능 public :  internal : 정의 모듈의 모든 소스">
+<meta property="og:description" content="Access Control &amp;amp; OOP 다른 모듈의 코드 또는 다른 소스 파일 등으로부터 접근을 제한하는 것 세부 구현 내용을 숨기고 접근할 수 있는 인터페이스 지정 가능  Access levels  open : class에만 붙일 수 있음 struct와 enum은 public 부터 가능 public :  internal : 정의 모듈의 모든 소스 파">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-11-20T07:17:10.160Z">
 <meta name="twitter:card" content="summary">
@@ -263,17 +263,17 @@
         <h1 id="Access-Control-amp-OOP"><a href="#Access-Control-amp-OOP" class="headerlink" title="Access Control &amp; OOP"></a>Access Control &amp; OOP</h1><ul>
 <li>다른 모듈의 코드 또는 다른 소스 파일 등으로부터 접근을 제한하는 것</li>
 <li>세부 구현 내용을 숨기고 접근할 수 있는 인터페이스 지정 가능</li>
-</ul>
-<ul>
+</ul><ul>
 <li>Access levels</li>
-</ul>
-<ol>
+</ul><ol>
 <li>open : class에만 붙일 수 있음 struct와 enum은 public 부터 가능</li>
 <li>public : </li>
 <li>internal : 정의 모듈의 모든 소스 파일 내에서 사용되지만, 해당 모듈 외부의 소스파일에서는 사용되지 않도록 합니다.</li>
 <li>fileprivate : 같은 클래스 파일 내에서만!</li>
 <li>private : 클래스 내에서만 사용하기 위해 범위를 제한!</li>
-</ol>
+</ol><a id="more"></a>
+
+
 <h2 id="Nested-types"><a href="#Nested-types" class="headerlink" title="Nested types"></a>Nested types</h2><ul>
 <li>프로퍼티 각각에 명시해 주는 것과, 클래스 앞에 명시해 주는 것 접근을 제한하는 범위에 차이가 있다.</li>
 <li>open 클래스여도 멤버들의 제한 레벨은 기본값이 따로 정해져있다. 클래스의 제한 수준을 따르는 것은 아님</li>

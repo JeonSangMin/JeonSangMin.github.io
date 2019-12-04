@@ -25,7 +25,7 @@
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
@@ -51,13 +51,13 @@
   };
 </script>
 
-  <meta name="description" content="OOP value 타입 -&amp;gt; stack 에 저장 reference 타입 -&amp;gt; heap 에 저장 (대표적으로 class)  포인터가 저장됨, 실제 값은 heap안에! heap 은 동적 할당. stack은 처음부터 만들어질 시점이나, 크기 같은 것들이 처음부터 지정된 상태… Q. 자동차 클래스를 정의 하고, 객체 생성 할 것 1234567891011">
+  <meta name="description" content="OOP value 타입 -&amp;gt; stack 에 저장 reference 타입 -&amp;gt; heap 에 저장 (대표적으로 class) 포인터가 저장됨, 실제 값은 heap안에!heap 은 동적 할당.stack은 처음부터 만들어질 시점이나, 크기 같은 것들이 처음부터 지정된 상태…">
 <meta name="keywords" content="Swift, OOP, iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OOP">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;index.html">
 <meta property="og:site_name" content="Let&#39;s Swift!">
-<meta property="og:description" content="OOP value 타입 -&amp;gt; stack 에 저장 reference 타입 -&amp;gt; heap 에 저장 (대표적으로 class)  포인터가 저장됨, 실제 값은 heap안에! heap 은 동적 할당. stack은 처음부터 만들어질 시점이나, 크기 같은 것들이 처음부터 지정된 상태… Q. 자동차 클래스를 정의 하고, 객체 생성 할 것 1234567891011">
+<meta property="og:description" content="OOP value 타입 -&amp;gt; stack 에 저장 reference 타입 -&amp;gt; heap 에 저장 (대표적으로 class) 포인터가 저장됨, 실제 값은 heap안에!heap 은 동적 할당.stack은 처음부터 만들어질 시점이나, 크기 같은 것들이 처음부터 지정된 상태…">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-11-18T06:29:23.316Z">
 <meta name="twitter:card" content="summary">
@@ -257,10 +257,10 @@
         <h1 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h1><ul>
 <li>value 타입 -&gt; stack 에 저장</li>
 <li>reference 타입 -&gt; heap 에 저장 (대표적으로 class)</li>
-</ul>
-<p>포인터가 저장됨, 실제 값은 heap안에!</p>
-<p>heap 은 동적 할당.</p>
-<p>stack은 처음부터 만들어질 시점이나, 크기 같은 것들이 처음부터 지정된 상태…</p>
+</ul><p>포인터가 저장됨, 실제 값은 heap안에!</p><p>heap 은 동적 할당.</p><p>stack은 처음부터 만들어질 시점이나, 크기 같은 것들이 처음부터 지정된 상태…</p><a id="more"></a>
+
+
+
 <p>Q. 자동차 클래스를 정의 하고, 객체 생성 할 것</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> model = <span class="string">"ionic"</span></span><br><span class="line">    <span class="keyword">var</span> modelYear = <span class="number">2019</span></span><br><span class="line">    <span class="keyword">var</span> color = <span class="string">"black"</span></span><br><span class="line">    <span class="keyword">var</span> startUp = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> spd = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">drive</span><span class="params">()</span></span> &#123;</span><br><span class="line">        startUp = <span class="literal">true</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"부르릉~"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">park</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> spd == <span class="number">0</span> &#123;</span><br><span class="line">            startUp = <span class="literal">false</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            startUp = <span class="literal">true</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"차가 완전히 멈추면 끄세요!!"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">spdUp</span><span class="params">()</span></span> &#123;</span><br><span class="line">        spd += <span class="number">5</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">reverse</span><span class="params">()</span></span> &#123;</span><br><span class="line">        spd -= <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myCar = <span class="type">Car</span>()</span><br><span class="line">myCar.drive()</span><br><span class="line">myCar.spdUp()</span><br><span class="line">myCar.<span class="built_in">reverse</span>()</span><br><span class="line">myCar.<span class="built_in">reverse</span>()</span><br><span class="line">myCar.<span class="built_in">reverse</span>()</span><br><span class="line">myCar.<span class="built_in">reverse</span>()</span><br><span class="line">myCar.<span class="built_in">reverse</span>()</span><br><span class="line"><span class="built_in">print</span>(myCar.spd)</span><br></pre></td></tr></table></figure>
 
