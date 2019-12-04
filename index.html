@@ -21,7 +21,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
@@ -187,6 +187,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/homework-1203/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/homework-1203/" class="post-title-link" itemprop="url">강아지, 새, 고양이</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-04 15:08:48 / Modified: 15:43:51" itemprop="dateCreated datePublished" datetime="2019-12-04T15:08:48+09:00">2019-12-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Homework/" itemprop="url" rel="index">
+                    <span itemprop="name">Homework</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <div class="video-container"><iframe src="//www.youtube.com/embed/idXDB5rUQOE" frameborder="0" allowfullscreen></iframe></div>
+
+
+
+<h1 id="버튼-눌러서-뷰끼리-값-전달하기-StoryBoard-ver"><a href="#버튼-눌러서-뷰끼리-값-전달하기-StoryBoard-ver" class="headerlink" title="버튼 눌러서 뷰끼리 값 전달하기 (StoryBoard ver.)"></a>버튼 눌러서 뷰끼리 값 전달하기 (StoryBoard ver.)</h1><ul>
+<li>FirstVC 에 Dog, Cat, Bird 라는 이름의 Button을 3개 만들고 숫자를 표시하기 위한 Label 하나 생성</li>
+<li>SecondVC 에 UIImageView 하나와 Dismiss 를 위한 버튼 하나 생성</li>
+<li>FirstVC에 있는 버튼 3개 중 하나를 누르면 그 타이틀에 맞는 이미지를 SecondVC의 ImageView 에 넣기<br>(이미지는 구글링 등을 통해 활용)</li>
+<li>각 버튼별로 전환 횟수를 세서 개는 3회, 고양이는 5회, 새는 7회가 초과되면 화면이 전환되지 않도록 막기<br>(전환 횟수가 초과된 버튼은 그것만 막고, 횟수가 초과되지 않은 버튼으로는 전환 가능)</li>
+<li>SecondVC에 추가로 UIButton 을 하나 생성하여 그 버튼을 누를 때 마다 개와 고양이, 새 모두에 대해 전환 횟수가 각각 1회씩 추가되도록 구현.</li>
+<li>단, 각 버튼의 전환 횟수 제한에 도달하면 더 이상 추가 되지 않음</li>
+</ul>
+<p><strong>FirstViewController</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FirstViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 전환 횟수 레이블, 변수</span></span><br><span class="line">    <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> lblCnt: <span class="type">UILabel!</span></span><br><span class="line">    <span class="keyword">var</span> dogCnt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> catCnt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> birdCnt = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 레이블 표기 시점 (viewWillAppear)</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewWillAppear</span><span class="params">(<span class="number">_</span> animated: Bool)</span></span> &#123;</span><br><span class="line">        lblCnt.text = <span class="type">String</span>(<span class="string">"🐶 : \(dogCnt) | 🐱 : \(catCnt) | 🐧 : \(birdCnt)"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 세그로 값 넘기기</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">(<span class="keyword">for</span> segue: UIStoryboardSegue, sender: <span class="keyword">Any</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.prepare(<span class="keyword">for</span>: segue, sender: sender)</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> <span class="type">SecondVC</span> = segue.destination <span class="keyword">as</span>? <span class="type">SecondViewController</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span>&#125;</span><br><span class="line">        <span class="keyword">if</span> segue.identifier == <span class="string">"dog"</span> &#123;</span><br><span class="line">            <span class="type">SecondVC</span>.text = <span class="string">"강아지"</span></span><br><span class="line">            <span class="type">SecondVC</span>.imageURL = <span class="string">"dog.jpg"</span></span><br><span class="line">            dogCnt += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> segue.identifier == <span class="string">"cat"</span> &#123;</span><br><span class="line">            <span class="type">SecondVC</span>.text = <span class="string">"고양이"</span></span><br><span class="line">            <span class="type">SecondVC</span>.imageURL = <span class="string">"cat.jpg"</span></span><br><span class="line">            catCnt += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">SecondVC</span>.text = <span class="string">"새"</span></span><br><span class="line">            <span class="type">SecondVC</span>.imageURL = <span class="string">"bird.jpg"</span></span><br><span class="line">            birdCnt += <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 화면 전환 횟수 제약 걸기</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">shouldPerformSegue</span><span class="params">(withIdentifier identifier: String, sender: <span class="keyword">Any</span>?)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> identifier == <span class="string">"dog"</span> &amp;&amp; dogCnt &gt;= <span class="number">3</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> identifier == <span class="string">"cat"</span> &amp;&amp; catCnt &gt;= <span class="number">5</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> identifier == <span class="string">"bird"</span> &amp;&amp; birdCnt &gt;= <span class="number">7</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">unwindToFirtVC</span><span class="params">(<span class="number">_</span> unwindSegue: UIStoryboardSegue)</span></span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>SecondVIewController</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SecondViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> lblAnimal: <span class="type">UILabel!</span></span><br><span class="line">    <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> image: <span class="type">UIImageView!</span></span><br><span class="line">    <span class="keyword">var</span> text = <span class="string">""</span></span><br><span class="line">    <span class="keyword">var</span> imageURL = <span class="string">""</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        lblAnimal.text = text</span><br><span class="line">        image.image = <span class="type">UIImage</span>(named: imageURL)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">plusCnts</span><span class="params">(<span class="number">_</span> sender: UIButton)</span></span> &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> vc = presentingViewController <span class="keyword">as</span>? <span class="type">FirstViewController</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span>&#125;</span><br><span class="line">        vc.dogCnt &lt; <span class="number">3</span> ? vc.dogCnt += <span class="number">1</span> : ()</span><br><span class="line">        vc.catCnt &lt; <span class="number">5</span> ? vc.catCnt += <span class="number">1</span> : ()</span><br><span class="line">        vc.birdCnt &lt; <span class="number">7</span> ? vc.birdCnt += <span class="number">1</span> : ()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>StoryBoard</strong></p>
+<p><img src="https://user-images.githubusercontent.com/15086391/70118397-33a6a780-16ab-11ea-88f2-bdc844384a3e.png" alt="스크린샷 2019-12-04 오후 3 31 34"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -218,7 +311,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-04 00:42:38" itemprop="dateModified" datetime="2019-12-04T00:42:38+09:00">2019-12-04</time>
+                <time title="Modified: 2019-12-04 15:47:50" itemprop="dateModified" datetime="2019-12-04T15:47:50+09:00">2019-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,18 +357,61 @@
 <ul>
 <li><p>연결까지 다 되었으면, </p>
 <ul>
-<li><p>FirstVC에 unwind 메소드!</p>
-</li>
-<li><pre><code class="swift"> <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">unwindToFirstVC</span><span class="params">(<span class="number">_</span> unwindSegue: UIStoryboardSegue)</span></span> {
-        <span class="keyword">let</span> sourceViewController = unwindSegue.source
-        <span class="comment">// Use data from the view controller which initiated the unwind segue</span>
-    }
-&lt;!--￼<span class="number">0</span>--&gt;
-</code></pre>
-</li>
+<li>FirstVC에 unwind 메소드!</li>
 </ul>
 </li>
 </ul>
+<ul>
+<li>스토리보드로 가서 dismiss 버튼 ctrl 누르고 위에 exit로 드래그! 하면 뭔가 말풍선이 생김! (unwind) 선택하면 끝</li>
+</ul>
+<h2 id="각자-실습"><a href="#각자-실습" class="headerlink" title="각자 실습"></a>각자 실습</h2><ul>
+<li>뷰컨트롤러 하나 더 만들고 A,B,C 왔다갔다 하는거 해보셈</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/70021073-aee85a80-15d2-11ea-8394-8955596d4394.png" alt="스크린샷 2019-12-03 오후 1 41 51"></p>
+<ul>
+<li>First -&gt; Second (present)</li>
+<li>First -&gt; Third (present)</li>
+</ul>
+<ul>
+<li>Second -&gt; First (dismiss)</li>
+<li>Second -&gt; Third (present)</li>
+</ul>
+<ul>
+<li>Third -&gt; First (dismiss)</li>
+<li>Third -&gt; Second (Second에서 Third 로 넘어온 경우만 dismiss로 가능)<ul>
+<li>곧바로 First에서 Third로 넘어온 경우는 Second 못감 </li>
+</ul>
+</li>
+</ul>
+<h2 id="뷰끼리-데이터-전송하기"><a href="#뷰끼리-데이터-전송하기" class="headerlink" title="뷰끼리 데이터 전송하기"></a>뷰끼리 데이터 전송하기</h2><ul>
+<li>B로 넘어가는 세그웨이를 하나 더 만들고 fullscreen 말고 card 로 내비두자 (구분하기 위함)</li>
+<li>각 세그웨이의 idetifier를 지정해줌 fullscreen, card 세그웨이 별로!</li>
+<li>B화면에 각 세그웨이별로 접근 했을 때 변경값을 전달해줄 레이블 생성하고 outlet 생성<ul>
+<li>card 세그로 오면 레이블이 card 로 변하고, fullscreen으로 오면 레이블이 FullScreen으로 변할것</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/70021647-bd377600-15d4-11ea-8e4f-1fa8d39abf49.png" alt="스크린샷 2019-12-03 오후 1 56 28"></p>
+<ul>
+<li>헷갈리니 ThirdViewController 일단 지우자</li>
+</ul>
+<h2 id="Practice"><a href="#Practice" class="headerlink" title="Practice"></a>Practice</h2><ul>
+<li>각각 +1 버튼, +10 버튼을 만들고 버튼을 누르면 레이블에 해당 값 만큼 더해지 되, 40이 넘으면 다음 화면이 출력 되지 않게끔 해보자</li>
+</ul>
+<h1 id="Manual-segway"><a href="#Manual-segway" class="headerlink" title="Manual segway"></a>Manual segway</h1><ul>
+<li>일단 +5 버튼을 하나 만든다. </li>
+<li>이번에는 버튼에서 다음 뷰로 드래그가 아니라, 뷰의 맨 위에 세 가지 버튼 중에서 첫 번째 버튼으로 드래그 하면</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/70029156-c979fe00-15e9-11ea-9207-d21ad93283fa.png" alt="스크린샷 2019-12-03 오후 4 26 58"></p>
+<p>요렇게 </p>
+<p>manual segue 버튼이 생김 </p>
+<ul>
+<li>이담에 segue의 identifier를 설정해줌 (plusFive)</li>
+<li>segue 끝!</li>
+<li>이번엔 버튼의 action을 설정해 주자 </li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">didTapFiveBtn</span><span class="params">(<span class="number">_</span> sender: UIButton)</span></span> &#123;</span><br><span class="line">       performSegue(withIdentifier: <span class="string">"plusFive"</span>, sender: sender)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
 <p>내부에 performSegue에서 identifier 설정을 해주면 버튼에 segue 할당 끝! 이제 +5 버튼을 누르면 이동한다!</p>
 
       
@@ -1685,232 +1821,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SangMin Jeon">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Let's Swift!">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/19/" class="post-title-link" itemprop="url">OOP & Access Control</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-19 10:48:05" itemprop="dateCreated datePublished" datetime="2019-11-19T10:48:05+09:00">2019-11-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-20 16:17:10" itemprop="dateModified" datetime="2019-11-20T16:17:10+09:00">2019-11-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TIL/" itemprop="url" rel="index">
-                    <span itemprop="name">TIL</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Access-Control-amp-OOP"><a href="#Access-Control-amp-OOP" class="headerlink" title="Access Control &amp; OOP"></a>Access Control &amp; OOP</h1><ul>
-<li>다른 모듈의 코드 또는 다른 소스 파일 등으로부터 접근을 제한하는 것</li>
-<li>세부 구현 내용을 숨기고 접근할 수 있는 인터페이스 지정 가능</li>
-</ul>
-<ul>
-<li>Access levels</li>
-</ul>
-<ol>
-<li>open : class에만 붙일 수 있음 struct와 enum은 public 부터 가능</li>
-<li>public : </li>
-<li>internal : 정의 모듈의 모든 소스 파일 내에서 사용되지만, 해당 모듈 외부의 소스파일에서는 사용되지 않도록 합니다.</li>
-<li>fileprivate : 같은 클래스 파일 내에서만!</li>
-<li>private : 클래스 내에서만 사용하기 위해 범위를 제한!</li>
-</ol>
-<h2 id="Nested-types"><a href="#Nested-types" class="headerlink" title="Nested types"></a>Nested types</h2><ul>
-<li>프로퍼티 각각에 명시해 주는 것과, 클래스 앞에 명시해 주는 것 접근을 제한하는 범위에 차이가 있다.</li>
-<li>open 클래스여도 멤버들의 제한 레벨은 기본값이 따로 정해져있다. 클래스의 제한 수준을 따르는 것은 아님</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">클래스의 제한 수준 -&gt; 멤버의 제한 수준(기본 값)</span><br><span class="line"></span><br><span class="line">Private -&gt; Fileprivate </span><br><span class="line"></span><br><span class="line">Fileprivate -&gt; Fileprivate 같은 파일 내에서만 접근 가능</span><br><span class="line"></span><br><span class="line">Internal -&gt; Internal</span><br><span class="line"></span><br><span class="line">Public -&gt; Internal</span><br><span class="line"></span><br><span class="line">Open -&gt; Internal</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>private 클래스는 어차피 클래스 자체에 접근이 안되기 때문에 멤버에 제한 수준을 붙여봐야 의미없다</li>
-<li>그런데 아예 private 클래스를 아무도 접근을 못한다면 만드는 의미가 없기 때문에</li>
-<li>filePrivate와 비슷한 수준의 의미를 가지게 된다.</li>
-<li>보통은 한 파일에 한 클래스를 사용하기 때문에 filePrivate 는 잘 안쓴다</li>
-</ul>
-<h2 id="Getters-amp-Setters"><a href="#Getters-amp-Setters" class="headerlink" title="Getters &amp; Setters"></a>Getters &amp; Setters</h2><ul>
-<li>Getter 읽어오는 애</li>
-<li>Setter 입력하는 애</li>
-</ul>
-<ul>
-<li><p>값이 변경 될 때마다, numberOfEdits가 1씩 올라감</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class TrackedString &#123;</span><br><span class="line">//  var numberOfEdits = 0</span><br><span class="line"></span><br><span class="line">//  private var numberOfEdits = 0</span><br><span class="line">  private(set) var numberOfEdits = 0</span><br><span class="line"></span><br><span class="line">  var value: String = &quot;&quot; &#123;</span><br><span class="line">    didSet &#123;</span><br><span class="line">      numberOfEdits += 1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let trackedString = TrackedString()</span><br><span class="line">trackedString.numberOfEdits</span><br><span class="line">trackedString.value = &quot;This string will be tracked.&quot;</span><br><span class="line">trackedString.numberOfEdits</span><br><span class="line"></span><br><span class="line">trackedString.value += &quot; This edit will increment numberOfEdits.&quot;</span><br><span class="line">trackedString.numberOfEdits</span><br><span class="line"></span><br><span class="line">trackedString.value = &quot;value changed&quot;</span><br><span class="line">trackedString.numberOfEdits</span><br><span class="line"></span><br><span class="line">//trackedString.numberOfEdits = 0</span><br><span class="line">//trackedString.numberOfEdits</span><br></pre></td></tr></table></figure>
-
-<p>예를 들면 책이 한번 개정 될때마다 개정판 번호를 올리는 그런식</p>
-<p>접근이 안되서 함부로 수정은 안되는데, 접근 조차도 안되는 것이 문제다!</p>
-<p>그래서 setter만 private를 걸면 직접 수정은 못한다.</p>
-</li>
-<li><p>Getter, setter 분리하여 제한 수준 설정 가능</p>
-</li>
-</ul>
-<h2 id="Enumertaion-Types"><a href="#Enumertaion-Types" class="headerlink" title="Enumertaion Types"></a>Enumertaion Types</h2><ul>
-<li><p>다음과 같이 각 case 별로 개별적인 접근 수준 설정 불가</p>
-</li>
-<li><pre><code class="swift"><span class="class"><span class="keyword">enum</span> 방위2 </span>{
-<span class="comment">//  fileprivate case 동</span>
-<span class="comment">//  fileprivate case 서</span>
-<span class="comment">//  fileprivate case 남</span>
-<span class="comment">//  fileprivate case 북</span>
-<span class="comment">//}</span>
-
-&lt;!--￼<span class="number">2</span>--&gt;
-
-코숏은 캣을 상속만 받고 아무것도 정의 하지 않음.
-
-그래도 캣의 멤버들을 사용할 수 있음 상속 받았으니깐
-
-
-</code></pre>
-</li>
-</ul>
-<h2 id="Final"><a href="#Final" class="headerlink" title="Final"></a>Final</h2><ul>
-<li>더 이상 상속 받을 수 없도록 하는 키워드</li>
-<li>final class 는 상속받을 수 없음</li>
-</ul>
-<h2 id="다형성"><a href="#다형성" class="headerlink" title="다형성"></a>다형성</h2><ul>
-<li>다양한 형태로 나타날 수 있는 능력!</li>
-<li>동일한 요청에 각기 다른 방식으로 응답할 수 있도록 만드는 것</li>
-<li>overriding : 상위 클래스에서 상속 받은 메서드를 하위 클래스에서 필요에 따라 재정의 하는 것</li>
-<li>overloading : 동일한 이름의 메서드가 매개 변수의 이름, 타입, 개수 등의차이에 따라 다르게 동작하는 것</li>
-</ul>
-<h2 id="Overloading"><a href="#Overloading" class="headerlink" title="Overloading"></a>Overloading</h2><ol>
-<li>다른 파라미터 이름</li>
-<li>다른 파라미터 타입</li>
-<li>다른 파라미터 개수</li>
-</ol>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printParameter</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"No param"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//func printParameter() -&gt; String &#123;   // Error</span></span><br><span class="line"><span class="comment">//  print("No param")</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printParameter</span><span class="params">(param: Int)</span></span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Input :"</span>, param)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printParameter</span><span class="params">(<span class="number">_</span> param: Int)</span></span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Input :"</span>, param)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"====="</span>)</span><br><span class="line">printParameter() <span class="comment">// 이름이 같은 메서드가 두개라서 뭘 호출해야 할지 모르겠는 상태! 에러남</span></span><br><span class="line">printParameter(param: <span class="number">1</span>)</span><br><span class="line">printParameter(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>단, 인자레이블과, 인자의 타입을 다르게 붙여주면 구분해서 사용할 수 있음</p>
-</li>
-<li><p>주의할 점은 a는 매개변수명이 param이고, b는 인자레이블이 param이면 에러남 </p>
-</li>
-<li><p>구분이 안되니깐! 구분만 명확하게 되면 된다!</p>
-</li>
-</ul>
-<h2 id="Overriding"><a href="#Overriding" class="headerlink" title="Overriding"></a>Overriding</h2><ul>
-<li><p>상속과 관련이 있다.</p>
-</li>
-<li><p>상속받은 메서드를 변경해서 사용하는 것</p>
-</li>
-<li><p>final을 클래스 앞 뿐만 아니라 클래스의 멤버 앞에 붙일수 있다.</p>
-</li>
-<li><p>멩버 앞의 final이 붙으면 overriding 불가능</p>
-</li>
-<li><p>저장 프로퍼티의 형태로는 override 사용 불가능</p>
-</li>
-<li><p>계산 프로퍼티는 가능</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 저장 프로퍼티 X</span></span><br><span class="line"> <span class="comment">//  override var color: UIColor  = .green</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment">// 계산 프로퍼티 O</span></span><br><span class="line"> <span class="keyword">override</span> <span class="keyword">var</span> color: <span class="type">UIColor</span> &#123;</span><br><span class="line">   <span class="keyword">get</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">super</span>.color</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">set</span> &#123;</span><br><span class="line">     <span class="keyword">super</span>.color = newValue</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>자식 클래스에서 부모클래스의 프로퍼티를 초기화 할 수 있다.</p>
-</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Triangle</span>: <span class="title">Shape</span> </span>&#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.draw() <span class="comment">// 부모의 draw메서드를 실행한뒤 아래의 print 메서드 실행</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"draw triangle"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><p>Q. 아래 문제를 상속을 적용해 해결해보기</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bark() 메서드를 가진 Dog 클래스를 상속받아 Poodle, Husky, Bulldog 이 서로 다르게 짖도록 구현</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">bark</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"멍멍"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Poodle</span>: <span class="title">Dog</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">bark</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"왈왈"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Husky</span>: <span class="title">Dog</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">bark</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"컹컹"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bulldog</span>: <span class="title">Dog</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">bark</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.bark()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"야옹"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p = <span class="type">Poodle</span>()</span><br><span class="line"><span class="keyword">let</span> h = <span class="type">Husky</span>()</span><br><span class="line"><span class="keyword">let</span> b = <span class="type">Bulldog</span>()</span><br><span class="line"></span><br><span class="line">p.bark()</span><br><span class="line">h.bark()</span><br><span class="line">b.bark()</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1959,7 +1869,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -2009,7 +1919,7 @@
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.5.0
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
   </div>
 
         
@@ -2035,7 +1945,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script>
 
 

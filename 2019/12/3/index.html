@@ -21,7 +21,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
@@ -60,7 +60,10 @@
 <meta property="og:description" content="StoryBoard Segueway  뷰 컨트롤러 하나 더 생성, ctrl 누른채로 새로 만든 뷰 컨트롤러로 드래그! 세그웨이 오늘은 present Modally 선택 (세그웨이 선 선택하고 어트리뷰트 인스펙터)스토리보드 세그, kind 에서 액션을 변경할 수 있다   다시 돌아갈 땐? dismiss  버튼 선택하고 똑같이 ctrl로 이전 뷰 드래그?? 이">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;70020504-32547c80-15d0-11ea-9d27-7877d653108b.png">
-<meta property="og:updated_time" content="2019-12-03T15:42:38.396Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;70021073-aee85a80-15d2-11ea-8394-8955596d4394.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;70021647-bd377600-15d4-11ea-8e4f-1fa8d39abf49.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;70029156-c979fe00-15e9-11ea-9207-d21ad93283fa.png">
+<meta property="og:updated_time" content="2019-12-04T06:47:50.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;70020504-32547c80-15d0-11ea-9d27-7877d653108b.png">
 
@@ -223,7 +226,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-04 00:42:38" itemprop="dateModified" datetime="2019-12-04T00:42:38+09:00">2019-12-04</time>
+                <time title="Modified: 2019-12-04 15:47:50" itemprop="dateModified" datetime="2019-12-04T15:47:50+09:00">2019-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,18 +272,61 @@
 <ul>
 <li><p>연결까지 다 되었으면, </p>
 <ul>
-<li><p>FirstVC에 unwind 메소드!</p>
-</li>
-<li><pre><code class="swift"> <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">unwindToFirstVC</span><span class="params">(<span class="number">_</span> unwindSegue: UIStoryboardSegue)</span></span> {
-        <span class="keyword">let</span> sourceViewController = unwindSegue.source
-        <span class="comment">// Use data from the view controller which initiated the unwind segue</span>
-    }
-&lt;!--￼<span class="number">0</span>--&gt;
-</code></pre>
-</li>
+<li>FirstVC에 unwind 메소드!</li>
 </ul>
 </li>
 </ul>
+<ul>
+<li>스토리보드로 가서 dismiss 버튼 ctrl 누르고 위에 exit로 드래그! 하면 뭔가 말풍선이 생김! (unwind) 선택하면 끝</li>
+</ul>
+<h2 id="각자-실습"><a href="#각자-실습" class="headerlink" title="각자 실습"></a>각자 실습</h2><ul>
+<li>뷰컨트롤러 하나 더 만들고 A,B,C 왔다갔다 하는거 해보셈</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/70021073-aee85a80-15d2-11ea-8394-8955596d4394.png" alt="스크린샷 2019-12-03 오후 1 41 51"></p>
+<ul>
+<li>First -&gt; Second (present)</li>
+<li>First -&gt; Third (present)</li>
+</ul>
+<ul>
+<li>Second -&gt; First (dismiss)</li>
+<li>Second -&gt; Third (present)</li>
+</ul>
+<ul>
+<li>Third -&gt; First (dismiss)</li>
+<li>Third -&gt; Second (Second에서 Third 로 넘어온 경우만 dismiss로 가능)<ul>
+<li>곧바로 First에서 Third로 넘어온 경우는 Second 못감 </li>
+</ul>
+</li>
+</ul>
+<h2 id="뷰끼리-데이터-전송하기"><a href="#뷰끼리-데이터-전송하기" class="headerlink" title="뷰끼리 데이터 전송하기"></a>뷰끼리 데이터 전송하기</h2><ul>
+<li>B로 넘어가는 세그웨이를 하나 더 만들고 fullscreen 말고 card 로 내비두자 (구분하기 위함)</li>
+<li>각 세그웨이의 idetifier를 지정해줌 fullscreen, card 세그웨이 별로!</li>
+<li>B화면에 각 세그웨이별로 접근 했을 때 변경값을 전달해줄 레이블 생성하고 outlet 생성<ul>
+<li>card 세그로 오면 레이블이 card 로 변하고, fullscreen으로 오면 레이블이 FullScreen으로 변할것</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/70021647-bd377600-15d4-11ea-8e4f-1fa8d39abf49.png" alt="스크린샷 2019-12-03 오후 1 56 28"></p>
+<ul>
+<li>헷갈리니 ThirdViewController 일단 지우자</li>
+</ul>
+<h2 id="Practice"><a href="#Practice" class="headerlink" title="Practice"></a>Practice</h2><ul>
+<li>각각 +1 버튼, +10 버튼을 만들고 버튼을 누르면 레이블에 해당 값 만큼 더해지 되, 40이 넘으면 다음 화면이 출력 되지 않게끔 해보자</li>
+</ul>
+<h1 id="Manual-segway"><a href="#Manual-segway" class="headerlink" title="Manual segway"></a>Manual segway</h1><ul>
+<li>일단 +5 버튼을 하나 만든다. </li>
+<li>이번에는 버튼에서 다음 뷰로 드래그가 아니라, 뷰의 맨 위에 세 가지 버튼 중에서 첫 번째 버튼으로 드래그 하면</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/70029156-c979fe00-15e9-11ea-9207-d21ad93283fa.png" alt="스크린샷 2019-12-03 오후 4 26 58"></p>
+<p>요렇게 </p>
+<p>manual segue 버튼이 생김 </p>
+<ul>
+<li>이담에 segue의 identifier를 설정해줌 (plusFive)</li>
+<li>segue 끝!</li>
+<li>이번엔 버튼의 action을 설정해 주자 </li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">didTapFiveBtn</span><span class="params">(<span class="number">_</span> sender: UIButton)</span></span> &#123;</span><br><span class="line">       performSegue(withIdentifier: <span class="string">"plusFive"</span>, sender: sender)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
 <p>내부에 performSegue에서 identifier 설정을 해주면 버튼에 segue 할당 끝! 이제 +5 버튼을 누르면 이동한다!</p>
 
     </div>
@@ -307,6 +353,9 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2019/12/homework-1203/" rel="prev" title="강아지, 새, 고양이">
+                  강아지, 새, 고양이 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -345,7 +394,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#StoryBoard"><span class="nav-number">1.</span> <span class="nav-text">StoryBoard</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#StoryBoard"><span class="nav-number">1.</span> <span class="nav-text">StoryBoard</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#각자-실습"><span class="nav-number">1.1.</span> <span class="nav-text">각자 실습</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#뷰끼리-데이터-전송하기"><span class="nav-number">1.2.</span> <span class="nav-text">뷰끼리 데이터 전송하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Practice"><span class="nav-number">1.3.</span> <span class="nav-text">Practice</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Manual-segway"><span class="nav-number">2.</span> <span class="nav-text">Manual segway</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -359,7 +408,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -409,7 +458,7 @@
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.5.0
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
   </div>
 
         
@@ -435,7 +484,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script>
 
 
