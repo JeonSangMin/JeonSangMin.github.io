@@ -1,6 +1,471 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>StackView</title>
+    <url>/2019/12/homework-1216/</url>
+    <content><![CDATA[<h1 id="AutoLayout-StackView"><a href="#AutoLayout-StackView" class="headerlink" title="AutoLayout_StackView"></a>AutoLayout_StackView</h1><p><img src="https://user-images.githubusercontent.com/15086391/70906298-60fb3a00-2049-11ea-8a9d-9f2e079fe203.png" alt="스크린샷 2019-12-16 오후 8 54 56"></p>]]></content>
+      <categories>
+        <category>Homework</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AutoLayout</title>
+    <url>/2019/12/16/</url>
+    <content><![CDATA[<h1 id="AutoLayout-2nd"><a href="#AutoLayout-2nd" class="headerlink" title="AutoLayout (2nd)"></a>AutoLayout (2nd)</h1><h2 id="Intrinsic-Content-Size"><a href="#Intrinsic-Content-Size" class="headerlink" title="Intrinsic Content Size"></a>Intrinsic Content Size</h2><ul>
+<li>UIView는 위치와 크기를 정해주어야 함 (위치, 크기)</li>
+</ul><p>Leading, trailing 을 이용해서 사이즈를 정해주던지, 직접 width height를 정해주던지</p><ul>
+<li>UILable은 UIView와는 다르게 top과 leading만 맞춰줘도 충분함. 왜?</li>
+</ul><a id="more"></a>
+
+
+<p>label은 어떠한 정해진 크기를 이미 가지고 있음 (font size, text 등으로 label의 크기가 결정 됨)</p>
+<p>단 label은 trailing 값이 정해지면, 크기가 오른쪽으로 늘어나지 않고 왼쪽으로 늘어남</p>
+<p>UIView도 크기가 정해지면 leading과 top만 잡아줘도 위치는 정해짐 </p>
+<ul>
+<li>UIButton도 Label처럼 잡아주면 된다.</li>
+</ul>
+<p>고유의 컨텐츠 사이즈(Intrinsic Content Size) 가 정해짐</p>
+<ul>
+<li>UIImage는 두 가지 경우가 있음 (이미지가 있을 때, 없을 때)</li>
+</ul>
+<p>없을 때는 UIVIew와 같은 상태</p>
+<p>이미지가 있을 때는 이미지 뷰의 크기를 알 방법이 없었지만, </p>
+<p>이미지가 들어가는 순간 이미지의 사이즈가 UIImageView의 크기가 됨</p>
+<ul>
+<li><p>UISilder는 위치와 width 값만 잡아줘도 됨</p>
+</li>
+<li><p>datePicker는 위치만 잡아줘도 됨</p>
+</li>
+</ul>
+<h2 id="CH-CR"><a href="#CH-CR" class="headerlink" title="CH / CR"></a>CH / CR</h2><ul>
+<li><p>Content hugging : 텍스트를 예로 들면, hugging이 정해지면, 크기가 제한되기 때문에 글이 길어져도 안커진다</p>
+<ul>
+<li>줄어들 때와 관련이 있음</li>
+</ul>
+</li>
+<li><p>Content Compression Resistance Priority :</p>
+<ul>
+<li>늘어날 때와 관련이 있음</li>
+</ul>
+</li>
+</ul>
+<h2 id="Priority-우선-순위"><a href="#Priority-우선-순위" class="headerlink" title="Priority (우선 순위)"></a>Priority (우선 순위)</h2><p>예를 들면 한 UIVIew에 top이 두 개임, 하나는 100만큼, 하나는 150임 =&gt; 두 가지 제약 조건이 충돌이 남</p>
+<ul>
+<li><p>이 때 100짜리에 우선 순위를 좀 더 높게 주면, 150 짜리는 일단 무시 됨</p>
+</li>
+<li><p>우선 순위를 코드로 지정 할 때는 아래와 같이 사용할 수 있음</p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">UIVIew</span>.<span class="keyword">required</span></span><br><span class="line"><span class="type">UIView</span>.high</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="Dynamic-AutoLayout-Example"><a href="#Dynamic-AutoLayout-Example" class="headerlink" title="Dynamic AutoLayout Example"></a>Dynamic AutoLayout Example</h1><p>제약 조건 자체를 IBOutlet으로 연결한 후, 여러 방법으로 컨트롤하여 위치를 동적으로 변경 할 수 있다.</p>
+<ol>
+<li><strong>constant 변경, multiplier변경</strong></li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// center horizentally 제약조건</span></span><br><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> centerXConstraint: <span class="type">NSLayoutConstraint!</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidAppear</span><span class="params">(<span class="number">_</span> animated: Bool)</span></span> &#123;</span><br><span class="line">        centerXConstraint.constant = -<span class="number">100</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li><strong>우선순위 변경</strong></li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">centerXConstraint.priority = .defaultHigh <span class="comment">// 750</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li><strong>isActive</strong></li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">var</span> centerXConstraint: <span class="type">NSLayoutConstraint!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidAppear</span><span class="params">(<span class="number">_</span> animated: Bool)</span></span> &#123;</span><br><span class="line">  </span><br><span class="line">   <span class="comment">// isActive를 false로 꺼놓으면 제약조건을 지운 것과 같은 상태</span></span><br><span class="line">   <span class="comment">// (weak일 때)false로 한번이라도 설정이 되면 RC가 0이 되어서 다시 true로 켜도 안됨</span></span><br><span class="line">   <span class="comment">// weak을 지우면 false로 했더라도 다시 true로 바꿀 수 있음</span></span><br><span class="line">	centerXConstraint.isActive = <span class="literal">false</span></span><br><span class="line">       </span><br><span class="line">	centerXConstraint.constant = <span class="number">200</span></span><br><span class="line">	centerXConstraint.isActive = <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Animation</title>
+    <url>/2019/12/13/</url>
+    <content><![CDATA[<h1 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h1><ul>
+<li><p>UIWindow - login - main 순으로 실행될 건데, 로그인을 한번 한 이후 자동로그인이 되어서 UIWindow - Main으로 이어지게 되려면?</p>
+</li>
+<li><p>순서를 바꿔서 UIWindow - main - login인데 로그인이 되어있는 상태라면 main까지만 실행되게해도 됨</p>
+</li>
+<li><p>present로 뷰를 넘기지 말고, 아예 window를 바꿔버리는 경우도 많음 (RC없어짐)</p>
+</li>
+</ul><a id="more"></a>
+<ul>
+<li>SecondView를 window로 바꾸기 (iOS13 이상 버전에서 사용)</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">didTapButton</span><span class="params">(<span class="number">_</span> sender:UIButton)</span></span> &#123;</span><br><span class="line">  <span class="keyword">if</span> #available(iOS <span class="number">13.0</span>. *) &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> windowScene = <span class="type">UIApplication</span>.shared.connectedScenes.first <span class="keyword">as</span>? <span class="type">UIWindowScene</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> window = <span class="type">UIWibdow</span>(windowScene: windowScene)</span><br><span class="line">      window = rootViewController = <span class="type">SecondViewController</span>()</span><br><span class="line"></span><br><span class="line">      <span class="keyword">let</span> sceneDelegate = windowScene.delegate <span class="keyword">as</span>? <span class="type">SceneDelegate</span></span><br><span class="line">      sceneDelegate?.window = window</span><br><span class="line">      window.makeKeyAndVisible()	</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="type">UIApplication</span>.shared.delegate <span class="keyword">as</span>? <span class="type">AppDelegate</span> <span class="keyword">as</span>! <span class="type">AppDelegate</span></span><br><span class="line">      appDelegate.window = <span class="type">UIWindow</span>(frame:<span class="type">UIScreen</span>.main.bounds)</span><br><span class="line">      window.rootViewCOntroller = <span class="type">ScondViewController</span>()</span><br><span class="line">      window.makeKaeyAndVisible()</span><br><span class="line">      appDelegate.window = window</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> 자동로그인 on &#123;</span><br><span class="line">	메인</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  로그인</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>Swift,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AutoLayout</title>
+    <url>/2019/12/12/</url>
+    <content><![CDATA[<h1 id="AutoLayout"><a href="#AutoLayout" class="headerlink" title="AutoLayout"></a>AutoLayout</h1><p><strong>[프레임 기반]</strong></p><ul>
+<li><p>원점의 위치와 크기를 통해 그릴 영역 계산</p>
+</li>
+<li><p>가장 유연, 빠른 성능</p>
+</li>
+<li><p>동적인 변화에 대한 설계 및 디버그, 유지관리에 많은 노력 필요</p>
+</li>
+</ul><h2 id="Auto-Resizing"><a href="#Auto-Resizing" class="headerlink" title="Auto Resizing"></a><strong>Auto Resizing</strong></h2><p><img src="https://user-images.githubusercontent.com/15086391/70682741-24df7680-1ce3-11ea-83f4-6a0414c1163c.png" alt="스크린샷 2019-12-12 오후 1 27 02"></p><p>안에있는 화살표를 체크하면 width, height 값에 영향, </p><p>바깥 화살표를 선택하면 바깥의 view와의 margin에 영향</p><a id="more"></a>
+
+
+
+
+<p><u>설정을 했을 때 슈퍼뷰의 크기가 변할 때 서브뷰가 어떻게 반응할 것인가 설정해주는것</u></p>
+<h2 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h2><ul>
+<li>제약조건을 이용해 유저 인터페이스 정의</li>
+<li>뷰 간의 관계 설정을 통한 크기와 위치 계산</li>
+<li>내/외부 변경 사항에 동적으로 반응</li>
+<li>모든 뷰에 다 설정을 해주어야함, 일부만 제약설정을 해주면 오히려 잘 되던것도 안됨 (뷰끼리 관계를 맺어줬을 때)</li>
+<li>뷰 간 관계가 설정되어있지 않다면 일부만 설정해도 상관없음</li>
+</ul>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>Swift,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Delegate</title>
+    <url>/2019/12/10/</url>
+    <content><![CDATA[<p>[13:00 ~ 14:00]  - <strong>DelegateExample</strong></p><p>커스텀뷰를 만들어서 UIView의 클래스를 CustomView로 바꾸고, </p><p>커스텀뷰에서는 배경색이 바뀔 때마다, 해당 색을 출력하는 기능을 만듦 </p><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomView</span>: <span class="title">UIView</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 내가 어떤 뷰를 정의해서 쓰려고 하는 거</span></span><br><span class="line">    <span class="comment">// 맨처음에 스토리보드에 만든 뷰를 커스텀뷰 class로 변경!(identity inspector)</span></span><br><span class="line">    <span class="comment">// 값이 변경될 때마다 해당 값 출력하려면? (프로퍼티 옵저버 못씀)</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">var</span> backgroundColor: <span class="type">UIColor?</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">super</span>.backgroundColor &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123;</span><br><span class="line">            <span class="comment">// 이거 super 생략하면, self인데 그렇게 되면 위에 background 컬러에 set 됨, 무한 재귀</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 배경색이 nil이면 black아니면 newValue</span></span><br><span class="line">            <span class="keyword">super</span>.backgroundColor = newValue ?? .black</span><br><span class="line">            <span class="keyword">if</span> newValue == .red &#123;</span><br><span class="line">                <span class="keyword">super</span>.backgroundColor = .blue</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"새로 변경 될 배경색은 : "</span>, <span class="keyword">self</span>.backgroundColor!)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p>그런데 ViewController에서는 이렇게 red를 blue로 바꿔주는 기능, nil을 black으로 바꿔주는 기능이 구현되어있는 </p>
+<p>CustomView 객체를 사용하는데,</p>
+<p><u>NextViewController에서는 같은 CustomView를 사용하는데, 일부 기능만 바꿔서 쓰고, print 메소드는 그대로 사용하고 싶음</u></p>
+<p>이럴 때 사용하는 것이 <strong>Delegate</strong> </p>
+<h1 id="Delegate"><a href="#Delegate" class="headerlink" title="Delegate"></a>Delegate</h1><ul>
+<li>특정 로직을 내가 아닌 다른 객체가 대신 구현하도록 위임하는 형태의 디자인 패턴</li>
+</ul>
+<p>AppDelegate도 똑같은 거임.</p>
+<p>[오후]</p>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Struct, ARC</title>
+    <url>/2019/12/9/</url>
+    <content><![CDATA[<h1 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h1><h2 id="구조체와-클래스-비교"><a href="#구조체와-클래스-비교" class="headerlink" title="구조체와 클래스 비교"></a>구조체와 클래스 비교</h2><ul>
+<li>공통점<ul>
+<li>값을 저장하기 위한 프로퍼티</li>
+<li>기능을 제공하기 위한 메서드</li>
+<li>초기 상태를 설정하기 위한 생성자</li>
+<li>기본 구현에서 기능을 추가하기 위한 확장(Extension)</li>
+<li>특정 값에 접근할 수 있는 첨자(Subscript)</li>
+<li>특정한 기능을 수행하기 위한 프로토콜 채택</li>
+<li>Upper Camel Case 사용</li>
+</ul>
+</li>
+</ul><a id="more"></a>
+<ul>
+<li>[클래스만 제공하는 기능]<ul>
+<li>상속 -&gt; 구조체는 상속 안됨</li>
+<li>소멸자 (Deinitializer)</li>
+<li>참조 카운트 (ARC와 관련 있을 듯)</li>
+</ul>
+</li>
+</ul>
+<h2 id="값-타입-vs-참조-타입"><a href="#값-타입-vs-참조-타입" class="headerlink" title="값 타입 vs 참조 타입"></a>값 타입 vs 참조 타입</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"토리"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"릴리"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dog = <span class="type">Dog</span>() <span class="comment">// 0x1234 -&gt; Dog() // let dog는 Dog클래스를 가리키는 주소값이 고정된 것임</span></span><br><span class="line"><span class="keyword">let</span> cat = <span class="type">Cat</span>() <span class="comment">// Cat() 요게 stack에 직접 들어감 그래서 밑에서 name = '릴리'를 '토리'로 바꾸는게 안되는 거임 상수는 변경할 수 없는 것 처럼</span></span><br><span class="line"></span><br><span class="line">dog.name = <span class="string">"릴리"</span> <span class="comment">// 토리 -&gt; 릴리로 변경 시도</span></span><br><span class="line">cat.name = <span class="string">"토리"</span> <span class="comment">// 릴리 -&gt; 토리로 변경 시도 (X)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 값은 스텍에 저장되고,</span></span><br><span class="line"><span class="comment">// 참조타입은 힙 영역에 포인터가 저장됨</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h1><ul>
+<li>다른 언어의 가비지 컬렉터는 정기적으로 동작하여 런타임 중에 더 이상 사용되지 않는 메모리를 반환하는 방식</li>
+<li>레퍼런스 카운트가 0이면 메모리에서 해제되고, 아니면 해제 되지 않음</li>
+</ul>
+<h2 id="RC-Reference-Counting"><a href="#RC-Reference-Counting" class="headerlink" title="RC (Reference Counting)"></a>RC (Reference Counting)</h2><p>변수가 생성되는 순간 카운트 + 1</p>
+<p>참조 되는 순간마다  + 1</p>
+<p>릴리즈 되는 순간  - 1</p>
+<p>0이 되는 순간 메모리에서 제거 됨</p>
+<p>-&gt; 이 과정을 ARC는 자동으로 해주는 것임 Auto!</p>
+<h2 id="Leak-vs-Dangling-Pointer"><a href="#Leak-vs-Dangling-Pointer" class="headerlink" title="Leak vs Dangling Pointer"></a>Leak vs Dangling Pointer</h2><p>Alloc, init (할당)</p>
+<p>release (해제)</p>
+<ul>
+<li><p>할당과 해제는 균형이 많아야 함</p>
+</li>
+<li><p>할당이 많으면 메모리가 낭비되고, 해제가 많으면 허상이 발생함</p>
+</li>
+<li><p>근데 이것을 수동으로 직접 코드를 입력하여 관리를 해줘야 했음 (빡셈)</p>
+</li>
+<li><p>수동으로 하기에는 너무 어려워서 초보자들에게 허들이 높았고, 숙련자들에게도 쉽지 않았음</p>
+</li>
+<li><p>기능에 대한 코드외에 메모리 관리에 대한 코드까지 추가되어서 관리도 어려움</p>
+</li>
+</ul>
+<h2 id="ARC-1"><a href="#ARC-1" class="headerlink" title="ARC"></a>ARC</h2><p>위에 나열한 어려움 등 때문에 Auto Reference Counting이 발표 됨 (2011년)</p>
+<ul>
+<li>RC 자동 관리 방식 (wwdc 2011 발표)</li>
+<li>컴파일러가 개발자를 대신하여 메모리 관리 코드를 적절한 위치에 자동으로 삽입</li>
+<li>GC (Garbage Collector) 처럼 런타임이 아닌 컴파일 단에서 처리함 (Heap 스캔이 필요없음, 앱 일시 정지 현상 없음)</li>
+<li>메모리 관리 이슈 줄고, 코딩자체에 집중!</li>
+<li>클래스의 인스턴스에만 적용 (참조 타입)</li>
+<li>활성화 된 참조 카운트가 하나라도 있을 경우 메모리에서 해제 되지 않음<ul>
+<li>강한 참조 (Strong) : 기본값 참조 될 때마다 카운트 1 증가</li>
+<li>약한 참조, 미소유 참조 : 참조 카운트 증가 X</li>
+</ul>
+</li>
+</ul>
+<h2 id="ARC-in-Struct"><a href="#ARC-in-Struct" class="headerlink" title="ARC in Struct"></a>ARC in Struct</h2><ul>
+<li>(초기화 했을 때) 스텍 영역에 직접 값이 들어감</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> x, y: <span class="type">Double</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> point1 = <span class="type">Point</span>(x: <span class="number">0</span>, y: <span class="number">0</span>)</span><br><span class="line"><span class="keyword">let</span> point2 = point1</span><br><span class="line"><span class="type">Point2</span>.x = <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>이 때 참조 타입은 point1의 값도 같이 바뀐다. 왜? 실제 값은 힙에 저장되어있고, 스텍에 저장되어있는 포인터는 같은 위치를 가리키니깐.</p>
+<p>그런데 구조체에서는 point2의 x값과 point1의 x 값은 서로 다르다. x 값이 스텍에 직접 저장되어 있기 때문이다.</p>
+<p>클래스에서 x 값은 힙에 저장되어 있음</p>
+<h2 id="Strong-Reference-Cycle"><a href="#Strong-Reference-Cycle" class="headerlink" title="Strong Reference Cycle"></a>Strong Reference Cycle</h2><ul>
+<li>RC가 0이 되지 않게 만들어버리는 상황! (주의해야함)</li>
+<li>객체에 접근 가능한 모든 연결을 끊었는데도 순환참조로 인해 메모리에 계속 쌓이는 상황, 오동작이나 오류를 발생시킬 수 있음</li>
+</ul>
+<p>순환참조!</p>
+<p>(정리해줄것)</p>
+<h2 id="Weak-Reference"><a href="#Weak-Reference" class="headerlink" title="Weak Reference"></a>Weak Reference</h2><p>순환참조에 빠지지 않도록 weak을 선언하면 RC가 올라가지 않으므로 하나가 해제되면 자연스레 0이되어서 순환참조에 빠지는 것을 예방할 수 있음</p>
+<p>강사님 수업자료 애니메이션으로 순서 파악해야함. </p>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Sigleton, User Defaluts</title>
+    <url>/2019/12/6/</url>
+    <content><![CDATA[<h1 id="Sigleton"><a href="#Sigleton" class="headerlink" title="Sigleton"></a>Sigleton</h1><ul>
+<li>특정 클래스의 인스턴스에 접근할 때 항상 동일한 인스턴스만을 반환하도록 하는 설계 패턴</li>
+<li>한 번 생성된 이후에는 프로그램이 종료될 때까지 항상 메모리에 상주</li>
+<li>어플리케이션에서 유일하게 하나만 필요한 객체에 사용</li>
+<li>UIApplication, AppDelegate 등</li>
+</ul><a id="more"></a>
+<p><strong>자기 타입을 생성하여 상수에 받아놓고 static! 그리고 접근제어자 private로 외부에서 생성자를 호출하지 못하게 막아놓는거!</strong></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NormalClass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> someObject1 = <span class="type">NormalClass</span>()</span><br><span class="line">someObject1.x = <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> someObject2 = <span class="type">NormalClass</span>()</span><br><span class="line">someObject2.x = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> someObject3 = <span class="type">NormalClass</span>()</span><br><span class="line">someObject3.x = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">someObject1.x <span class="comment">// 5</span></span><br><span class="line">someObject2.x <span class="comment">// 1</span></span><br><span class="line">someObject3.x <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 각기 다른 객체임! 객체가 여러개야!</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>static var, static let은 타입 프로퍼티이다!</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingletonClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 자기 자신 클래스의 생성자를 타입 프로퍼티에 할당</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">let</span> shared = <span class="type">SingletonClass</span>() <span class="comment">//</span></span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// shared를 호출하면 생성자를 호출한 것과 같은 결과</span></span><br><span class="line"><span class="keyword">let</span> singleton1 = <span class="type">SingletonClass</span>.shared</span><br><span class="line">singleton1.x = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> singleton2 = <span class="type">SingletonClass</span>.shared</span><br><span class="line">singleton2.x = <span class="number">20</span></span><br><span class="line"></span><br><span class="line">singleton1.x   <span class="comment">// 20</span></span><br><span class="line">singleton2.x   <span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
+
+<p>위의 싱글턴 패턴은</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">Class</span> <span class="type">Normal</span> &#123;</span><br><span class="line"> <span class="keyword">let</span> name = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 아래와 같은 의미!</span></span><br><span class="line"><span class="keyword">let</span> nor1 = <span class="type">Normal</span>()</span><br><span class="line"><span class="keyword">let</span> nor2 = nor1</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 이 객체는 프로퍼티에 담지 않았기 때문에 생성되자마자 사라짐</span></span><br><span class="line"><span class="type">SingletonClass</span>().x = <span class="number">99</span></span><br><span class="line"><span class="comment">// 얘는 그래서 새로 생긴거고, shared를 통해서 만들지 않았음</span></span><br><span class="line"><span class="type">SingletonClass</span>().x   <span class="comment">//</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 싱글턴 이기 때문에 위에서 저장한 30이 출력됨</span></span><br><span class="line">singleton1.x  <span class="comment">//</span></span><br><span class="line">singleton2.x  <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="User-Defaults"><a href="#User-Defaults" class="headerlink" title="User Defaults"></a>User Defaults</h1><ul>
+<li><p>iOS 에서 데이터를 파일에 저장하기 위해 사용하는 대표적인 클래스 중 하나</p>
+</li>
+<li><p>간단한 정보를 저장하고 불러올 때 사용하며 내부적으로 pList 파일로 저장</p>
+</li>
+<li><p>메모리에 저장하면 껐다키면 없어져있음! 휘발성임 </p>
+</li>
+<li><p>비교적 느리다. (상대적으로)</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>4</title>
+    <url>/2019/12/4/</url>
+    <content><![CDATA[<h1 id="타입-캐스팅-Type-Casting"><a href="#타입-캐스팅-Type-Casting" class="headerlink" title="타입 캐스팅 (Type Casting)"></a>타입 캐스팅 (Type Casting)</h1><p>Super Class 로 부터 상속 된 Sub Class는 자기 자신의 타입이기도 하면서, 동시에 SuperClass의 타입이기도 하다.</p><p>super의 특성을 물려받기 때문이다. </p><p>상속을 거듭해 갈 수록 sub는 보다 구체화 되어간다. </p><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Super Class </span></span><br><span class="line"><span class="type">Class</span> <span class="type">Vehicle</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> currentSpeed = <span class="number">0.0</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">accelerate</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">self</span>.currentSpeed += <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Sub Class</span></span><br><span class="line"><span class="type">Class</span> <span class="type">Car</span>: <span class="type">Vehicle</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> gear: <span class="type">Int</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="type">Int</span>(<span class="keyword">self</span>.currentSpeed / <span class="number">20</span>) + <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">wiper</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"창을 닦는다"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> trans: <span class="type">Vehicle</span> = <span class="type">Car</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p>sub인 Car 클래스는 super의 속성을 전부 가지고 있으면서 추가로 gear 변수와 wiper 메소드를 가지고 있다.(보다 구체화)</p>
+<p>이러한 이유로 <strong>SubClass는 SuperClass 타입이 될 수 있지만 SuperClass는 SubClass 타입이 될 수 없다</strong></p>
+<p><em>상속은 받았지만 기능이 더해지지 않은 sub 클래스여도 super는 sub 타입이 될 수 없다</em></p>
+<ul>
+<li>Q. 상위 클래스 타입으로 선언하여 객체를 초기화 한다면, 사용할 수 있는 프로퍼티나 메소드의 범위가 줄어드는 것이나 마찬가지인데, 굳이 상위 타입으로 선언해서 사용하는 이유가 뭔가요?</li>
+</ul>
+<p>그 반대이다 오히려 넓어진다. 예를 들어 Vehicle -&gt; Car -&gt; SUV 순으로 상속이 된다고 가정을 해보면,</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">move</span><span class="params">(param: SUV)</span></span> &#123;</span><br><span class="line">	param.accelerate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">move</span><span class="params">(param: Vehicle)</span></span> &#123;</span><br><span class="line">	param.accelerate()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 위의 move에서는 SUV 클래스의 인스턴스만 인자값으로 받을 수 있지만, 아래의 move는 Vehicle 클래스나 이를 상속받은 모든 클래스를 다 사용할 수 있다.</p>
+<ul>
+<li>내가 바보 3대를 노예로 부려먹으려 한다! 근데 아들만 제압하고 아버지, 할아버지를 제압하지 못하면 아들 밖에 못부려먹지만, 할아버지를 제압하면 할아버지, 아버지, 아들까지 다 부려 먹을 수 있음 (인성 ㅎㄷㄷ)</li>
+</ul>
+<p>배열, 딕셔너리도 마찬가지</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> list: [<span class="type">Vehicle</span>]()</span><br><span class="line"></span><br><span class="line">list.append(<span class="type">Vehicle</span>())</span><br><span class="line">list.append(<span class="type">Car</span>())</span><br><span class="line">list.append(<span class="type">SUV</span>())</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="타입-비교"><a href="#타입-비교" class="headerlink" title="타입 비교"></a>타입 비교</h2><ul>
+<li>스위프트는 타입비교 연산자 is를 지원한다 is 왼쪽에는 인스턴스, 오른쪽에는 타입을 명시하여 타입을 비교한다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">SUV</span>() <span class="keyword">is</span> <span class="type">SUV</span> <span class="comment">// true</span></span><br><span class="line"><span class="type">SUV</span>() <span class="keyword">is</span> <span class="type">Car</span> <span class="comment">// true</span></span><br><span class="line"><span class="type">SUV</span>() <span class="keyword">is</span> <span class="type">Vehicle</span> <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="type">Car</span>() <span class="keyword">is</span> <span class="type">SUV</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>인스턴스를 할당 받을 수 있는 타입이면 true, 아니면 false이다.  </p>
+<p>SUV 객체는 SUV 타입, Car타입, Vehicle 타입이 될 수 있으므로 true, Car 객체는 SUV보다 상위 타입이기 때문에 false</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 그런데 타입이 하나로 명확하게 정해지지 않은 경우?</span></span><br><span class="line"><span class="comment">// is를 이용하여 이런경우에는 이렇게, 저런경우에는 저렇게!</span></span><br><span class="line"><span class="keyword">let</span> someAnyArr: [<span class="type">Any</span>] = [<span class="number">1</span>, <span class="number">2.0</span>, <span class="string">"3"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> someAnyArr &#123;</span><br><span class="line">  <span class="keyword">if</span> data <span class="keyword">is</span> <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Int type data :"</span>, data)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> data <span class="keyword">is</span> <span class="type">Double</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Double type data : "</span>, data)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"String type data : "</span>, data)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> human: <span class="type">Human</span> = <span class="type">Student</span>()</span><br><span class="line">type(of: human)</span><br><span class="line"><span class="comment">// 해당 변수의 타입 human vs 실제 데이터의 타입 student</span></span><br><span class="line"><span class="comment">// 컴파일 과정에서는 human 타입으로 인식하지만, 런타임 과정에서는(실제 앱을 실행할 때) student인 것</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Type-Check-타입-확인"><a href="#Type-Check-타입-확인" class="headerlink" title="Type Check (타입 확인)"></a>Type Check (타입 확인)</h2><p>제네릭 : 값이 들어오는 순간 결정 되는 거</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Generic</span></span><br><span class="line"><span class="comment">// 받는 인자의 타입에 따라 타입이 결정됨, 미리 타입을 선언하는 방식 아님</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printGenericInfo</span>&lt;T&gt;<span class="params">(<span class="number">_</span> value: T)</span></span> &#123;</span><br><span class="line">  <span class="keyword">let</span> types = type(of: value)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"'\(value)' of type '\(types)'"</span>)</span><br><span class="line">&#125;</span><br><span class="line">printGenericInfo(<span class="number">1</span>)</span><br><span class="line">printGenericInfo(<span class="number">2.0</span>)</span><br><span class="line">printGenericInfo(<span class="string">"3"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Type-Casting"><a href="#Type-Casting" class="headerlink" title="Type Casting"></a>Type Casting</h2><ul>
+<li>as : 타입 변환이 확실하게 가능한 경우(업캐스팅, 자기 자신 등) 에만 사용 가능. 그 외에는 컴파일 에러</li>
+<li>as? : 강제 타입 변환 시도. 변환이 성공하면 Optional 값을 가지며, 실패 시에는 nil 반환</li>
+<li>as! : 강제 타입 변환 시도. 성공 시 언래핑 된 값을 가지며, 실패 시 런타임 에러 발생</li>
+</ul>
+<ul>
+<li><p>업 캐스팅</p>
+<ul>
+<li><p>상속 관계에 있는 <strong>자식 클래스가 부모 클래스</strong>로 형변환하는 것</p>
+</li>
+<li><p>업캐스팅은 항상 성공하며 as 키워드를 사용  (자기 자신에 대한 타입 캐스팅도 항상 성공하므로 as 키워드 사용)</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> color = <span class="type">UIColor</span>.black</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"draw shape"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>: <span class="title">Shape</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> cornerRadius = <span class="number">0.0</span></span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">var</span> color: <span class="type">UIColor</span> &#123;</span><br><span class="line">    <span class="keyword">get</span> &#123; <span class="keyword">return</span> .white &#125;</span><br><span class="line">    <span class="keyword">set</span> &#123; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"draw rect"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rect = <span class="type">Rectangle</span>()</span><br><span class="line">rect.color</span><br><span class="line">rect.cornerRadius</span><br><span class="line"></span><br><span class="line"><span class="comment">//(rect as Shape).color</span></span><br><span class="line"><span class="comment">//(rect as Shape).cornerRadius -&gt; Shape는 conerRadius 값을 가지고 있지 않아서 오류!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//(rect as Rectangle).color -&gt; white</span></span><br><span class="line"><span class="comment">//(rect as Rectangle).cornerRadius -&gt; 0.0</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>다운 캐스팅<ul>
+<li>형제 클래스나 다른 서브 클래스 등 수퍼 클래스에서 파생된 각종 서브 클래스로의 타입 변환 의미</li>
+<li>반드시 성공한다는 보장이 없으므로 옵셔널. as? 또는 as! 를 사용</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> shapeRect: <span class="type">Shape</span> = <span class="type">Rectangle</span>()</span><br><span class="line"><span class="keyword">var</span> downcastedRect = <span class="type">Rectangle</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//downcastedRect = shapeRect //</span></span><br><span class="line"><span class="comment">//downcastedRect = shapeRect as Rectangle // 반드시 성공한다는 보장이 없음 그래서 에러! 부모 -&gt; 자식</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//downcastedRect: Rectangle = shapeRect as? Rectangle  //</span></span><br><span class="line"><span class="comment">//downcastedRect = shapeRect as! Rectangle  //</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//as? : 강제 타입 변환 시도. 변환이 성공하면 Optional 값을 가지며, 실패 시에는 nil 반환</span></span><br><span class="line"><span class="comment">//as! : 강제 타입 변환 시도. 성공 시 언래핑 된 값을 가지며, 실패 시 런타임 에러 발생</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//Q. 아래 value 에 대한 Casting 결과는?</span></span><br><span class="line"><span class="keyword">let</span> value = <span class="number">1</span></span><br><span class="line"><span class="comment">//(value as Float) is Float   // int와 float은 서로 관계 없는 타입</span></span><br><span class="line"><span class="comment">//(value as? Float) is Float  // nil is Float와 같은 결과임 false</span></span><br><span class="line"><span class="comment">//(value as! Float) is Float  // 런타임 오류 (value를 Float으로 강제로 변환을 했는데 is Float으로 체크 하는 순간 런타임 오류)</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="생성자-Initializer"><a href="#생성자-Initializer" class="headerlink" title="생성자 (Initializer)"></a>생성자 (Initializer)</h1><ul>
+<li>Swift 의 객체는 사용하기 전 모든 <strong>저장 프로퍼티에 대해 초기화 필수</strong> 다음 3 가지 중 하나를 택해 초기화<ul>
+<li>초기값 지정</li>
+<li>옵셔널 타입 - nil 값으로 초기화</li>
+<li>초기값이 없고, 옵셔널 타입이 아닌 프로퍼티에 대해서는 초기화 메서드에서 설정</li>
+</ul>
+</li>
+</ul>
+<h2 id="Designated-Initializer"><a href="#Designated-Initializer" class="headerlink" title="Designated Initializer"></a>Designated Initializer</h2><ul>
+<li>클래스에 반드시 1개 이상 필요</li>
+<li>초기화가 필요한 모든 프로퍼티를 단독으로 초기화 가능한 Initializer</li>
+<li>위에서 사용한 init(), init(height: Int, xPosition: Int) 가 여기에 해당</li>
+<li>초기화 과정에서 반드시 한 번은 호출</li>
+</ul>
+<ul>
+<li>Q. 없는 경우도 있던데?<ul>
+<li>init()이 있는건데 필요없으면 생략되어있는 거임 실제로는 있음</li>
+</ul>
+</li>
+</ul>
+<h2 id="Convenience-Initializer"><a href="#Convenience-Initializer" class="headerlink" title="Convenience Initializer"></a>Convenience Initializer</h2><ul>
+<li><p>단독으로 모두 초기화할 수 없고 일부만 처리한 뒤 다른 생성자에게 나머지 부분 위임</p>
+</li>
+<li><p>중복되는 초기화 코드를 줄이기 위해 사용</p>
+</li>
+</ul>
+<p>// 필기..</p>
+<h2 id="Failable-Initializer"><a href="#Failable-Initializer" class="headerlink" title="Failable Initializer"></a>Failable Initializer</h2><p>인스턴스 생성시 특정 조건을 만족하지 않으면 객체를 생성하지 않는 것</p>
+<p>생성이 되면 옵셔널 타입을 반환하게 되며, 생성 실패시에는 nil 반환</p>
+<h2 id="Super-Class-Initializing"><a href="#Super-Class-Initializing" class="headerlink" title="Super Class Initializing"></a>Super Class Initializing</h2><ul>
+<li>서브 클래스는 자기 자신 이외에 수퍼 클래스의 저장 프로퍼티까지 초기화 해야함</li>
+<li>서브 클래스는 수퍼 클래스의 지정 생성자(Designated Initializer) 호출 필요 (Convenience는 호출 불가)</li>
+<li>수퍼 클래스의 지정 생성자가 기본 init 함수 하나만 있을 경우는 별도로 작성하지 않아도 자동으로 super.init() 메서드 호출</li>
+<li>생성자가 여러 개인 경우, 어떤 초기화 메서드를 선택해야 할지 알 수 없으므로 선택해주지 않으면 오류, 이 때는 서브 클래스에서 수퍼 클래스의 생성자를 명시적으로 선택해주어야 함. 편의 생성자(Convenience Initializer)는 무관</li>
+</ul>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>Swift</tag>
+        <tag>타입캐스팅</tag>
+        <tag>typeCasting</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>강아지, 새, 고양이</title>
     <url>/2019/12/homework-1203/</url>
     <content><![CDATA[<div class="video-container"><iframe src="//www.youtube.com/embed/idXDB5rUQOE" frameborder="0" allowfullscreen></iframe></div><h1 id="버튼-눌러서-뷰끼리-값-전달하기-StoryBoard-ver"><a href="#버튼-눌러서-뷰끼리-값-전달하기-StoryBoard-ver" class="headerlink" title="버튼 눌러서 뷰끼리 값 전달하기 (StoryBoard ver.)"></a>버튼 눌러서 뷰끼리 값 전달하기 (StoryBoard ver.)</h1><ul>
@@ -32,8 +497,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>

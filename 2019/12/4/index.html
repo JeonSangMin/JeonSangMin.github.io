@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Let's Swift!" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="타입 캐스팅 (Type Casting)Super Class 로 부터 상속 된 Sub Class는 자기 자신의 타입이기도 하면서, 동시에 SuperClass의 타입이기도 하다.super의 특성을 물려받기 때문이다. 상속을 거듭해 갈 수록 sub는 보다 구체화 되어간다. 123456789101112131415161718192021&#x2F;&#x2F; Super Class Cl">
+<meta name="keywords" content="iOS,Swift,타입캐스팅,typeCasting">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;4&#x2F;index.html">
+<meta property="og:site_name" content="Let&#39;s Swift!">
+<meta property="og:description" content="타입 캐스팅 (Type Casting)Super Class 로 부터 상속 된 Sub Class는 자기 자신의 타입이기도 하면서, 동시에 SuperClass의 타입이기도 하다.super의 특성을 물려받기 때문이다. 상속을 거듭해 갈 수록 sub는 보다 구체화 되어간다. 123456789101112131415161718192021&#x2F;&#x2F; Super Class Cl">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-05T07:20:39.153Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>4 | Let's Swift!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Let's Swift!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">SangMin's study blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          4
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-04 20:04:46" itemprop="dateCreated datePublished" datetime="2019-12-04T20:04:46+09:00">2019-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-05 16:20:39" itemprop="dateModified" datetime="2019-12-05T16:20:39+09:00">2019-12-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/12/4/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="타입-캐스팅-Type-Casting"><a href="#타입-캐스팅-Type-Casting" class="headerlink" title="타입 캐스팅 (Type Casting)"></a>타입 캐스팅 (Type Casting)</h1><p>Super Class 로 부터 상속 된 Sub Class는 자기 자신의 타입이기도 하면서, 동시에 SuperClass의 타입이기도 하다.</p><p>super의 특성을 물려받기 때문이다. </p><p>상속을 거듭해 갈 수록 sub는 보다 구체화 되어간다. </p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Super Class </span></span><br><span class="line"><span class="type">Class</span> <span class="type">Vehicle</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> currentSpeed = <span class="number">0.0</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">accelerate</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">self</span>.currentSpeed += <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Sub Class</span></span><br><span class="line"><span class="type">Class</span> <span class="type">Car</span>: <span class="type">Vehicle</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> gear: <span class="type">Int</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="type">Int</span>(<span class="keyword">self</span>.currentSpeed / <span class="number">20</span>) + <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">wiper</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"창을 닦는다"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> trans: <span class="type">Vehicle</span> = <span class="type">Car</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p>sub인 Car 클래스는 super의 속성을 전부 가지고 있으면서 추가로 gear 변수와 wiper 메소드를 가지고 있다.(보다 구체화)</p>
+<p>이러한 이유로 <strong>SubClass는 SuperClass 타입이 될 수 있지만 SuperClass는 SubClass 타입이 될 수 없다</strong></p>
+<p><em>상속은 받았지만 기능이 더해지지 않은 sub 클래스여도 super는 sub 타입이 될 수 없다</em></p>
+<ul>
+<li>Q. 상위 클래스 타입으로 선언하여 객체를 초기화 한다면, 사용할 수 있는 프로퍼티나 메소드의 범위가 줄어드는 것이나 마찬가지인데, 굳이 상위 타입으로 선언해서 사용하는 이유가 뭔가요?</li>
+</ul>
+<p>그 반대이다 오히려 넓어진다. 예를 들어 Vehicle -&gt; Car -&gt; SUV 순으로 상속이 된다고 가정을 해보면,</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">move</span><span class="params">(param: SUV)</span></span> &#123;</span><br><span class="line">	param.accelerate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">move</span><span class="params">(param: Vehicle)</span></span> &#123;</span><br><span class="line">	param.accelerate()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 위의 move에서는 SUV 클래스의 인스턴스만 인자값으로 받을 수 있지만, 아래의 move는 Vehicle 클래스나 이를 상속받은 모든 클래스를 다 사용할 수 있다.</p>
+<ul>
+<li>내가 바보 3대를 노예로 부려먹으려 한다! 근데 아들만 제압하고 아버지, 할아버지를 제압하지 못하면 아들 밖에 못부려먹지만, 할아버지를 제압하면 할아버지, 아버지, 아들까지 다 부려 먹을 수 있음 (인성 ㅎㄷㄷ)</li>
+</ul>
+<p>배열, 딕셔너리도 마찬가지</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list: [<span class="type">Vehicle</span>]()</span><br><span class="line"></span><br><span class="line">list.append(<span class="type">Vehicle</span>())</span><br><span class="line">list.append(<span class="type">Car</span>())</span><br><span class="line">list.append(<span class="type">SUV</span>())</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="타입-비교"><a href="#타입-비교" class="headerlink" title="타입 비교"></a>타입 비교</h2><ul>
+<li>스위프트는 타입비교 연산자 is를 지원한다 is 왼쪽에는 인스턴스, 오른쪽에는 타입을 명시하여 타입을 비교한다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SUV</span>() <span class="keyword">is</span> <span class="type">SUV</span> <span class="comment">// true</span></span><br><span class="line"><span class="type">SUV</span>() <span class="keyword">is</span> <span class="type">Car</span> <span class="comment">// true</span></span><br><span class="line"><span class="type">SUV</span>() <span class="keyword">is</span> <span class="type">Vehicle</span> <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="type">Car</span>() <span class="keyword">is</span> <span class="type">SUV</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>인스턴스를 할당 받을 수 있는 타입이면 true, 아니면 false이다.  </p>
+<p>SUV 객체는 SUV 타입, Car타입, Vehicle 타입이 될 수 있으므로 true, Car 객체는 SUV보다 상위 타입이기 때문에 false</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 그런데 타입이 하나로 명확하게 정해지지 않은 경우?</span></span><br><span class="line"><span class="comment">// is를 이용하여 이런경우에는 이렇게, 저런경우에는 저렇게!</span></span><br><span class="line"><span class="keyword">let</span> someAnyArr: [<span class="type">Any</span>] = [<span class="number">1</span>, <span class="number">2.0</span>, <span class="string">"3"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> someAnyArr &#123;</span><br><span class="line">  <span class="keyword">if</span> data <span class="keyword">is</span> <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Int type data :"</span>, data)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> data <span class="keyword">is</span> <span class="type">Double</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Double type data : "</span>, data)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"String type data : "</span>, data)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> human: <span class="type">Human</span> = <span class="type">Student</span>()</span><br><span class="line">type(of: human)</span><br><span class="line"><span class="comment">// 해당 변수의 타입 human vs 실제 데이터의 타입 student</span></span><br><span class="line"><span class="comment">// 컴파일 과정에서는 human 타입으로 인식하지만, 런타임 과정에서는(실제 앱을 실행할 때) student인 것</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Type-Check-타입-확인"><a href="#Type-Check-타입-확인" class="headerlink" title="Type Check (타입 확인)"></a>Type Check (타입 확인)</h2><p>제네릭 : 값이 들어오는 순간 결정 되는 거</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Generic</span></span><br><span class="line"><span class="comment">// 받는 인자의 타입에 따라 타입이 결정됨, 미리 타입을 선언하는 방식 아님</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printGenericInfo</span>&lt;T&gt;<span class="params">(<span class="number">_</span> value: T)</span></span> &#123;</span><br><span class="line">  <span class="keyword">let</span> types = type(of: value)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"'\(value)' of type '\(types)'"</span>)</span><br><span class="line">&#125;</span><br><span class="line">printGenericInfo(<span class="number">1</span>)</span><br><span class="line">printGenericInfo(<span class="number">2.0</span>)</span><br><span class="line">printGenericInfo(<span class="string">"3"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Type-Casting"><a href="#Type-Casting" class="headerlink" title="Type Casting"></a>Type Casting</h2><ul>
+<li>as : 타입 변환이 확실하게 가능한 경우(업캐스팅, 자기 자신 등) 에만 사용 가능. 그 외에는 컴파일 에러</li>
+<li>as? : 강제 타입 변환 시도. 변환이 성공하면 Optional 값을 가지며, 실패 시에는 nil 반환</li>
+<li>as! : 강제 타입 변환 시도. 성공 시 언래핑 된 값을 가지며, 실패 시 런타임 에러 발생</li>
+</ul>
+<ul>
+<li><p>업 캐스팅</p>
+<ul>
+<li><p>상속 관계에 있는 <strong>자식 클래스가 부모 클래스</strong>로 형변환하는 것</p>
+</li>
+<li><p>업캐스팅은 항상 성공하며 as 키워드를 사용  (자기 자신에 대한 타입 캐스팅도 항상 성공하므로 as 키워드 사용)</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> color = <span class="type">UIColor</span>.black</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"draw shape"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>: <span class="title">Shape</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> cornerRadius = <span class="number">0.0</span></span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">var</span> color: <span class="type">UIColor</span> &#123;</span><br><span class="line">    <span class="keyword">get</span> &#123; <span class="keyword">return</span> .white &#125;</span><br><span class="line">    <span class="keyword">set</span> &#123; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"draw rect"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rect = <span class="type">Rectangle</span>()</span><br><span class="line">rect.color</span><br><span class="line">rect.cornerRadius</span><br><span class="line"></span><br><span class="line"><span class="comment">//(rect as Shape).color</span></span><br><span class="line"><span class="comment">//(rect as Shape).cornerRadius -&gt; Shape는 conerRadius 값을 가지고 있지 않아서 오류!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//(rect as Rectangle).color -&gt; white</span></span><br><span class="line"><span class="comment">//(rect as Rectangle).cornerRadius -&gt; 0.0</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>다운 캐스팅<ul>
+<li>형제 클래스나 다른 서브 클래스 등 수퍼 클래스에서 파생된 각종 서브 클래스로의 타입 변환 의미</li>
+<li>반드시 성공한다는 보장이 없으므로 옵셔널. as? 또는 as! 를 사용</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> shapeRect: <span class="type">Shape</span> = <span class="type">Rectangle</span>()</span><br><span class="line"><span class="keyword">var</span> downcastedRect = <span class="type">Rectangle</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//downcastedRect = shapeRect //</span></span><br><span class="line"><span class="comment">//downcastedRect = shapeRect as Rectangle // 반드시 성공한다는 보장이 없음 그래서 에러! 부모 -&gt; 자식</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//downcastedRect: Rectangle = shapeRect as? Rectangle  //</span></span><br><span class="line"><span class="comment">//downcastedRect = shapeRect as! Rectangle  //</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//as? : 강제 타입 변환 시도. 변환이 성공하면 Optional 값을 가지며, 실패 시에는 nil 반환</span></span><br><span class="line"><span class="comment">//as! : 강제 타입 변환 시도. 성공 시 언래핑 된 값을 가지며, 실패 시 런타임 에러 발생</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//Q. 아래 value 에 대한 Casting 결과는?</span></span><br><span class="line"><span class="keyword">let</span> value = <span class="number">1</span></span><br><span class="line"><span class="comment">//(value as Float) is Float   // int와 float은 서로 관계 없는 타입</span></span><br><span class="line"><span class="comment">//(value as? Float) is Float  // nil is Float와 같은 결과임 false</span></span><br><span class="line"><span class="comment">//(value as! Float) is Float  // 런타임 오류 (value를 Float으로 강제로 변환을 했는데 is Float으로 체크 하는 순간 런타임 오류)</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="생성자-Initializer"><a href="#생성자-Initializer" class="headerlink" title="생성자 (Initializer)"></a>생성자 (Initializer)</h1><ul>
+<li>Swift 의 객체는 사용하기 전 모든 <strong>저장 프로퍼티에 대해 초기화 필수</strong> 다음 3 가지 중 하나를 택해 초기화<ul>
+<li>초기값 지정</li>
+<li>옵셔널 타입 - nil 값으로 초기화</li>
+<li>초기값이 없고, 옵셔널 타입이 아닌 프로퍼티에 대해서는 초기화 메서드에서 설정</li>
+</ul>
+</li>
+</ul>
+<h2 id="Designated-Initializer"><a href="#Designated-Initializer" class="headerlink" title="Designated Initializer"></a>Designated Initializer</h2><ul>
+<li>클래스에 반드시 1개 이상 필요</li>
+<li>초기화가 필요한 모든 프로퍼티를 단독으로 초기화 가능한 Initializer</li>
+<li>위에서 사용한 init(), init(height: Int, xPosition: Int) 가 여기에 해당</li>
+<li>초기화 과정에서 반드시 한 번은 호출</li>
+</ul>
+<ul>
+<li>Q. 없는 경우도 있던데?<ul>
+<li>init()이 있는건데 필요없으면 생략되어있는 거임 실제로는 있음</li>
+</ul>
+</li>
+</ul>
+<h2 id="Convenience-Initializer"><a href="#Convenience-Initializer" class="headerlink" title="Convenience Initializer"></a>Convenience Initializer</h2><ul>
+<li><p>단독으로 모두 초기화할 수 없고 일부만 처리한 뒤 다른 생성자에게 나머지 부분 위임</p>
+</li>
+<li><p>중복되는 초기화 코드를 줄이기 위해 사용</p>
+</li>
+</ul>
+<p>// 필기..</p>
+<h2 id="Failable-Initializer"><a href="#Failable-Initializer" class="headerlink" title="Failable Initializer"></a>Failable Initializer</h2><p>인스턴스 생성시 특정 조건을 만족하지 않으면 객체를 생성하지 않는 것</p>
+<p>생성이 되면 옵셔널 타입을 반환하게 되며, 생성 실패시에는 nil 반환</p>
+<h2 id="Super-Class-Initializing"><a href="#Super-Class-Initializing" class="headerlink" title="Super Class Initializing"></a>Super Class Initializing</h2><ul>
+<li>서브 클래스는 자기 자신 이외에 수퍼 클래스의 저장 프로퍼티까지 초기화 해야함</li>
+<li>서브 클래스는 수퍼 클래스의 지정 생성자(Designated Initializer) 호출 필요 (Convenience는 호출 불가)</li>
+<li>수퍼 클래스의 지정 생성자가 기본 init 함수 하나만 있을 경우는 별도로 작성하지 않아도 자동으로 super.init() 메서드 호출</li>
+<li>생성자가 여러 개인 경우, 어떤 초기화 메서드를 선택해야 할지 알 수 없으므로 선택해주지 않으면 오류, 이 때는 서브 클래스에서 수퍼 클래스의 생성자를 명시적으로 선택해주어야 함. 편의 생성자(Convenience Initializer)는 무관</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/Swift/" rel="tag"># Swift</a>
+              <a href="/tags/%ED%83%80%EC%9E%85%EC%BA%90%EC%8A%A4%ED%8C%85/" rel="tag"># 타입캐스팅</a>
+              <a href="/tags/typeCasting/" rel="tag"># typeCasting</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/homework-1203/" rel="next" title="강아지, 새, 고양이">
+                  <i class="fa fa-chevron-left"></i> 강아지, 새, 고양이
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/12/6/" rel="prev" title="Sigleton, User Defaluts">
+                  Sigleton, User Defaluts <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#타입-캐스팅-Type-Casting"><span class="nav-number">1.</span> <span class="nav-text">타입 캐스팅 (Type Casting)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#타입-비교"><span class="nav-number">1.1.</span> <span class="nav-text">타입 비교</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-Check-타입-확인"><span class="nav-number">1.2.</span> <span class="nav-text">Type Check (타입 확인)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-Casting"><span class="nav-number">1.3.</span> <span class="nav-text">Type Casting</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#생성자-Initializer"><span class="nav-number">2.</span> <span class="nav-text">생성자 (Initializer)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Designated-Initializer"><span class="nav-number">2.1.</span> <span class="nav-text">Designated Initializer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convenience-Initializer"><span class="nav-number">2.2.</span> <span class="nav-text">Convenience Initializer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Failable-Initializer"><span class="nav-number">2.3.</span> <span class="nav-text">Failable Initializer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Super-Class-Initializing"><span class="nav-number">2.4.</span> <span class="nav-text">Super Class Initializing</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SangMin Jeon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SangMin Jeon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://sandMan77.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://yoursite.com/2019/12/4/",
+            identifier: "2019/12/4/",
+            title: "4"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sandMan77.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>
