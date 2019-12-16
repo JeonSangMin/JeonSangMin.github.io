@@ -212,6 +212,97 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/homework-1214/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/homework-1214/" class="post-title-link" itemprop="url">로그인 화면 구현하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-16 21:22:41 / Modified: 21:44:43" itemprop="dateCreated datePublished" datetime="2019-12-16T21:22:41+09:00">2019-12-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Homework/" itemprop="url" rel="index">
+                    <span itemprop="name">Homework</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/12/homework-1214/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/homework-1214/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Login-Practice"><a href="#Login-Practice" class="headerlink" title="Login Practice"></a>Login Practice</h1><div class="video-container"><iframe src="//www.youtube.com/embed/MJ4aPq1vnog" frameborder="0" allowfullscreen></iframe></div><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[ 필수 구현 기능 ]</span><br><span class="line"><span class="comment">// 스토리보드, 코드 자유</span></span><br><span class="line"><span class="number">1</span>. 별도 첨부한 이미지와 같이 <span class="type">UI</span> 구현. 원하는 형식으로 바꿔도 무관</span><br><span class="line"><span class="number">2</span>. 텍스트 필드는 <span class="type">UITextFieldDelegate</span> 이용</span><br><span class="line"><span class="number">3</span>. 키보드에 의해 아이디와 비밀번호 textField가 가릴 수 있으므로 </span><br><span class="line">   키보드가 나타날 때는 텍스트필드 위로 끌어올리고 내려갈 때는 같이 내려가기</span><br><span class="line"><span class="number">4</span>. 미리 설정해둔 아이디와 비밀번호가 동일할 경우 로그인이 완료된 메인 화면으로 이동 </span><br><span class="line"><span class="number">5</span>. 메인 화면에서는 입력받은 아이디를 출력하는 <span class="type">Label</span>을 띄우고 </span><br><span class="line">   다시 로그인 화면으로 돌아갈 수 있는 <span class="type">Sign</span> <span class="type">Out</span> 버튼 구성</span><br><span class="line">   </span><br><span class="line">[ 추가 기능 (<span class="number">1</span>) ]</span><br><span class="line"><span class="number">1</span>. 미리 설정해둔 아이디와 비밀번호가 다를 경우 텍스트필드의 바탕화면을 일시적으로 빨갛게 만들었다가 원상 복구하기</span><br><span class="line"><span class="number">2</span>. 텍스트필드에 입력할 수 있는 최대 글자 수는 <span class="number">16</span>자까지</span><br><span class="line"><span class="comment">/*3. 아이디와 비밀번호는 모두 4 ~ 16자 사이여야 함*/</span></span><br><span class="line"></span><br><span class="line">[ 추가 기능 (<span class="number">2</span>) ]</span><br><span class="line"><span class="number">1</span>. 자동 로그인</span><br><span class="line">한 번 로그인에 성공했으면 <span class="type">Sign</span> <span class="type">Out</span>을 하기 전에는 앱을 껏다 켜도 자동 로그인된 상태로 메인 화면으로 진입</span><br><span class="line"><span class="comment">/*2. 회원 가입 페이지</span></span><br><span class="line"><span class="comment">회원가입 페이지를 만든 뒤 회원 가입한 유저의 아이디와 비밀번호를 추가하고</span></span><br><span class="line"><span class="comment">그것으로도 로그인 할 수 있도록 구현하기*/</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/homework-1214/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/homework-1216/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1072,119 +1163,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SangMin Jeon">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Let's Swift!">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/3/" class="post-title-link" itemprop="url">StoryBoard</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-12-03 13:06:05" itemprop="dateCreated datePublished" datetime="2019-12-03T13:06:05+09:00">2019-12-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-04 15:52:57" itemprop="dateModified" datetime="2019-12-04T15:52:57+09:00">2019-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TIL/" itemprop="url" rel="index">
-                    <span itemprop="name">TIL</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/12/3/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="StoryBoard"><a href="#StoryBoard" class="headerlink" title="StoryBoard"></a>StoryBoard</h1><ul>
-<li><p>Segueway</p>
-<ul>
-<li>뷰 컨트롤러 하나 더 생성, ctrl 누른채로 새로 만든 뷰 컨트롤러로 드래그! 세그웨이</li>
-<li>오늘은 present Modally 선택</li>
-<li>(세그웨이 선 선택하고 어트리뷰트 인스펙터)스토리보드 세그, kind 에서 액션을 변경할 수 있다</li>
-</ul>
-</li>
-<li><p>다시 돌아갈 땐? dismiss</p>
-<ul>
-<li>버튼 선택하고 똑같이 ctrl로 이전 뷰 드래그??</li>
-<li>이러면 dismiss가 아니라  present</li>
-</ul>
-</li>
-<li><p>일단 ViewController를 First로 바꾸고, 새로 SecondViewController를 만들자!</p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1233,7 +1211,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
