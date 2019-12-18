@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TableView 과제</title>
+    <url>/2019/12/homework_1218/</url>
+    <content><![CDATA[<h1 id="Table-View-Multiple-Selection"><a href="#Table-View-Multiple-Selection" class="headerlink" title="Table View Multiple Selection"></a>Table View Multiple Selection</h1><h2 id="수행-과제"><a href="#수행-과제" class="headerlink" title="수행 과제"></a>수행 과제</h2><ul>
+<li>첫 목록은 1부터 지정한 숫자까지 테이블뷰로 출력</li>
+<li>갱신(Refresh)할 때 마다 지정한 수의 +50 사이의 숫자로 지정한 수 만큼만 무작위로 출력</li>
+<li>출력 되는 숫자들은 중복 값이 있으면 안됨</li>
+<li>특정 Cell을 선택하고, 갱신하면 선택 된 숫자만 남기고, 나머지 숫자들만 다시 무작위로 출력</li>
+<li>특정 Cell 복수 선택 가능</li>
+<li>단, 7보다 낮은 수는 선택 할 수 없도록 처리할 것</li>
+</ul><a id="more"></a>
+<h2 id="시연-화면"><a href="#시연-화면" class="headerlink" title="시연 화면"></a>시연 화면</h2><ul>
+<li>선택 한 값들이 맨 위에 남는지 주목</li>
+</ul>
+<div class="video-container"><iframe src="//www.youtube.com/embed/3RM965GcBwI" frameborder="0" allowfullscreen></iframe></div>]]></content>
+      <categories>
+        <category>Homework</category>
+      </categories>
+      <tags>
+        <tag>Swift,</tag>
+        <tag>iOS,</tag>
+        <tag>TableView</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UITable View</title>
+    <url>/2019/12/17/</url>
+    <content><![CDATA[<h1 id="UITable-View"><a href="#UITable-View" class="headerlink" title="UITable View"></a>UITable View</h1><p>테이블 뷰도 여러 스타일이 있음</p><ul>
+<li>기본 스타일 <ul>
+<li>하나 이상의 행을 가짐</li>
+</ul>
+</li>
+<li>Grouped Table Views<ul>
+<li>관련 된 아이템들을 하나의 그룹으로 그룹핑</li>
+</ul>
+</li>
+</ul><h2 id="Life-Cycle"><a href="#Life-Cycle" class="headerlink" title="Life Cycle"></a>Life Cycle</h2><p>보이기 직전에 셀 객체가 재사용 되고, 이미 보였었는데 가려져서 안보이게 되는 경우엔 일시적으로 사라진다</p>]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>로그인 화면 구현하기</title>
     <url>/2019/12/homework-1214/</url>
     <content><![CDATA[<h1 id="Login-Practice"><a href="#Login-Practice" class="headerlink" title="Login Practice"></a>Login Practice</h1><div class="video-container"><iframe src="//www.youtube.com/embed/MJ4aPq1vnog" frameborder="0" allowfullscreen></iframe></div><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">[ 필수 구현 기능 ]</span><br><span class="line"><span class="comment">// 스토리보드, 코드 자유</span></span><br><span class="line"><span class="number">1</span>. 별도 첨부한 이미지와 같이 <span class="type">UI</span> 구현. 원하는 형식으로 바꿔도 무관</span><br><span class="line"><span class="number">2</span>. 텍스트 필드는 <span class="type">UITextFieldDelegate</span> 이용</span><br><span class="line"><span class="number">3</span>. 키보드에 의해 아이디와 비밀번호 textField가 가릴 수 있으므로 </span><br><span class="line">   키보드가 나타날 때는 텍스트필드 위로 끌어올리고 내려갈 때는 같이 내려가기</span><br><span class="line"><span class="number">4</span>. 미리 설정해둔 아이디와 비밀번호가 동일할 경우 로그인이 완료된 메인 화면으로 이동 </span><br><span class="line"><span class="number">5</span>. 메인 화면에서는 입력받은 아이디를 출력하는 <span class="type">Label</span>을 띄우고 </span><br><span class="line">   다시 로그인 화면으로 돌아갈 수 있는 <span class="type">Sign</span> <span class="type">Out</span> 버튼 구성</span><br><span class="line">   </span><br><span class="line">[ 추가 기능 (<span class="number">1</span>) ]</span><br><span class="line"><span class="number">1</span>. 미리 설정해둔 아이디와 비밀번호가 다를 경우 텍스트필드의 바탕화면을 일시적으로 빨갛게 만들었다가 원상 복구하기</span><br><span class="line"><span class="number">2</span>. 텍스트필드에 입력할 수 있는 최대 글자 수는 <span class="number">16</span>자까지</span><br><span class="line"><span class="comment">/*3. 아이디와 비밀번호는 모두 4 ~ 16자 사이여야 함*/</span></span><br><span class="line"></span><br><span class="line">[ 추가 기능 (<span class="number">2</span>) ]</span><br><span class="line"><span class="number">1</span>. 자동 로그인</span><br><span class="line">한 번 로그인에 성공했으면 <span class="type">Sign</span> <span class="type">Out</span>을 하기 전에는 앱을 껏다 켜도 자동 로그인된 상태로 메인 화면으로 진입</span><br><span class="line"><span class="comment">/*2. 회원 가입 페이지</span></span><br><span class="line"><span class="comment">회원가입 페이지를 만든 뒤 회원 가입한 유저의 아이디와 비밀번호를 추가하고</span></span><br><span class="line"><span class="comment">그것으로도 로그인 할 수 있도록 구현하기*/</span></span><br></pre></td></tr></table></figure><a id="more"></a>

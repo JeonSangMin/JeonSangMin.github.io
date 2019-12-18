@@ -212,6 +212,207 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/4/" class="post-title-link" itemprop="url">4</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-04 20:04:46" itemprop="dateCreated datePublished" datetime="2019-12-04T20:04:46+09:00">2019-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-05 16:20:39" itemprop="dateModified" datetime="2019-12-05T16:20:39+09:00">2019-12-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/12/4/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="타입-캐스팅-Type-Casting"><a href="#타입-캐스팅-Type-Casting" class="headerlink" title="타입 캐스팅 (Type Casting)"></a>타입 캐스팅 (Type Casting)</h1><p>Super Class 로 부터 상속 된 Sub Class는 자기 자신의 타입이기도 하면서, 동시에 SuperClass의 타입이기도 하다.</p><p>super의 특성을 물려받기 때문이다. </p><p>상속을 거듭해 갈 수록 sub는 보다 구체화 되어간다. </p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Super Class </span></span><br><span class="line"><span class="type">Class</span> <span class="type">Vehicle</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> currentSpeed = <span class="number">0.0</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">accelerate</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">self</span>.currentSpeed += <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Sub Class</span></span><br><span class="line"><span class="type">Class</span> <span class="type">Car</span>: <span class="type">Vehicle</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> gear: <span class="type">Int</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="type">Int</span>(<span class="keyword">self</span>.currentSpeed / <span class="number">20</span>) + <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">wiper</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"창을 닦는다"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> trans: <span class="type">Vehicle</span> = <span class="type">Car</span>()</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/4/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/homework-1203/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/homework-1203/" class="post-title-link" itemprop="url">강아지, 새, 고양이</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-04 15:08:48" itemprop="dateCreated datePublished" datetime="2019-12-04T15:08:48+09:00">2019-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-16 21:19:23" itemprop="dateModified" datetime="2019-12-16T21:19:23+09:00">2019-12-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Homework/" itemprop="url" rel="index">
+                    <span itemprop="name">Homework</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/12/homework-1203/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/homework-1203/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <div class="video-container"><iframe src="//www.youtube.com/embed/idXDB5rUQOE" frameborder="0" allowfullscreen></iframe></div><h1 id="버튼-눌러서-뷰끼리-값-전달하기-StoryBoard-ver"><a href="#버튼-눌러서-뷰끼리-값-전달하기-StoryBoard-ver" class="headerlink" title="버튼 눌러서 뷰끼리 값 전달하기 (StoryBoard ver.)"></a>버튼 눌러서 뷰끼리 값 전달하기 (StoryBoard ver.)</h1><ul>
+<li>FirstVC 에 Dog, Cat, Bird 라는 이름의 Button을 3개 만들고 숫자를 표시하기 위한 Label 하나 생성</li>
+<li>SecondVC 에 UIImageView 하나와 Dismiss 를 위한 버튼 하나 생성</li>
+<li>FirstVC에 있는 버튼 3개 중 하나를 누르면 그 타이틀에 맞는 이미지를 SecondVC의 ImageView 에 넣기<br>(이미지는 구글링 등을 통해 활용)</li>
+<li>각 버튼별로 전환 횟수를 세서 개는 3회, 고양이는 5회, 새는 7회가 초과되면 화면이 전환되지 않도록 막기<br>(전환 횟수가 초과된 버튼은 그것만 막고, 횟수가 초과되지 않은 버튼으로는 전환 가능)</li>
+<li>SecondVC에 추가로 UIButton 을 하나 생성하여 그 버튼을 누를 때 마다 개와 고양이, 새 모두에 대해 전환 횟수가 각각 1회씩 추가되도록 구현.</li>
+<li>단, 각 버튼의 전환 횟수 제한에 도달하면 더 이상 추가 되지 않음</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/homework-1203/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -991,216 +1192,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SangMin Jeon">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Let's Swift!">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/21/" class="post-title-link" itemprop="url">App Life Cycle</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-21 13:06:35" itemprop="dateCreated datePublished" datetime="2019-11-21T13:06:35+09:00">2019-11-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-25 21:19:53" itemprop="dateModified" datetime="2019-11-25T21:19:53+09:00">2019-11-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TIL/" itemprop="url" rel="index">
-                    <span itemprop="name">TIL</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/11/21/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/21/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h1><ol>
-<li>프로젝트 생성</li>
-</ol><ul>
-<li>include Unit test : 테스트 코드를 짜서 미리 앱이 돌아가기전에 체크</li>
-<li>등등은 아직 신경 안써도 됨 check 풀고 시작</li>
-</ul><p>통합 개발환경! IDE = editor, compiler, debugger</p><p>여러가지 많지만 xcode는 macOS에서만 실행 가능</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/21/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SangMin Jeon">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Let's Swift!">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/19/" class="post-title-link" itemprop="url">OOP & Access Control</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-19 10:48:05" itemprop="dateCreated datePublished" datetime="2019-11-19T10:48:05+09:00">2019-11-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-20 16:17:10" itemprop="dateModified" datetime="2019-11-20T16:17:10+09:00">2019-11-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TIL/" itemprop="url" rel="index">
-                    <span itemprop="name">TIL</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/11/19/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/19/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Access-Control-amp-OOP"><a href="#Access-Control-amp-OOP" class="headerlink" title="Access Control &amp; OOP"></a>Access Control &amp; OOP</h1><ul>
-<li>다른 모듈의 코드 또는 다른 소스 파일 등으로부터 접근을 제한하는 것</li>
-<li>세부 구현 내용을 숨기고 접근할 수 있는 인터페이스 지정 가능</li>
-</ul><ul>
-<li>Access levels</li>
-</ul><ol>
-<li>open : class에만 붙일 수 있음 struct와 enum은 public 부터 가능</li>
-<li>public : </li>
-<li>internal : 정의 모듈의 모든 소스 파일 내에서 사용되지만, 해당 모듈 외부의 소스파일에서는 사용되지 않도록 합니다.</li>
-<li>fileprivate : 같은 클래스 파일 내에서만!</li>
-<li>private : 클래스 내에서만 사용하기 위해 범위를 제한!</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/19/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1249,7 +1240,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1260,7 +1251,7 @@
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
