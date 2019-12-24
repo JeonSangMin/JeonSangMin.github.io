@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Calculator Practice</title>
+    <url>/2019/12/20/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cell Style</title>
+    <url>/2019/12/19/</url>
+    <content><![CDATA[<h1 id="Cell-Style"><a href="#Cell-Style" class="headerlink" title="Cell Style"></a>Cell Style</h1><p>델리게이트, 태그, 테이블뷰의 특정 셀의 row값을 이용해서, 특정셀을 가져와서 작업하는 방법</p>]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TableView 과제</title>
     <url>/2019/12/homework_1218/</url>
     <content><![CDATA[<h1 id="Table-View-Multiple-Selection"><a href="#Table-View-Multiple-Selection" class="headerlink" title="Table View Multiple Selection"></a>Table View Multiple Selection</h1><h2 id="수행-과제"><a href="#수행-과제" class="headerlink" title="수행 과제"></a>수행 과제</h2><ul>
@@ -402,8 +426,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -449,8 +473,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -571,8 +595,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
         <tag>타입캐스팅</tag>
         <tag>typeCasting</tag>
       </tags>
@@ -701,8 +725,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -791,8 +815,10 @@
 <li>private : 해당 스코프 내에서만 접근 가능하도록 제한  </li>
 </ul>
 <h2 id="8-OOP-4대-특성"><a href="#8-OOP-4대-특성" class="headerlink" title="8. OOP 4대 특성?"></a>8. OOP 4대 특성?</h2><ul>
-<li>다른 포스트 참조</li>
-<li></li>
+<li>추상화</li>
+<li>캡슐화</li>
+<li>상속성</li>
+<li>다형성</li>
 </ul>
 <h2 id="9-Frame과-Bounds가-무엇이고-둘의-차이점"><a href="#9-Frame과-Bounds가-무엇이고-둘의-차이점" class="headerlink" title="9. Frame과 Bounds가 무엇이고, 둘의 차이점?"></a>9. Frame과 Bounds가 무엇이고, 둘의 차이점?</h2><ul>
 <li>Frame<ul>
@@ -803,17 +829,19 @@
 </li>
 </ul>
 <ul>
-<li>Bounds</li>
+<li>Bounds<ul>
+<li>자기 자신의 좌표계를 기반으로 그 뷰의 위치와 사이즈를 표현하는 사각형</li>
+<li>원점(0, 0)은 자체 뷰의 시작 지점이며, 원점을 변경하면 자신의 하위 뷰에만 영향을 줌</li>
 </ul>
-<p>- 자기 자신의 좌표계를 기반으로 그 뷰의 위치와 사이즈를 표현하는 사각형</p>
-<p>- 원점(0, 0)은 자체 뷰의 시작 지점이며, 원점을 변경하면 자신의 하위 뷰에만 영향을 줌</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
         <tag>Codding</tag>
       </tags>
   </entry>
@@ -839,8 +867,8 @@
         <category>따라해봄</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
         <tag>한글링</tag>
         <tag>Stanford_iOS</tag>
       </tags>
@@ -1425,8 +1453,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1625,8 +1653,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
