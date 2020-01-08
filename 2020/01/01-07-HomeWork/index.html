@@ -51,14 +51,18 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Let&#39;s Swift!">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2019&#x2F;page&#x2F;4&#x2F;index.html">
+  <meta name="description" content="Gesture Recognizer 이전에 탭한 위치에서 거리가 10 이상이면 새로운 탭 (count 1 up)으로 계산할 것 touchbegan, UITapGestureRecognizer, UIGestureRecognizerDelegate의 shouldReceive 메서드 사용하여 세 가지 방식으로 구현할 것">
+<meta name="keywords" content="iOS,,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gesture Recognizer">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;01-07-HomeWork&#x2F;index.html">
 <meta property="og:site_name" content="Let&#39;s Swift!">
+<meta property="og:description" content="Gesture Recognizer 이전에 탭한 위치에서 거리가 10 이상이면 새로운 탭 (count 1 up)으로 계산할 것 touchbegan, UITapGestureRecognizer, UIGestureRecognizerDelegate의 shouldReceive 메서드 사용하여 세 가지 방식으로 구현할 것">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-01-08T08:05:19.057Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/archives/2019/page/4/">
+<link rel="canonical" href="http://yoursite.com/2020/01/01-07-HomeWork/">
 
 
 <script id="page-configurations">
@@ -66,13 +70,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>Archive | Let's Swift!</title>
+  <title>Gesture Recognizer | Let's Swift!</title>
   
 
 
@@ -207,57 +211,123 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/01-07-HomeWork/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Gesture Recognizer
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-08 16:58:29 / Modified: 17:05:19" itemprop="dateCreated datePublished" datetime="2020-01-08T16:58:29+09:00">2020-01-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Homework/" itemprop="url" rel="index">
+                    <span itemprop="name">Homework</span>
+                  </a>
+                </span>
+            </span>
+
+          
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">OK! 34 posts in total. Keep on posting.</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/01/01-07-HomeWork/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/01-07-HomeWork/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+        <h1 id="Gesture-Recognizer"><a href="#Gesture-Recognizer" class="headerlink" title="Gesture Recognizer"></a>Gesture Recognizer</h1><div class="video-container"><iframe src="//www.youtube.com/embed/gXNixEkV2qc" frameborder="0" allowfullscreen></iframe></div><ul>
+<li>이전에 탭한 위치에서 거리가 10 이상이면 새로운 탭 (count 1 up)으로 계산할 것</li>
+<li>touchbegan, UITapGestureRecognizer, UIGestureRecognizerDelegate의 shouldReceive 메서드 사용하여 세 가지 방식으로 구현할 것</li>
+</ul>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-11T10:43:31+09:00"
-              content="2019-11-11">
-          11-11
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS,</a>
+              <a href="/tags/Swift/" rel="tag"># Swift</a>
+          </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/11/" itemprop="url">
-            <span itemprop="name">조건문 / 반복문</span>
-          </a>
-      </h2>
+        
 
-    </header>
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/01/07/" rel="next" title="Gesture Recognizer">
+                  <i class="fa fa-chevron-left"></i> Gesture Recognizer
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-
-    </div>
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2019/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/archives/2019/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2019/page/3/">3</a><span class="page-number current">4</span>
-  </nav>
-
 
 
           </div>
           
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
         </div>
           
@@ -282,6 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Gesture-Recognizer"><span class="nav-number">1.</span> <span class="nav-text">Gesture Recognizer</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -408,6 +479,27 @@
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://yoursite.com/2020/01/01-07-HomeWork/",
+            identifier: "2020/01/01-07-HomeWork/",
+            title: "Gesture Recognizer"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sandMan77.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
 </script>
 
 </body>
