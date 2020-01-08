@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Gesture Recognizer</title>
+    <url>/2020/01/07/</url>
+    <content><![CDATA[<h1 id="Gesture-Recognizer"><a href="#Gesture-Recognizer" class="headerlink" title="Gesture Recognizer"></a>Gesture Recognizer</h1><ul>
+<li><p>터치, 확대/축소, 회전, 드래깅, long press (길게 누르기). 등등 상호작용을 받아들이는 작업</p>
+</li>
+<li><p>뷰 위에 gesture recognizer를 올려서 사용!</p>
+</li>
+<li><p>스토리 보드에 gesture 라고 쳐보면 나옴 이 녀석들을 뷰 위에 올리면 됨 (필요한 액션 별로)</p>
+</li>
+<li><p>사실 viewController에 touch라고 액션을 캐치 할 수 있는 메서드가 있긴 함 (잠깐 언급)</p>
+</li>
+</ul><a id="more"></a>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line"> <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line"> <span class="keyword">let</span> tapGesture = <span class="type">UITapGestureRecognizer</span>(</span><br><span class="line">)</span><br><span class="line">target: <span class="keyword">self</span>,</span><br><span class="line">action: #selector(handleTap(<span class="number">_</span>:))</span><br><span class="line">view.addGestureRecognizer(tapGesture)</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@objc</span> <span class="function"><span class="keyword">func</span> <span class="title">handleTap</span><span class="params">(<span class="number">_</span> sender: UITapGestureRecognizer)</span></span> &#123;</span><br><span class="line"><span class="comment">// code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="The-states-of-a-gesture"><a href="#The-states-of-a-gesture" class="headerlink" title="The states of a gesture"></a>The states of a gesture</h2><ul>
+<li>discrete - 제스쳐가 인식이 되었을 때 액션 메소드가 정확히 한번만 호출 되는 것</li>
+<li>continuous - 기준이 충족 되면 액션이 반복적으로 호출 됨</li>
+</ul>
+<h2 id="TouchView-Controller"><a href="#TouchView-Controller" class="headerlink" title="TouchView Controller"></a>TouchView Controller</h2><ul>
+<li>touchesBegan - 터치가 시작 되었을 때</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">touchesBegan</span><span class="params">(<span class="number">_</span> touches: Set&lt;UITouch&gt;, with event: UIEvent?)</span></span> &#123;</span><br><span class="line">  <span class="comment">// 첫 터치가 있으면 구문 실행</span></span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> touch = touches.first <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>touchesMoved - 터치 후 손을 떼지 않고 이동</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">touchesMoved</span><span class="params">(<span class="number">_</span> touches: Set&lt;UITouch&gt;, with event: UIEvent?)</span></span> &#123;</span><br><span class="line">	<span class="keyword">guard</span> <span class="keyword">let</span> touch = touches.first <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">  <span class="keyword">let</span> touchPoint = touch.location(<span class="keyword">in</span>: touch.view)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>touchesEnded - 손을 뗀 상태</li>
+</ul>
+<h2 id="Gesture"><a href="#Gesture" class="headerlink" title="Gesture"></a>Gesture</h2><p>스토리보드에서 TapGestureRecognizer를 뷰 위나, 이미지뷰 위로 끌어서 해볼것임</p>
+<ul>
+<li>Tap - 눌렀다 땜 (3이면 세번 탭)</li>
+<li>Touch - 그냥 접촉 (3이면 세 손가락으로 터치)</li>
+</ul>
+<ul>
+<li><p>Tap Gesture Recognizer</p>
+</li>
+<li><p>Swipe Gesture Recognizer</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">sender.direction = .<span class="keyword">right</span> (.<span class="keyword">left</span>, .up, .down)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Rotation Gesture Recognizer</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">imageView.transform = imageView.transform.rotated(by: sender.rotation)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li>Pan Gesture Recognizer (drag) -&gt; 드래그해서 이미지 위치 옮기기</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> initialCenter = <span class="type">CGPoint</span>.zero</span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">panGesture</span><span class="params">(<span class="number">_</span> sender:</span></span></span><br><span class="line"><span class="function"><span class="params">        UIPanGestureRecognizer)</span></span> &#123;</span><br><span class="line">  </span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> dragView = sender.view <span class="keyword">else</span> &#123;<span class="keyword">return</span>&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 그냥하면 안됨 스토리보드에서 이거 체크해주던지 아래처럼 코드로 써줘야함</span></span><br><span class="line">        dragView.isUserInteractionEnabled = <span class="literal">true</span></span><br><span class="line">      </span><br><span class="line">        <span class="keyword">let</span> translation = sender.translation(<span class="keyword">in</span>: dragView.superview)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> sender.state == .began &#123;</span><br><span class="line">            initialCenter = dragView.center</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> sender.state != .cancelled &#123;</span><br><span class="line">            dragView.center = <span class="type">CGPoint</span>(x: initialCenter.x + translation.x, y: initialCenter.y + translation.y)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            dragView.center = initialCenter</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>Long Press Recognizer</li>
+</ul>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>URL Scheme &amp; ImagePicker</title>
     <url>/2020/01/06/</url>
     <content><![CDATA[<h1 id="URL-Scheme-amp-Image-Picker"><a href="#URL-Scheme-amp-Image-Picker" class="headerlink" title="URL Scheme &amp; Image Picker"></a>URL Scheme &amp; Image Picker</h1><ul>
@@ -136,8 +211,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -148,8 +223,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -160,8 +235,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -231,8 +306,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -272,8 +347,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -284,8 +359,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -381,8 +456,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -466,8 +541,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -773,8 +848,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
