@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Let's Swift!" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="URL Scheme &amp;amp; Image Picker 어떤 버튼을 눌렀을 때 다른 앱을 열 수 있도록 하는 것  설정 1234guard let url = URL(string: UIApplication.openSettingsURLString),            UIApplication.shared.canOpenURL(url)            else">
+<meta name="keywords" content="iOS,,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="URL Scheme &amp; ImagePicker">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;06&#x2F;index.html">
+<meta property="og:site_name" content="Let&#39;s Swift!">
+<meta property="og:description" content="URL Scheme &amp;amp; Image Picker 어떤 버튼을 눌렀을 때 다른 앱을 열 수 있도록 하는 것  설정 1234guard let url = URL(string: UIApplication.openSettingsURLString),            UIApplication.shared.canOpenURL(url)            else">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;71796226-150e4480-308d-11ea-8356-017b7b7a3c97.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;71797322-e003f100-3090-11ea-807b-0927d15b8692.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;71797675-87cdee80-3092-11ea-8b64-eff40ebc3399.png">
+<meta property="og:updated_time" content="2020-01-06T08:19:33.929Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;71796226-150e4480-308d-11ea-8356-017b7b7a3c97.jpeg">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/06/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>URL Scheme & ImagePicker | Let's Swift!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Let's Swift!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">SangMin's study blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          URL Scheme & ImagePicker
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-06 13:02:22 / Modified: 17:19:33" itemprop="dateCreated datePublished" datetime="2020-01-06T13:02:22+09:00">2020-01-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/01/06/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/06/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="URL-Scheme-amp-Image-Picker"><a href="#URL-Scheme-amp-Image-Picker" class="headerlink" title="URL Scheme &amp; Image Picker"></a>URL Scheme &amp; Image Picker</h1><ul>
+<li>어떤 버튼을 눌렀을 때 다른 앱을 열 수 있도록 하는 것</li>
+</ul><ul>
+<li>설정</li>
+</ul><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> <span class="keyword">let</span> url = <span class="type">URL</span>(string: <span class="type">UIApplication</span>.openSettingsURLString),</span><br><span class="line">            <span class="type">UIApplication</span>.shared.canOpenURL(url)</span><br><span class="line">            <span class="keyword">else</span> &#123;<span class="keyword">return</span>&#125;</span><br><span class="line">        <span class="type">UIApplication</span>.shared.<span class="keyword">open</span>(url)</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+<ul>
+<li>메일 (그냥 켜고 싶으면 받는 사람 지우면 됨, 다중으로 보내려면 , 넣고 여러 개 쓰면 됨. 띄어쓰기 금지)</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> scheme = <span class="string">"mailto:jeonsangmin77@gmail.com"</span></span><br><span class="line">       <span class="keyword">guard</span> <span class="keyword">let</span> url = <span class="type">URL</span>(string:scheme) <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">return</span></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="type">UIApplication</span>.shared.<span class="keyword">open</span>(url)</span><br></pre></td></tr></table></figure>
+
+<p>참조, 제목 등등도 미리 작성해놓으려면? (숨은 참조는 bcc)</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> scheme = <span class="string">"mailto:jeonsangmin77@gmail.com?cc=foo@bar&amp;subject=title&amp;body=MyText"</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://user-images.githubusercontent.com/15086391/71796226-150e4480-308d-11ea-8356-017b7b7a3c97.jpeg" alt="KakaoTalk_Photo_2020-01-06-14-01-23"></p>
+<ul>
+<li>메세지 (body에 한글을 넣으려면 변환 과정이 필요함)</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> url = <span class="type">URL</span>(string: <span class="string">"sms:010-9999-9999&amp;body=Hello"</span>)!</span><br><span class="line">        <span class="keyword">guard</span> <span class="type">UIApplication</span>.shared.canOpenURL(url) <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">UIApplication</span>.shared.<span class="keyword">open</span>(url)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Web 페이지 등도 같은 방법으로 string 값만 바꿔주면 됨</li>
+<li>위의 세 가지는 시스템 App</li>
+</ul>
+<h2 id="3rd-Party-App"><a href="#3rd-Party-App" class="headerlink" title="3rd Party App"></a>3rd Party App</h2><ul>
+<li><p>화이트리스트 등록 필요</p>
+</li>
+<li><p>최초 1회 넘어갈 때 이동을 허락하면 이후부터는 바로 넘어감</p>
+</li>
+<li><p>info.plist 우클릭 openAs, sourcecode에 들어가서 <dict>안에</dict></p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;<span class="type">LSApplicationQueriesSchemes</span>&lt;/key&gt;</span><br><span class="line">  &lt;array&gt;</span><br><span class="line">   &lt;string&gt;fb&lt;/string&gt;</span><br><span class="line">  &lt;/array&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://user-images.githubusercontent.com/15086391/71797322-e003f100-3090-11ea-807b-0927d15b8692.png" alt="스크린샷 2020-01-06 오후 2 28 33"></p>
+<ul>
+<li>MyApp의 URL Scheme 등록하기<ul>
+<li>Infoplist -&gt; info -&gt; URL Schemes에 등록</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/71797675-87cdee80-3092-11ea-8b64-eff40ebc3399.png" alt="스크린샷 2020-01-06 오후 2 40 33"></p>
+<ul>
+<li><p>실습 </p>
+<ul>
+<li>MyApp 하나 새로 만들고 해당 앱의 AppDelegate에 </li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> app: UIApplication, <span class="keyword">open</span> url: URL, options: [UIApplication.OpenURLOptionsKey : <span class="keyword">Any</span>] = [:])</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">   </span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"sourceApplication :"</span>, options[.sourceApplication] ?? <span class="string">""</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"app :"</span>, app)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"url :"</span>, url)</span><br><span class="line">   </span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">let</span> scheme = url.scheme &#123;</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">"scheme :"</span>, scheme)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">let</span> host = url.host &#123;</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">"host :"</span>, host)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">let</span> query = url.query &#123;</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">"query :"</span>, query)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>입력</p>
+<p>MyApp에 접근할 앱에 info 등록 해놓고 켜보면 값 넘길 수 있음</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">let</span> url = <span class="type">URL</span>(string: <span class="string">"smApp://host?name=abc&amp;age=10"</span>)!</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">         - scheme: myApp</span></span><br><span class="line"><span class="comment">         - host: host</span></span><br><span class="line"><span class="comment">         - query: name=abc&amp;age=10</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="Image-Picker"><a href="#Image-Picker" class="headerlink" title="Image Picker"></a>Image Picker</h1><ul>
+<li>UIImagePickerControllerDelegate, UINavigationControllerDelegate </li>
+<li>사진이나, 동영상을 촬영할 때는 카메라, 앨범, 마이크 등에 대한 접근 권한을 추가해주어야 한다.<ul>
+<li>Infoplist 에서 Privacy usage camera… 등등등</li>
+</ul>
+</li>
+<li>위 두가지 delegate extension에 채택하고 시작<ul>
+<li>imagePicker Delegate에 didCancle 메서드는 cancle 버튼 눌렀을 때 동작한다.  수행할 작업이 없으면 생략한다.</li>
+<li>didFinishPickingMediaWithInfo 에서 주로 작업한다.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>이미지 선택</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">imagePicker.sourceType = .savedPhotosAlbum</span><br><span class="line">        present(imagePicker, animated: <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>사진 촬영</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> <span class="type">UIImagePickerController</span>.isSourceTypeAvailable(.camera) <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        imagePicker.sourceType = .camera</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">print</span>(imagePicker.mediaTypes)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// video는 소리가 들어가기 때문에 마이크 사용에 대한 권한허용이 필요함. 안해주면 어플 죽음</span></span><br><span class="line">        <span class="keyword">let</span> mediaTypes = <span class="type">UIImagePickerController</span>.availableMediaTypes(<span class="keyword">for</span>: .camera)</span><br><span class="line">        imagePicker.mediaTypes = mediaTypes ?? []</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// imagePicker.mediaTypes = ["public.image"]</span></span><br><span class="line">        <span class="comment">// ["public.image"] == kUTTypeImage 같기 때문에 아래 처럼 써주는 게 좋음!</span></span><br><span class="line">        <span class="comment">// imagePicker.mediaTypes = [kUTTypeImage as String]</span></span><br><span class="line">        <span class="comment">// imagePicker.mediaTypes = [kUTTypeImage, kUTTypeMovie] as [String]</span></span><br><span class="line">        </span><br><span class="line">        present(imagePicker, animated: <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>지연 촬영</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> <span class="type">UIImagePickerController</span>.isSourceTypeAvailable(.camera) <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">       imagePicker.sourceType = .camera</span><br><span class="line">       imagePicker.mediaTypes = [kUTTypeImage <span class="keyword">as</span> <span class="type">String</span>]</span><br><span class="line">       </span><br><span class="line">       present(imagePicker, animated: <span class="literal">true</span>) &#123;</span><br><span class="line">           <span class="comment">// 2초 뒤 delay 촬영</span></span><br><span class="line">           <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">2</span>, execute: &#123;</span><br><span class="line">               <span class="keyword">self</span>.imagePicker.takePicture()</span><br><span class="line">           &#125;)</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>동영상 촬영</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> <span class="type">UIImagePickerController</span>.isSourceTypeAvailable(.camera) <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        imagePicker.sourceType = .camera</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Movie - 소리포함, kUTTypeVideo - 영상만!</span></span><br><span class="line">        imagePicker.mediaTypes = [kUTTypeMovie <span class="keyword">as</span> <span class="type">String</span>]  <span class="comment">// "public.movie"</span></span><br><span class="line">        imagePicker.cameraCaptureMode = .video <span class="comment">// .photo 둘 중 뭐가 처음에 뜨게 하는지 결정!</span></span><br><span class="line">        </span><br><span class="line">        imagePicker.cameraDevice = .rear <span class="comment">// .front 전면, 후방 카메라 선택</span></span><br><span class="line">        present(imagePicker, animated: <span class="literal">true</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 동영상 촬영 시작 - 종료</span></span><br><span class="line">        <span class="comment">//  imagePicker.startVideoCapture()</span></span><br><span class="line">        <span class="comment">//  imagePicker.stopVideoCapture()</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>사진 수정 모드 허용/비허용</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">imagePicker.allowsEditing.toggle()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Delegate"><a href="#Delegate" class="headerlink" title="Delegate"></a>Delegate</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">imagePickerController</span><span class="params">(<span class="number">_</span> picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : <span class="keyword">Any</span>])</span></span> &#123;</span><br><span class="line">       <span class="comment">// 사진 앨범을 누르는 순간 동작!</span></span><br><span class="line">       <span class="built_in">print</span>(<span class="string">"=== imagePickerController ==="</span>)</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">let</span> mediaType = info[.mediaType] <span class="keyword">as</span>! <span class="type">NSString</span></span><br><span class="line">       <span class="keyword">if</span> <span class="type">UTTypeEqual</span>(mediaType, kUTTypeImage) &#123;</span><br><span class="line">           <span class="keyword">let</span> originalImage = info[.originalImage] <span class="keyword">as</span>! <span class="type">UIImage</span></span><br><span class="line">           <span class="keyword">let</span> editedImage = info[.editedImage] <span class="keyword">as</span>? <span class="type">UIImage</span></span><br><span class="line">           </span><br><span class="line">           <span class="keyword">let</span> selectedImage = editedImage ?? originalImage</span><br><span class="line">           </span><br><span class="line">           <span class="comment">// imageView.image = originalImage</span></span><br><span class="line">           imageView.image = selectedImage</span><br><span class="line">           </span><br><span class="line">           <span class="keyword">if</span> picker.sourceType == .camera &#123;</span><br><span class="line">               <span class="comment">// souce의 picker type이 카메라 일때만 저장!</span></span><br><span class="line">               <span class="type">UIImageWriteToSavedPhotosAlbum</span>(selectedImage, <span class="literal">nil</span>, <span class="literal">nil</span>, <span class="literal">nil</span>)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="type">UTTypeEqual</span>(mediaType, kUTTypeMovie) &#123;</span><br><span class="line">           <span class="comment">// 동영상 -&gt; 앨범에 저장</span></span><br><span class="line">           <span class="keyword">if</span> <span class="keyword">let</span> mediaPath = (info[.mediaURL] <span class="keyword">as</span>? <span class="type">NSURL</span>)?.path,</span><br><span class="line">               <span class="type">UIVideoAtPathIsCompatibleWithSavedPhotosAlbum</span>(mediaPath) &#123;</span><br><span class="line">               <span class="type">UISaveVideoAtPathToSavedPhotosAlbum</span>(mediaPath, <span class="literal">nil</span>, <span class="literal">nil</span>, <span class="literal">nil</span>)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       <span class="comment">//    let originalInamge = info[.originalImage] as! UIImage</span></span><br><span class="line">       <span class="comment">//    imageView.image = originalInamge</span></span><br><span class="line">       </span><br><span class="line">       picker.dismiss(animated: <span class="literal">true</span>)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS,</a>
+              <a href="/tags/Swift/" rel="tag"># Swift</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/20/" rel="next" title="Calculator Practice">
+                  <i class="fa fa-chevron-left"></i> Calculator Practice
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#URL-Scheme-amp-Image-Picker"><span class="nav-number">1.</span> <span class="nav-text">URL Scheme &amp; Image Picker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3rd-Party-App"><span class="nav-number">1.1.</span> <span class="nav-text">3rd Party App</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Image-Picker"><span class="nav-number">2.</span> <span class="nav-text">Image Picker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Delegate"><span class="nav-number">2.1.</span> <span class="nav-text">Delegate</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SangMin Jeon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SangMin Jeon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://sandMan77.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://yoursite.com/2020/01/06/",
+            identifier: "2020/01/06/",
+            title: "URL Scheme & ImagePicker"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sandMan77.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>
