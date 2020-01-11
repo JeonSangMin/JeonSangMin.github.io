@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Let's Swift!" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Core Location 기기의 지리적 위치 정보를 가져와야 할 때 사용하는 프레임 워크   MapKit 과는 차이가 있다. (지도)  사용자에게 권한을 허가 받아야만 사용할 수 있다.  MKMapView와 UITapGestureRecognizer를 같이 사용하여 지도상에 내가 터치한 위치 값을 받는 기능도 사용할 수 있다.  @IBAction func r">
+<meta name="keywords" content="Swift,iOS,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Core Location &amp; Map Kit">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;9&#x2F;index.html">
+<meta property="og:site_name" content="Let&#39;s Swift!">
+<meta property="og:description" content="Core Location 기기의 지리적 위치 정보를 가져와야 할 때 사용하는 프레임 워크   MapKit 과는 차이가 있다. (지도)  사용자에게 권한을 허가 받아야만 사용할 수 있다.  MKMapView와 UITapGestureRecognizer를 같이 사용하여 지도상에 내가 터치한 위치 값을 받는 기능도 사용할 수 있다.  @IBAction func r">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-01-11T10:35:18.342Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Core Location & Map Kit | Let's Swift!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Let's Swift!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">SangMin's study blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Core Location & Map Kit
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-09 13:08:46" itemprop="dateCreated datePublished" datetime="2020-01-09T13:08:46+09:00">2020-01-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-11 19:35:18" itemprop="dateModified" datetime="2020-01-11T19:35:18+09:00">2020-01-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/01/9/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Core-Location"><a href="#Core-Location" class="headerlink" title="Core Location"></a>Core Location</h1><ul>
+<li><p>기기의 지리적 위치 정보를 가져와야 할 때 사용하는 프레임 워크 </p>
+</li>
+<li><p>MapKit 과는 차이가 있다. (지도)</p>
+</li>
+<li><p>사용자에게 권한을 허가 받아야만 사용할 수 있다.</p>
+</li>
+<li><p>MKMapView와 UITapGestureRecognizer를 같이 사용하여 지도상에 내가 터치한 위치 값을 받는 기능도 사용할 수 있다.</p>
+<ul>
+<li><pre><code class="swift"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">recognizeTap</span><span class="params">(gesture: UITapGestureRecognizer)</span></span> {
+        <span class="keyword">let</span> touchPoint = gesture.location(<span class="keyword">in</span>: gesture.view)
+        <span class="keyword">let</span> coordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        <span class="keyword">let</span> location = <span class="type">CLLocation</span>(latitude: coordinate.latitude, longitude: coordinate.longitude)
+}
+&lt;!--￼<span class="number">0</span>--&gt;
+
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul><a id="more"></a>
+<ul>
+<li>실시간 위치 정보 업데이트</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">startUpdatingLocation</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// 허가 상태를 받아옴</span></span><br><span class="line">        <span class="keyword">let</span> status = <span class="type">CLLocationManager</span>.authorizationStatus()</span><br><span class="line">        <span class="comment">// 상태가 사용할 때, 혹은 항상이면 ~~ 해라</span></span><br><span class="line">        <span class="keyword">guard</span> status == .authorizedWhenInUse || status == .authorizedAlways <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        <span class="comment">// 위치 서비스 이용 가능한 상태이면</span></span><br><span class="line">        <span class="keyword">guard</span> <span class="type">CLLocationManager</span>.locationServicesEnabled() <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        <span class="comment">//    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters</span></span><br><span class="line">        <span class="comment">//    locationManager.distanceFilter = 10.0</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 실제로 위치 업데이트</span></span><br><span class="line">        locationManager.startUpdatingLocation()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">extention <span class="type">ViewController</span>: <span class="type">CLLocationManagerDelegate</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">locationManager</span><span class="params">(<span class="number">_</span> manager: CLLocationManager, didUpdateLocations locations: [CLLocation])</span></span> &#123;</span><br><span class="line">        <span class="comment">// 반드시 하나의 값은 가지고 있어서 강제 언래핑 해도 됨</span></span><br><span class="line">        <span class="keyword">let</span> current = locations.last!</span><br><span class="line">        <span class="keyword">let</span> coordinate = current.coordinate</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 캐시 된 정보가 오래 된 거면 무시하고 10초 이내 것만 처리..(뭔솔?)</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">abs</span>(current.timestamp.timeIntervalSinceNow) &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            <span class="comment">//        if !setUp &#123;</span></span><br><span class="line">            <span class="comment">// span 단위는 1도 (경도 1도는 약 111킬로미터)</span></span><br><span class="line">            <span class="keyword">let</span> span = <span class="type">MKCoordinateSpan</span>(latitudeDelta: <span class="number">0.001</span>, longitudeDelta: <span class="number">0.001</span>)</span><br><span class="line">            <span class="comment">// 현 위치를 중앙으로 넣고 span 만큼 보여주도록 설정</span></span><br><span class="line">            <span class="keyword">let</span> region = <span class="type">MKCoordinateRegion</span>(center: coordinate, span: span)</span><br><span class="line">            mapView.setRegion(region, animated: <span class="literal">true</span>)</span><br><span class="line">            <span class="comment">//setUp.toggle()</span></span><br><span class="line">            </span><br><span class="line">            addAnnotaion(location: current)</span><br><span class="line">            <span class="comment">//&#125;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>특정 좌표에 핀 찍기</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//&lt;CLLocationManagerDelegate&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addAnnotaion</span><span class="params">(location: CLLocation)</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> annotation = <span class="type">MKPointAnnotation</span>()</span><br><span class="line">        annotation.coordinate = location.coordinate</span><br><span class="line">        mapView.addAnnotation(annotation)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CLLocationManagerDelegate 문서 읽어볼 것</li>
+</ul>
+<h2 id="CLPlaceMark"><a href="#CLPlaceMark" class="headerlink" title="CLPlaceMark"></a>CLPlaceMark</h2><ul>
+<li><p>CLPlaceMark 객체는 지정된 위도와 경도에 대한 장소 표시 데이터를 저장함</p>
+</li>
+<li><p>장소표시데이터?</p>
+<ul>
+<li>국가, 주, 도시, 주소, 이 밖의 지리적으로 관련 된 정보가 포함되어있음</li>
+<li>좌표(위경도)를 받아서 장소표시데이터를 저장하기 때문에 반대로 장소표시데이터를 이용하여 좌표를 얻어낼 수도 있음</li>
+<li>국가별로 주소체계가 다르기 때문에  우리나라의 주소 체계와는 맞지 않는 property가 있으니 유의할 것</li>
+<li>Ex) placeMark.subThroughfare : 값이 없음 -&gt; 에러</li>
+</ul>
+</li>
+<li><p>아래 코드 클로저 내부의 ‘placeMark’가 CLPlaceMark 타입</p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">geocodeAddressString</span><span class="params">(<span class="number">_</span> addressString: String)</span></span> &#123;</span><br><span class="line">     <span class="built_in">print</span>(<span class="string">"\n---------- [ 주소 -&gt; 위경도 ] ----------"</span>)</span><br><span class="line">     <span class="keyword">let</span> geocoder = <span class="type">CLGeocoder</span>()</span><br><span class="line">     geocoder.geocodeAddressString(addressString) &#123; (placeMark, error) <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">print</span>(error!.localizedDescription)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">guard</span> <span class="keyword">let</span> place = placeMark?.first <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">       </span><br><span class="line">      <span class="comment">// 위경도값 출력</span></span><br><span class="line">      <span class="built_in">print</span>(place.location?.coordinate)</span><br><span class="line">     &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseGeocode</span><span class="params">(location: CLLocation)</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> geocoder = <span class="type">CLGeocoder</span>()</span><br><span class="line">        </span><br><span class="line">        geocoder.reverseGeocodeLocation(location) &#123; placeMark, error <span class="keyword">in</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"\n---------- [ 위경도 -&gt; 주소 ] ----------"</span>)</span><br><span class="line">            <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">print</span>(error!.localizedDescription)</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 국가별 주소체계에 따라 어떤 속성 값을 가질지 다름</span></span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> address = placeMark?.first,</span><br><span class="line">                <span class="keyword">let</span> country = address.country,</span><br><span class="line">                <span class="keyword">let</span> administrativeArea = address.administrativeArea,</span><br><span class="line">                <span class="keyword">let</span> locality = address.locality,</span><br><span class="line">                <span class="keyword">let</span> name = address.name</span><br><span class="line">                <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> addr = <span class="string">"\(country) \(administrativeArea) \(locality) \(name)"</span></span><br><span class="line">            <span class="built_in">print</span>(addr)</span><br><span class="line">            <span class="keyword">self</span>.geocodeAddressString(addr)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Annotation-핀-찍기"><a href="#Annotation-핀-찍기" class="headerlink" title="Annotation (핀 찍기)"></a>Annotation (핀 찍기)</h2><ul>
+<li>특정 위치에 좌표값 (CLLocationCoordinate2D 타입)을 이용하여 Annotation을 추가할 수 있다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addAnnotation</span><span class="params">(add: CLLocationCoordinate2D)</span></span> &#123;</span><br><span class="line">				<span class="comment">// Annotation 객체 생성</span></span><br><span class="line">        <span class="keyword">let</span> annotation = <span class="type">MKPointAnnotation</span>()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Annotation의 property 설정</span></span><br><span class="line">        annotation.title = <span class="keyword">self</span>.placeName</span><br><span class="line">        annotation.subtitle = <span class="keyword">self</span>.placeStreetAddress</span><br><span class="line">        <span class="comment">//annotation.subtitle = "서울특별시"</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Annotation의 좌표 설정</span></span><br><span class="line">        annotation.coordinate = add</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Annotation 추가	</span></span><br><span class="line">        mapView.addAnnotation(annotation)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="PolyLine-그리기"><a href="#PolyLine-그리기" class="headerlink" title="PolyLine 그리기"></a>PolyLine 그리기</h2><ul>
+<li>지도상에 두 가지 이상의 좌표를 이용하여 특정 위치와, 다른 위치를 연결하는 선을 그릴 수 있음<ul>
+<li>이동 경로 등을 표시하는데 사용가능</li>
+</ul>
+</li>
+<li>polyLine을 추가한 후에는 렌더링을 해주어야 화면에 표시가 된다</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 사각형 그리기</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addRectangle</span><span class="params">(coordinate: CLLocationCoordinate2D)</span></span> &#123;</span><br><span class="line">      	<span class="built_in">print</span>(<span class="string">"-------- 사각형 그리기 -----------"</span>)</span><br><span class="line">        <span class="keyword">let</span> center = coordinate</span><br><span class="line">        <span class="keyword">var</span> point1 = center; point1.latitude += <span class="number">0.01</span>; point1.longitude -= <span class="number">0.01</span></span><br><span class="line">        <span class="keyword">var</span> point2 = center; point2.latitude += <span class="number">0.01</span>; point2.longitude += <span class="number">0.01</span></span><br><span class="line">        <span class="keyword">var</span> point3 = center; point3.latitude -= <span class="number">0.007</span>; point3.longitude += <span class="number">0.01</span></span><br><span class="line">        <span class="keyword">var</span> point4 = center; point4.latitude -= <span class="number">0.007</span> ; point4.longitude -= <span class="number">0.01</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 위치 정보 배열</span></span><br><span class="line">        <span class="keyword">let</span> points:[<span class="type">CLLocationCoordinate2D</span>] = [point1, point2, point3, point4, point1]</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// polyLine 객체 생성</span></span><br><span class="line">        <span class="keyword">let</span> polyLine = <span class="type">MKPolyline</span>(coordinates: points, <span class="built_in">count</span>: points.<span class="built_in">count</span>)</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// polyLine 추가</span></span><br><span class="line">        mapView.addOverlay(polyLine)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">extension</span> <span class="title">ViewController</span>: <span class="title">MKMapViewDelegate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mapView</span><span class="params">(<span class="number">_</span> mapView: MKMapView, rendererFor overlay: MKOverlay)</span></span> -&gt; <span class="type">MKOverlayRenderer</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> polyLine = overlay <span class="keyword">as</span>? <span class="type">MKPolyline</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> renderer = <span class="type">MKPolylineRenderer</span>(polyline: polyLine)</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 얘네를 안주면 화면에 표시가 안됨 - 색도 없고, 선 두께도 없으니깐</span></span><br><span class="line">            renderer.strokeColor = .red</span><br><span class="line">            renderer.lineWidth = <span class="number">2</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">return</span> renderer</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">MKOverlayRenderer</span>(overlay: overlay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Swift/" rel="tag"># Swift</a>
+              <a href="/tags/iOS/" rel="tag"># iOS,</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/01/01-07-HomeWork/" rel="next" title="Gesture Recognizer">
+                  <i class="fa fa-chevron-left"></i> Gesture Recognizer
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/01/10/" rel="prev" title="Scroll View">
+                  Scroll View <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Core-Location"><span class="nav-number">1.</span> <span class="nav-text">Core Location</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CLPlaceMark"><span class="nav-number">1.1.</span> <span class="nav-text">CLPlaceMark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Annotation-핀-찍기"><span class="nav-number">1.2.</span> <span class="nav-text">Annotation (핀 찍기)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PolyLine-그리기"><span class="nav-number">1.3.</span> <span class="nav-text">PolyLine 그리기</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SangMin Jeon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SangMin Jeon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://sandMan77.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://yoursite.com/2020/01/9/",
+            identifier: "2020/01/9/",
+            title: "Core Location & Map Kit"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sandMan77.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>

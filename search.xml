@@ -1,6 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MapKit 과제</title>
+    <url>/2020/01/homework-MapKit/</url>
+    <content><![CDATA[<h1 id="Map-Kit-과제"><a href="#Map-Kit-과제" class="headerlink" title="Map Kit 과제"></a>Map Kit 과제</h1><div class="video-container"><iframe src="//www.youtube.com/embed/FxmOc1EqtLw" frameborder="0" allowfullscreen></iframe></div><ul>
+<li>입력한 주소들을 차례로 잇는 선 구현하기</li>
+<li>Text Field에 주소를 입력하면 해당 위치로 애니메이션과 함께 맵 이동</li>
+<li>입력한 위치에 Annotation 추가하기</li>
+<li>입력한 위치 주변에 사각형으로 PolyLine 그리기</li>
+<li>Annotation의 title값으로 행선지 이름, subTitle 값으로 행선지 주소 표현하기</li>
+</ul>]]></content>
+      <categories>
+        <category>Homework</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ScrollView 과제</title>
+    <url>/2020/01/homework-ScrollView/</url>
+    <content><![CDATA[<h1 id="ScrollView-과제"><a href="#ScrollView-과제" class="headerlink" title="ScrollView 과제"></a>ScrollView 과제</h1><div class="video-container"><iframe src="//www.youtube.com/embed/Bis-lUwzWdM" frameborder="0" allowfullscreen></iframe></div><ul>
+<li>UIPageControl 사용할 것</li>
+<li>뷰 간의 우선순위를 적용하여 스토리보드 상에 표현되는 화면과, 실제 빌드 한 이후의 화면을 구분 지을 것</li>
+<li>스크롤뷰 내부에서 오토레이아웃 적용할 것</li>
+</ul>]]></content>
+      <categories>
+        <category>Homework</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Scroll View</title>
+    <url>/2020/01/10/</url>
+    <content><![CDATA[<h1 id="Scroll-View"><a href="#Scroll-View" class="headerlink" title="Scroll View"></a>Scroll View</h1><ul>
+<li><p>제한된 뷰의 크기보다 더 큰 크기를 가진 컨텐츠를 표현하기 위한 뷰</p>
+<ul>
+<li>Content Size : 현재 보여지는 뷰에 관계 없이 스크롤뷰가 표현 할 수 있는 전체 컨텐츠 크기</li>
+</ul>
+</li>
+<li><p>일반적인 UIView는 오토레이아웃을 지정할 때 screen view 내부에서 상대적인 위치를 지정할 수 있음</p>
+</li>
+<li><p>시작과 끝 지점이 정해져있기 때문이다.</p>
+</li>
+<li><p>위치를 지정을 해줘도 스크롤링을 하게 되면 뷰의 위치가 달라지기 때문에 상하좌우 위치정보뿐만 아니라</p>
+</li>
+<li><p>추가적으로, 위치 값과 크기 값이 정해져야함</p>
+</li>
+<li><p>ScrollView 내부에 위치한 UI객체들에게 오토레이아웃을 적용하려면?</p>
+<ul>
+<li>ScrollView의 Size Inspector에서 Content Layout Guides의 체크를 풀어줘야한다.</li>
+<li>이유는 잘 몰겠음..</li>
+</ul>
+</li>
+</ul><a id="more"></a>
+<ul>
+<li><p>fixed를 freedom으로 바꾸면 스토리 보드상에서 뷰의 표현 범위가 넓어진다.</p>
+<ul>
+<li>실제로 넓어지는게 아니라 스토리보드상의 표현 범위만 넓어지는 것</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>뷰의 우선순위를 이용하여 실제 빌드 되는 화면과, 스토리보드상에 표현되는 화면을 다르게 설정 할 수 있다. </p>
+<ul>
+<li>우측의 스토리보드 화면은 각 뷰의 width가 0.25로 보이지만 스크롤을 이용하여 화면이 다르게 표시 되게끔 하려면</li>
+<li>Width 값이 1이 되어야함 </li>
+<li>width 값이 1인 constraint와 width값이 0.25인 constraint. 2개를 만든다.</li>
+<li>0.25인 녀석의 우선순위를 1보다 먼저 놓으면 스토리보드 상에는 0.25로 설정된 것이 표현된다.</li>
+<li>이 때 0.25인 녀석을 빌드 할 때 삭제 되도록 설정하면 실제 앱이 구동될 때는 1인 녀석이 구동된다.</li>
+<li>0.25 constraint의 attribute Inspector에서 ‘Remove at build time’ 체크</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/72203141-69f5f480-34ab-11ea-8bcb-e10ed6042f09.png" alt="스크린샷 2020-01-11 오후 7 48 50"></p>
+<ul>
+<li>스크롤뷰의 컨텐트 사이즈는 확대, 축소에 따라 계속 달라진다. 1배율일때가 가장 작음 왜냐면 화면에 보여지는 사이즈가 작으니깐..</li>
+</ul>
+<h2 id="Scroll-View-내부의-Image-최대-최소-배율-설정하기"><a href="#Scroll-View-내부의-Image-최대-최소-배율-설정하기" class="headerlink" title="Scroll View 내부의 Image 최대, 최소 배율 설정하기"></a>Scroll View 내부의 Image 최대, 최소 배율 설정하기</h2><ul>
+<li><p>view의 크기와 실제로는 view보다 커서 스크롤뷰를 이용해서 볼 수 있는 이미지의 배율을 설정할 수 있다.</p>
+</li>
+<li><p>UIScrollView에서 무언가를 줌 인,아웃을 해야한다면, delegate에서 어떤 UI 객체에 대해 실행할 것인지 표기해주어야 한다.</p>
+</li>
+<li><p>스크롤뷰의 zoomScale 속성을 이용하면 확대, 축소 기능도 구현 가능!</p>
+<ul>
+<li><pre><code class="swift"><span class="comment">// 두배로 확대하기! </span>
+scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <span class="literal">true</span>)
+&lt;!--￼<span class="number">0</span>--&gt;
+
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="ScrollView의-OffSet-속성을-이용하여-스크롤-이동하기"><a href="#ScrollView의-OffSet-속성을-이용하여-스크롤-이동하기" class="headerlink" title="ScrollView의 OffSet 속성을 이용하여 스크롤 이동하기"></a>ScrollView의 OffSet 속성을 이용하여 스크롤 이동하기</h2><ul>
+<li><p>offSet?</p>
+<ul>
+<li><p>bound의 개념인 듯 (설명어려움)</p>
+</li>
+<li><p>어디서부터 content가 시작되는지. 에 대한 값 인듯</p>
+</li>
+<li><p>아래와 같은 경우 현재 scrollView의 contentOffSet.x 값은 0</p>
+<p><img src="https://user-images.githubusercontent.com/15086391/72203485-8300a480-34af-11ea-81c2-11816f5fe34e.jpeg" alt="KakaoTalk_Image_2020-01-11-20-12-51"></p>
+</li>
+<li><p>scrollView의 contentOffSet.x 값에 150을 더하면..</p>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/72203495-9f044600-34af-11ea-934e-6bdeeb0315b9.jpeg" alt="KakaoTalk_Image_2020-01-11-20-12-55"></p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">let</span> newOffSet = <span class="type">CGPoint</span>(x: scrollView.contentOffset.x + <span class="number">150</span>, y: scrollView.contentOffset.y)</span><br><span class="line"><span class="comment">// offSet 셋!</span></span><br><span class="line"> scrollView.setContentOffset(newOffSet, animated: <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Core Location &amp; Map Kit</title>
+    <url>/2020/01/9/</url>
+    <content><![CDATA[<h1 id="Core-Location"><a href="#Core-Location" class="headerlink" title="Core Location"></a>Core Location</h1><ul>
+<li><p>기기의 지리적 위치 정보를 가져와야 할 때 사용하는 프레임 워크 </p>
+</li>
+<li><p>MapKit 과는 차이가 있다. (지도)</p>
+</li>
+<li><p>사용자에게 권한을 허가 받아야만 사용할 수 있다.</p>
+</li>
+<li><p>MKMapView와 UITapGestureRecognizer를 같이 사용하여 지도상에 내가 터치한 위치 값을 받는 기능도 사용할 수 있다.</p>
+<ul>
+<li><pre><code class="swift"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">recognizeTap</span><span class="params">(gesture: UITapGestureRecognizer)</span></span> {
+        <span class="keyword">let</span> touchPoint = gesture.location(<span class="keyword">in</span>: gesture.view)
+        <span class="keyword">let</span> coordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        <span class="keyword">let</span> location = <span class="type">CLLocation</span>(latitude: coordinate.latitude, longitude: coordinate.longitude)
+}
+&lt;!--￼<span class="number">0</span>--&gt;
+
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul><a id="more"></a>
+<ul>
+<li>실시간 위치 정보 업데이트</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">startUpdatingLocation</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// 허가 상태를 받아옴</span></span><br><span class="line">        <span class="keyword">let</span> status = <span class="type">CLLocationManager</span>.authorizationStatus()</span><br><span class="line">        <span class="comment">// 상태가 사용할 때, 혹은 항상이면 ~~ 해라</span></span><br><span class="line">        <span class="keyword">guard</span> status == .authorizedWhenInUse || status == .authorizedAlways <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        <span class="comment">// 위치 서비스 이용 가능한 상태이면</span></span><br><span class="line">        <span class="keyword">guard</span> <span class="type">CLLocationManager</span>.locationServicesEnabled() <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        <span class="comment">//    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters</span></span><br><span class="line">        <span class="comment">//    locationManager.distanceFilter = 10.0</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 실제로 위치 업데이트</span></span><br><span class="line">        locationManager.startUpdatingLocation()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">extention <span class="type">ViewController</span>: <span class="type">CLLocationManagerDelegate</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">locationManager</span><span class="params">(<span class="number">_</span> manager: CLLocationManager, didUpdateLocations locations: [CLLocation])</span></span> &#123;</span><br><span class="line">        <span class="comment">// 반드시 하나의 값은 가지고 있어서 강제 언래핑 해도 됨</span></span><br><span class="line">        <span class="keyword">let</span> current = locations.last!</span><br><span class="line">        <span class="keyword">let</span> coordinate = current.coordinate</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 캐시 된 정보가 오래 된 거면 무시하고 10초 이내 것만 처리..(뭔솔?)</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">abs</span>(current.timestamp.timeIntervalSinceNow) &lt; <span class="number">10</span>) &#123;</span><br><span class="line">            <span class="comment">//        if !setUp &#123;</span></span><br><span class="line">            <span class="comment">// span 단위는 1도 (경도 1도는 약 111킬로미터)</span></span><br><span class="line">            <span class="keyword">let</span> span = <span class="type">MKCoordinateSpan</span>(latitudeDelta: <span class="number">0.001</span>, longitudeDelta: <span class="number">0.001</span>)</span><br><span class="line">            <span class="comment">// 현 위치를 중앙으로 넣고 span 만큼 보여주도록 설정</span></span><br><span class="line">            <span class="keyword">let</span> region = <span class="type">MKCoordinateRegion</span>(center: coordinate, span: span)</span><br><span class="line">            mapView.setRegion(region, animated: <span class="literal">true</span>)</span><br><span class="line">            <span class="comment">//setUp.toggle()</span></span><br><span class="line">            </span><br><span class="line">            addAnnotaion(location: current)</span><br><span class="line">            <span class="comment">//&#125;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>특정 좌표에 핀 찍기</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//&lt;CLLocationManagerDelegate&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addAnnotaion</span><span class="params">(location: CLLocation)</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> annotation = <span class="type">MKPointAnnotation</span>()</span><br><span class="line">        annotation.coordinate = location.coordinate</span><br><span class="line">        mapView.addAnnotation(annotation)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CLLocationManagerDelegate 문서 읽어볼 것</li>
+</ul>
+<h2 id="CLPlaceMark"><a href="#CLPlaceMark" class="headerlink" title="CLPlaceMark"></a>CLPlaceMark</h2><ul>
+<li><p>CLPlaceMark 객체는 지정된 위도와 경도에 대한 장소 표시 데이터를 저장함</p>
+</li>
+<li><p>장소표시데이터?</p>
+<ul>
+<li>국가, 주, 도시, 주소, 이 밖의 지리적으로 관련 된 정보가 포함되어있음</li>
+<li>좌표(위경도)를 받아서 장소표시데이터를 저장하기 때문에 반대로 장소표시데이터를 이용하여 좌표를 얻어낼 수도 있음</li>
+<li>국가별로 주소체계가 다르기 때문에  우리나라의 주소 체계와는 맞지 않는 property가 있으니 유의할 것</li>
+<li>Ex) placeMark.subThroughfare : 값이 없음 -&gt; 에러</li>
+</ul>
+</li>
+<li><p>아래 코드 클로저 내부의 ‘placeMark’가 CLPlaceMark 타입</p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">geocodeAddressString</span><span class="params">(<span class="number">_</span> addressString: String)</span></span> &#123;</span><br><span class="line">     <span class="built_in">print</span>(<span class="string">"\n---------- [ 주소 -&gt; 위경도 ] ----------"</span>)</span><br><span class="line">     <span class="keyword">let</span> geocoder = <span class="type">CLGeocoder</span>()</span><br><span class="line">     geocoder.geocodeAddressString(addressString) &#123; (placeMark, error) <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">print</span>(error!.localizedDescription)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">guard</span> <span class="keyword">let</span> place = placeMark?.first <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">       </span><br><span class="line">      <span class="comment">// 위경도값 출력</span></span><br><span class="line">      <span class="built_in">print</span>(place.location?.coordinate)</span><br><span class="line">     &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseGeocode</span><span class="params">(location: CLLocation)</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> geocoder = <span class="type">CLGeocoder</span>()</span><br><span class="line">        </span><br><span class="line">        geocoder.reverseGeocodeLocation(location) &#123; placeMark, error <span class="keyword">in</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"\n---------- [ 위경도 -&gt; 주소 ] ----------"</span>)</span><br><span class="line">            <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">print</span>(error!.localizedDescription)</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 국가별 주소체계에 따라 어떤 속성 값을 가질지 다름</span></span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> address = placeMark?.first,</span><br><span class="line">                <span class="keyword">let</span> country = address.country,</span><br><span class="line">                <span class="keyword">let</span> administrativeArea = address.administrativeArea,</span><br><span class="line">                <span class="keyword">let</span> locality = address.locality,</span><br><span class="line">                <span class="keyword">let</span> name = address.name</span><br><span class="line">                <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> addr = <span class="string">"\(country) \(administrativeArea) \(locality) \(name)"</span></span><br><span class="line">            <span class="built_in">print</span>(addr)</span><br><span class="line">            <span class="keyword">self</span>.geocodeAddressString(addr)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Annotation-핀-찍기"><a href="#Annotation-핀-찍기" class="headerlink" title="Annotation (핀 찍기)"></a>Annotation (핀 찍기)</h2><ul>
+<li>특정 위치에 좌표값 (CLLocationCoordinate2D 타입)을 이용하여 Annotation을 추가할 수 있다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addAnnotation</span><span class="params">(add: CLLocationCoordinate2D)</span></span> &#123;</span><br><span class="line">				<span class="comment">// Annotation 객체 생성</span></span><br><span class="line">        <span class="keyword">let</span> annotation = <span class="type">MKPointAnnotation</span>()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Annotation의 property 설정</span></span><br><span class="line">        annotation.title = <span class="keyword">self</span>.placeName</span><br><span class="line">        annotation.subtitle = <span class="keyword">self</span>.placeStreetAddress</span><br><span class="line">        <span class="comment">//annotation.subtitle = "서울특별시"</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Annotation의 좌표 설정</span></span><br><span class="line">        annotation.coordinate = add</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Annotation 추가	</span></span><br><span class="line">        mapView.addAnnotation(annotation)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="PolyLine-그리기"><a href="#PolyLine-그리기" class="headerlink" title="PolyLine 그리기"></a>PolyLine 그리기</h2><ul>
+<li>지도상에 두 가지 이상의 좌표를 이용하여 특정 위치와, 다른 위치를 연결하는 선을 그릴 수 있음<ul>
+<li>이동 경로 등을 표시하는데 사용가능</li>
+</ul>
+</li>
+<li>polyLine을 추가한 후에는 렌더링을 해주어야 화면에 표시가 된다</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 사각형 그리기</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addRectangle</span><span class="params">(coordinate: CLLocationCoordinate2D)</span></span> &#123;</span><br><span class="line">      	<span class="built_in">print</span>(<span class="string">"-------- 사각형 그리기 -----------"</span>)</span><br><span class="line">        <span class="keyword">let</span> center = coordinate</span><br><span class="line">        <span class="keyword">var</span> point1 = center; point1.latitude += <span class="number">0.01</span>; point1.longitude -= <span class="number">0.01</span></span><br><span class="line">        <span class="keyword">var</span> point2 = center; point2.latitude += <span class="number">0.01</span>; point2.longitude += <span class="number">0.01</span></span><br><span class="line">        <span class="keyword">var</span> point3 = center; point3.latitude -= <span class="number">0.007</span>; point3.longitude += <span class="number">0.01</span></span><br><span class="line">        <span class="keyword">var</span> point4 = center; point4.latitude -= <span class="number">0.007</span> ; point4.longitude -= <span class="number">0.01</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 위치 정보 배열</span></span><br><span class="line">        <span class="keyword">let</span> points:[<span class="type">CLLocationCoordinate2D</span>] = [point1, point2, point3, point4, point1]</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// polyLine 객체 생성</span></span><br><span class="line">        <span class="keyword">let</span> polyLine = <span class="type">MKPolyline</span>(coordinates: points, <span class="built_in">count</span>: points.<span class="built_in">count</span>)</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// polyLine 추가</span></span><br><span class="line">        mapView.addOverlay(polyLine)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">extension</span> <span class="title">ViewController</span>: <span class="title">MKMapViewDelegate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mapView</span><span class="params">(<span class="number">_</span> mapView: MKMapView, rendererFor overlay: MKOverlay)</span></span> -&gt; <span class="type">MKOverlayRenderer</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> polyLine = overlay <span class="keyword">as</span>? <span class="type">MKPolyline</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> renderer = <span class="type">MKPolylineRenderer</span>(polyline: polyLine)</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 얘네를 안주면 화면에 표시가 안됨 - 색도 없고, 선 두께도 없으니깐</span></span><br><span class="line">            renderer.strokeColor = .red</span><br><span class="line">            renderer.lineWidth = <span class="number">2</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">return</span> renderer</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">MKOverlayRenderer</span>(overlay: overlay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Gesture Recognizer</title>
     <url>/2020/01/01-07-HomeWork/</url>
     <content><![CDATA[<h1 id="Gesture-Recognizer"><a href="#Gesture-Recognizer" class="headerlink" title="Gesture Recognizer"></a>Gesture Recognizer</h1><div class="video-container"><iframe src="//www.youtube.com/embed/gXNixEkV2qc" frameborder="0" allowfullscreen></iframe></div><ul>
@@ -11,8 +243,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -86,8 +318,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -226,8 +458,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -238,8 +470,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -250,8 +482,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -321,8 +553,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -362,8 +594,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -374,8 +606,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -471,8 +703,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -556,8 +788,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -863,8 +1095,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
