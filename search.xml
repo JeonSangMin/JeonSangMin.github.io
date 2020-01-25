@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>High Order Function</title>
+    <url>/2020/01/21/</url>
+    <content><![CDATA[<h1 id="High-Order-Function"><a href="#High-Order-Function" class="headerlink" title="High Order Function"></a>High Order Function</h1>]]></content>
+      <categories>
+        <category>iOS,</category>
+        <category>Swift</category>
+      </categories>
+      <tags>
+        <tag>TIL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Animation</title>
+    <url>/2020/01/13/</url>
+    <content><![CDATA[<h1 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h1><ul>
+<li>compactMap : Returns an array containing the non-<code>nil</code> results of calling the given transformation with each element of this sequence.</li>
+</ul>]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MapKit 과제</title>
     <url>/2020/01/homework-MapKit/</url>
     <content><![CDATA[<h1 id="Map-Kit-과제"><a href="#Map-Kit-과제" class="headerlink" title="Map Kit 과제"></a>Map Kit 과제</h1><div class="video-container"><iframe src="//www.youtube.com/embed/FxmOc1EqtLw" frameborder="0" allowfullscreen></iframe></div><ul>
@@ -505,8 +531,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift,</tag>
+        <tag>iOS,</tag>
         <tag>TableView</tag>
       </tags>
   </entry>
@@ -888,8 +914,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -935,8 +961,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1057,8 +1083,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
         <tag>타입캐스팅</tag>
         <tag>typeCasting</tag>
       </tags>
@@ -1187,9 +1213,122 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Q&amp;A</title>
+    <url>/2019/12/Q&amp;A/</url>
+    <content><![CDATA[<h1 id="기수강생-Q-amp-A"><a href="#기수강생-Q-amp-A" class="headerlink" title="기수강생 Q&amp;A"></a>기수강생 Q&amp;A</h1><ul>
+<li>코딩 테스트 중요한가요?</li>
+</ul><p>수준 높은 기업을 생각한게 아니면, 크게 걱정 할 필요는 없지만. 수준 있는 기업을 가고 싶다면 준비해야 한다.</p><p>알고리즘 연습 사이트에서 2단계 내지 3단계 풀 수 있으면 왠만한 코테는 걱정할 필요는 없을 것이다.</p><p>대기업 위주로 있고, 스타트업은 면접 위주, 기본적인 것들 사전에 알려주고 만들어보라고 하는 경우도 있긴 함</p><a id="more"></a>
+
+
+
+<ul>
+<li>학원에서 배운 내용을 실무에서도 많이 쓰나요?</li>
+</ul>
+<p>여기서 배운거 많이 쓴다 오늘도 계속 쓰고 왔다. 문법이 많이 중요하다</p>
+<ul>
+<li><p>실무에 들어가서 어떤 일을 하시나요?</p>
+<p>취직하자마자 바로 프로젝트 투입되어서, 처음부터 새로 만드는 중이다.</p>
+</li>
+</ul>
+<ul>
+<li>여기서 본 시험이 중요한가요?</li>
+</ul>
+<p>시험 공부 많이 하는게 좋다. 시험을 보면서 복습을 하게 되고, 다 실무에서도 필요한 내용이다. 평소에 준비 열심히 하고 시험을 잘 보자 </p>
+<ul>
+<li><p>회사에 사수가 있으신가요?</p>
+<p>옆에 남자친구가 내 사수다. 내가 먼저 회사 들어갔는데, 쓸만한 사람 아는 사람있냐해서 남자친구 소개해서 같이 정직원으로 일하고 있다. 남자친구가 수료 때도 잘했다. 지금은 내 사수다.</p>
+</li>
+</ul>
+<ul>
+<li><p>Cs(Computer Science) 지식? 얼마나 쌓는게 좋은지?</p>
+<ul>
+<li>iOS 플랫폼에 대한 이해가 먼저다. swift가 먼저고, cs(Computer Science)는 필요하긴 하지만 swift 문법보다는 안중요한거 같다.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>여기서 공부 잘 하고 있는지 셀프체크 할 수 있는 방법이 있다면 알려주세요</p>
+<ul>
+<li>시험을 잘 보세요.. 결과가 말해줍니다.</li>
+<li>혼자 프로젝트 계속 만들었었다 (남자친구 사수분)</li>
+<li>알고리즘 공부 했었다. (약간 동문서답)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>30대 중반인 경우 패널티가 있는 분위기? 실력만 있으면 채용하는 분위기 인가요?</p>
+<ul>
+<li>(c++이었나 아무튼 다른 언어 경력이 7년이라 신입도, 경력도 아닌 애매한 상황으로 면접을 보셨다함. 이분 나이 34세) 40곳 이력서 넣고, 20곳 면접보고, 7곳 붙었다.</li>
+<li>나이 크게 중요하지 않다.</li>
+<li>(스타트업 창업 경험있다고 한 분) 개인적으로는 다른 직업을 하다가 온 사람의 스토리가 더 좋았다 실제로 그런 사람을 채용한 경험도 있다.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>이력서 자소서 중요한가요? (자소서 쓰기 싫어서 물어보는듯..)</p>
+<ul>
+<li>개발자로서 가장 중요한 거는 git hub과 포폴이 가장 중요한 것 같다.</li>
+<li>자소서보단 포폴이 훨씬 중요한 거 같다</li>
+<li>칸을 채우는 용도, 면접 시 대화 소스 정도? 포폴 예쁘게 꾸미자</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>깃헙을 어느 시점부터 관리가 되어야 할 까요?</p>
+<ul>
+<li>contribute는 항상 있어야함 매일</li>
+<li>readme를 잘 만들어 주는게 좋지</li>
+<li>포폴을 예쁘고 깔끔하게 잘 만드는게 좋다. 학원 신입들 어차피 포폴 다 똑같으니깐 이쁘고 눈에 띄는 포폴이 더 잘 뽑힌다. 라는 이야기가 개발자들 단톡방에서도 심심찮게 나온다</li>
+<li>잔디를 심는 것에만 집중하지 말고 스스로 하는 공부에 초점을 맞춰라</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>회사 취직하고도 평일에 공부 하시나요?</p>
+<ul>
+<li>평일엔 잘 못함, 아직은 일하는게 공부다.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>알고리즘 중요한가요?</p>
+<ul>
+<li>면접 본 20곳 중에 10곳은 손코딩 시켰는데, 어떤 문제는 풀지도 못했는데 합격했다.(어려웠음 재귀 함수 쓰는거였다함)</li>
+<li>로켓 펀치에 포폴 올렸더니 제안이 많이 왔다. (이 분은 포폴을 엄청 잘만드셨다함. 다른 분들도 참고했다고.. ) 따로 구직 활동을 하진 않았고 바로 제안이 오길래 그 회사로 갔다 (한 달도 안되서 취직) 복지 좋고 만족한다.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>원티드에 이력서 넣을 때, 경력 필요한 곳도 다 넣으셨나요?</p>
+</li>
+<li><p>네 다 넣었습니다. 만약 그런 곳에서 면접을 보게 되면 준비를 잘해야한다. 경력 3년차인 분들과 경쟁하려면 준비는 필수다</p>
+</li>
+<li><p>면접에서 커트당하는 경우는 많다. 일단 넣어라!</p>
+</li>
+</ul>
+<ul>
+<li><p>블로그, 포폴 진짜 중요하다 (취직할 때) </p>
+<ul>
+<li>본인은 패캠 이력서특강 듣고 그대로 하고, 자소서도 넣고, 포폴도 넣었는데 다 떨어졌다. 그래서 (아까 그 포폴 예쁘게 잘 꾸미신분) 한테 검사받고 다시 올렸더니 연락이 많이 왔다. </li>
+<li>문법을 진짜 열심히 잘 봐야된다. 문법이 엄청 중요함, 지금도 문법 몰라서 책을 끼고 산다. 문법을 모르면 애초에 손을 못댄다 문법 꼼꼼하게 공부해라</li>
+</ul>
+</li>
+<li><p>블로그 관리, 깃헙 관리 이런거 중요하니깐 강사님과도 자주 이야기해서 컨펌받거나 예쁘게 잘한 사람꺼 참고해라</p>
+</li>
+<li><p>본인은 치위생사였다. 안그래도 업쓰(이유업 매니저)한테 여기도 한 분 있다고 들었다. (거의 매일 10시 퇴근하고 집에 가서 또 새벽까지 공부하고 잘 정도로 열심히 했다함…)</p>
+</li>
+<li><p>발표하는 사람들 비전공자인 분들 다들 본인도 아무것도 모르고 왔다고, 여러분도 할 수 있다고 얘기하지만 (취직 잘하고, 창업준비하고 계심) 근데 얘기 들어보면 무조건 10시까지 남아서 다 하고, 주말에도 맨날 오고 3개월은 친구도 안만났다는 등 미친 듯이 했다고 함</p>
+</li>
+</ul>
+<ul>
+<li><h3 id="계속-강조한-내용은-수업-잘-따라가고-시험준비-열심히-복습-예습-깃헙-블로그-포폴-관리"><a href="#계속-강조한-내용은-수업-잘-따라가고-시험준비-열심히-복습-예습-깃헙-블로그-포폴-관리" class="headerlink" title="계속 강조한 내용은 수업 잘 따라가고 시험준비 열심히, 복습, 예습, 깃헙, 블로그, 포폴 관리"></a>계속 강조한 내용은 수업 잘 따라가고 시험준비 열심히, 복습, 예습, 깃헙, 블로그, 포폴 관리</h3></li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>1차 Test Review</title>
@@ -1302,8 +1441,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
         <tag>Codding</tag>
       </tags>
   </entry>
@@ -1329,8 +1468,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>따라해봄</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
         <tag>한글링</tag>
         <tag>Stanford_iOS</tag>
       </tags>
@@ -1915,8 +2054,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -2115,8 +2254,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
