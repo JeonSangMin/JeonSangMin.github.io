@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>homework_CollectionView</title>
+    <url>/2020/01/homework-CollectionView/</url>
+    <content><![CDATA[<h1 id="Collection-View-과제"><a href="#Collection-View-과제" class="headerlink" title="Collection View 과제"></a>Collection View 과제</h1><div class="video-container"><iframe src="//www.youtube.com/embed/sgeLTl3eShQ" frameborder="0" allowfullscreen></iframe></div><ul>
+<li>다중선택 가능</li>
+<li>삭제버튼 누르면 지워지기</li>
+<li>다 지워지면 다시 새로 채우기</li>
+</ul>]]></content>
+      <categories>
+        <category>Homework</category>
+      </categories>
+      <tags>
+        <tag>iOS,</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Collection View</title>
+    <url>/2020/01/28/</url>
+    <content><![CDATA[<h1 id="Collection-View"><a href="#Collection-View" class="headerlink" title="Collection View"></a>Collection View</h1><ul>
+<li>스크롤의 직교 방향이 cell Spacing</li>
+<li>스크롤 방향의 거리 line Spacing</li>
+</ul><ul>
+<li>테이블뷰는 기본적으로 셀 내부에 이미지, 텍스트레이블을 제공함</li>
+<li>컬렉션뷰의 셀에는 이런거 제공 안함<ul>
+<li>그럼 셀에 올린 이미지뷰를 어떻게 접근할까?</li>
+<li></li>
+</ul>
+</li>
+</ul>]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>iOS,</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>High Order Function</title>
     <url>/2020/01/21/</url>
     <content><![CDATA[<h1 id="High-Order-Function"><a href="#High-Order-Function" class="headerlink" title="High Order Function"></a>High Order Function</h1>]]></content>
@@ -22,8 +60,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -40,8 +78,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -56,8 +94,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -147,8 +185,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -254,8 +292,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -269,8 +307,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -344,8 +382,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -484,8 +522,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -496,8 +534,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -508,8 +546,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -531,8 +569,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift,</tag>
         <tag>iOS,</tag>
+        <tag>Swift,</tag>
         <tag>TableView</tag>
       </tags>
   </entry>
@@ -579,8 +617,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -620,8 +658,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -632,8 +670,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -729,8 +767,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -814,8 +852,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -914,8 +952,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -961,8 +999,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1083,8 +1121,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
         <tag>타입캐스팅</tag>
         <tag>typeCasting</tag>
       </tags>
@@ -1121,8 +1159,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1213,8 +1251,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1441,8 +1479,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
         <tag>Codding</tag>
       </tags>
   </entry>
@@ -1468,8 +1506,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>따라해봄</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
         <tag>한글링</tag>
         <tag>Stanford_iOS</tag>
       </tags>
@@ -2054,8 +2092,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -2254,8 +2292,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
