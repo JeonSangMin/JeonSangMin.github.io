@@ -1,6 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Data Structure</title>
+    <url>/2020/02/3/</url>
+    <content><![CDATA[<p>​    자료를 효율적으로 이용할 수 있도록 저장하는 방법을 의미</p><ul>
+<li>링크드 리스트<ul>
+<li>면접 질문으로 내기 참 좋은 부분임</li>
+</ul>
+</li>
+<li>삽입 하거나, 삭제할 때 그 순서에 대해 주의해야 한다.</li>
+<li>연결 방향이 유실 되면 이후 부분에는 접근을 할 수 없게 됨</li>
+</ul><h2 id="Single-Linked-List-구현해보기"><a href="#Single-Linked-List-구현해보기" class="headerlink" title="Single Linked List 구현해보기"></a>Single Linked List 구현해보기</h2><a id="more"></a>
+
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">LinkedListStack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> size: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;     <span class="comment">// 전체 개수</span></span><br><span class="line">    <span class="keyword">var</span> isEmpty: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125; <span class="comment">// 노드가 있는지 여부</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">push</span><span class="params">(node: Node)</span></span>     <span class="comment">// 데이터 삽입</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">pop</span><span class="params">()</span></span> -&gt; <span class="type">String?</span>     <span class="comment">// 데이터 추출</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">peek</span><span class="params">()</span></span> -&gt; <span class="type">String?</span>    <span class="comment">// 마지막 데이터 확인</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> value: <span class="type">String?</span></span><br><span class="line">    <span class="keyword">var</span> next: <span class="type">Node?</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(value: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.value = value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// head -&gt; nil</span></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleLinkedList</span>: <span class="title">LinkedListStack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> head: <span class="type">Node</span> = <span class="type">Node</span>(value: <span class="string">""</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// head 자체는 아무 값이 없고, 실질적인 마지막 값은 head.next</span></span><br><span class="line">    <span class="comment">// head 자체에 마지막 값을 저장하는 방식으로 해도 됨</span></span><br><span class="line">    <span class="keyword">var</span> size: <span class="type">Int</span> = <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">didSet</span> &#123;</span><br><span class="line">            size = size &lt; <span class="number">0</span> ? <span class="number">0</span> : size</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// tail, 가장 중요함 이 부분을 잘 이해하는게 포인트</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> lastNode: <span class="type">Node?</span> &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">var</span> node = head.next <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="literal">nil</span>&#125;</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">let</span> nextNode = node.next &#123;</span><br><span class="line">            node = nextNode</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> isEmpty: <span class="type">Bool</span> &#123; <span class="keyword">return</span> head.next == <span class="literal">nil</span> &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// 데이터 삽입</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">push</span><span class="params">(node newNode: Node)</span></span> &#123;</span><br><span class="line">        size += <span class="number">1</span></span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> node = lastNode <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> head.next = newNode</span><br><span class="line">        &#125;</span><br><span class="line">        node.next = newNode</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 마지막 노드 자체를 지워버리는게 아니라 마지막 노드를 가리키는 녀석에서 연결을 끊어버리는거</span></span><br><span class="line">    <span class="comment">// A -&gt; B -&gt; C 가 있으면 C를 지우는게 아니라 B.next에 nil을 할당해버리는 것임 그럼 C가 삭제 됨</span></span><br><span class="line">    <span class="comment">// node의 nextNode가 next값이 없을 때까지 (A의 nextNode의 next 값은 C니깐 B의 nextNode(C)의 next 값이 nil인 경우까지 반복문을 돌리는 것)</span></span><br><span class="line">    <span class="comment">// B를 찾았으니깐, B.next를 nil로 만들면 C가 지워지는 것</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 데이터 추출</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">pop</span><span class="params">()</span></span> -&gt; <span class="type">String?</span> &#123;</span><br><span class="line">        size -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">var</span> node = head.next <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">let</span> nextNode = node.next &#123;</span><br><span class="line">            <span class="keyword">guard</span> nextNode.next != <span class="literal">nil</span> <span class="keyword">else</span> &#123;</span><br><span class="line">                node.next = <span class="literal">nil</span></span><br><span class="line">                <span class="keyword">return</span> nextNode.value</span><br><span class="line">            &#125;</span><br><span class="line">            node = nextNode</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// head에 A가 할당되어있는 상황이 아니라, head는 nil이고, head.next가 A인 상황임</span></span><br><span class="line">        <span class="comment">// 아래의 nil을 할당하는 상황은 head -&gt; A -&gt; nil</span></span><br><span class="line">        <span class="comment">// A를 pop해야하니깐 head.next에 nil을 넣어주는 것!!</span></span><br><span class="line">        head.next = <span class="literal">nil</span></span><br><span class="line">        <span class="keyword">return</span> node.value</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 마지막 노드가 있으면 value return, 없으면 nil return </span></span><br><span class="line">  	<span class="comment">// 마지막 데이터 확인</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">peek</span><span class="params">()</span></span> -&gt; <span class="type">String?</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> lastNode?.value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Double-Linked-List"><a href="#Double-Linked-List" class="headerlink" title="Double Linked List"></a>Double Linked List</h2><ul>
+<li>양 방향으로 연결된 리스트</li>
+<li>prev가 없으면 가장 첫 데이터인거고</li>
+<li>next가 없으면 가장 마지막 데이터</li>
+</ul>
+<ul>
+<li><p>A -&gt; B-&gt;    D 사이에 C를 삽입 할 때?</p>
+</li>
+<li><p>순차적으로 C의 next와 prev를 먼저 만들고, 기존 B -&gt; D  B &lt;- D를 끊어주어야 한다. </p>
+</li>
+<li><p>제거 할 때도 마찬가지 B-&gt; D B &lt;- D를 먼저 만들어 놓고 C를 삭제해야 데이터 유실이 안됨</p>
+</li>
+</ul>
+<h2 id="Circular-Linked-List"><a href="#Circular-Linked-List" class="headerlink" title="Circular Linked List"></a>Circular Linked List</h2><ul>
+<li><p>Double은 tail쪽에 가까운 데이터에 접근할 때는 tail에서, head에 가까운 데이터에 접근할 때는 head에서 접근하는게 빠름</p>
+</li>
+<li><p>Circular는 첫 데이터와 마지막 데이터가 연결 되어 있으므로 tail에 가까운 데이터도 head에서 빠르게 접근할 수 있음</p>
+</li>
+</ul>
+<h2 id="배열-VS-LinkedList"><a href="#배열-VS-LinkedList" class="headerlink" title="배열 VS LinkedList"></a>배열 VS LinkedList</h2><ul>
+<li><p>스택을 구현할 때, 배열로 해도 되고, 링크드리스트로도 구현할 수 있으나</p>
+</li>
+<li><p>방식에 따라 장,단점이 있다</p>
+<ul>
+<li>배열 : 구조가 간단하고 빠르다</li>
+<li>링크드 리스트 : 구조 및 사이즈 유연성, 데이터 타입 변형 가능</li>
+</ul>
+</li>
+<li><p>배열은 연속된 공간을 만들어서 사용하기 때문에 구조가 단순함</p>
+</li>
+<li><p>배열은 특정 공간을 미리 확보하고 사용함. 그래서 타입이 같아야함.</p>
+</li>
+<li><p>Any 타입의 배열은 내부적으로는 링크드 리스트로 되어있다는 것!! Any 타입의 배열은 각 요소마다 타입이 다르니깐!!</p>
+</li>
+</ul>
+<h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><ul>
+<li>일반적으로 링크드 리스트로 구현이 됨</li>
+<li>배열로도 할 수는 있음<ul>
+<li>그렇지만 약간의 문제가 있다</li>
+<li>앞에서 지우고 뒤에서 추가하는 것을 반복하면 계속 앞에 빈 공간이 생기게 되어서</li>
+<li>뒤의 모든 데이터를 계속 앞으로 밀어서 빈 공간을 메꿔야함 (매번 전부 위치를 옮겨야 하니 비효율적임)</li>
+<li>연속 된 공간이라는 제약 때문에 문제가 발생함! (한줄 요약)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Circular-Queue"><a href="#Circular-Queue" class="headerlink" title="Circular Queue"></a>Circular Queue</h2><ul>
+<li>배열로 큐 구현시 발생하는 문제점을 해결하기 위해 원형 큐 사용</li>
+</ul>
+<h2 id="Deque-Double-Ended-Queue"><a href="#Deque-Double-Ended-Queue" class="headerlink" title="Deque (Double Ended Queue)"></a>Deque (Double Ended Queue)</h2><ul>
+<li>양쪽에서 enqueue, dequeue가 가능하도록 만든 구조</li>
+</ul>
+<h2 id="Graph"><a href="#Graph" class="headerlink" title="Graph"></a>Graph</h2><ul>
+<li>정점 : 독립 된 개체, 동그라미로 표현</li>
+<li>간선 : 두 정점을 잇는 개체, 선, 또는 연결선<ul>
+<li>무방향성 : 방향성이 없는 간선을 가진 그래프</li>
+<li>방향성 : 방향성이 있는 간선을 가지고 있는 그래프</li>
+</ul>
+</li>
+<li>그래프를 그리는 이유? <ul>
+<li>복잡한 요소들을 제거하고, 필요한 부분만 단순하게 표현하여 데이터를 쉽게 파악 할 수 있음</li>
+</ul>
+</li>
+</ul>
+<h2 id="Depth-First-Search-DFS"><a href="#Depth-First-Search-DFS" class="headerlink" title="Depth-First Search (DFS)"></a>Depth-First Search (DFS)</h2><p>탐색 된 첫 번째 노드는 먼저 자세히 탐색하는 방법</p>
+<ul>
+<li>stack을 이용해서 탐색 구현</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/73634118-c8298800-46a3-11ea-9d7c-a6350e709f9e.png" alt="스크린샷 2020-02-03 오후 4 19 46"></p>
+<h2 id="Breadth-First-Search-BFS"><a href="#Breadth-First-Search-BFS" class="headerlink" title="Breadth-First Search (BFS)"></a>Breadth-First Search (BFS)</h2><p>인접 노드들을 먼저 차례대로 탐색하는 방법</p>
+<ul>
+<li>큐를 이용해서 탐색구현</li>
+</ul>
+<ul>
+<li><p>전공자에게는 요녀석들을 코드로 구현해보라고 할 수도 있음 (코딩 테스트)</p>
+<ul>
+<li>아주 어렵지도, 쉽지도 않은 문제</li>
+</ul>
+</li>
+<li><p>이런게 있다 정도만 일단 알고 있자</p>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/73634133-d24b8680-46a3-11ea-8d91-b01c86bb5d18.png" alt="스크린샷 2020-02-03 오후 4 22 11"></p>
+<h2 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h2><ul>
+<li><p>그래프의 한 종류로 볼 수 있음</p>
+<ul>
+<li>연결 되어있고, 순환이 되어있지 않고, 방향성이 없는 그래프</li>
+</ul>
+</li>
+<li><p>간선 (두 정점을 잇는 선)을 추가하면 순환이 발생하고, 제거하면 연결이 끊김</p>
+</li>
+<li><p>순환 (Cicle)이 있으면 tree라고 볼 수 없음</p>
+</li>
+<li><p>끊어져 있으면, 각각은 트리로 볼 수 있지만 전체적으론 트리로 볼 순 없음</p>
+</li>
+<li><p>완전 이진 트리 정도는 알고 있으면 좋다</p>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/73634158-e1cacf80-46a3-11ea-9d4a-263156829f25.png" alt="스크린샷 2020-02-03 오후 4 24 01"></p>
+<h2 id="이진-탐색-트리-Binary-Search-Tree"><a href="#이진-탐색-트리-Binary-Search-Tree" class="headerlink" title="이진 탐색 트리 (Binary Search Tree)"></a>이진 탐색 트리 (Binary Search Tree)</h2><ul>
+<li>노드의 좌측 서브트리에는 그 노드의 값보다 작은 값을 가진 노트, 우측에는 큰 값을 가진 노드로 구성</li>
+<li>그래프를 사용해서 숫자를 정렬하면 어느 부분에서 유리할까?<ul>
+<li>탐색 속도가 빠름</li>
+<li>요소가 7개인 배열은 원하는 숫자를 탐색하려면 최악의 경우 7번 탐색을 해야함</li>
+<li>하지만 이진 탐색 트리를 사용하면 더 빠르다</li>
+<li>좌측이 작은 값, 우측이 큰 값이니깐, 계속 비교해 가면서 좌측, 우측으로 가면 탐색 횟수가 더 적기 때문이다.</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/73634198-f909bd00-46a3-11ea-9e97-959f375c0f52.png" alt="스크린샷 2020-02-03 오후 4 40 58"></p>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Error Handling</title>
+    <url>/2020/01/31/</url>
+    <content><![CDATA[<h1 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h1><ul>
+<li>프로그램 동작 중 예상 가능한 오류가 발생했을 댸 이를 감지하고 복구하기 위한 일련의 과정</li>
+<li>에러가 발생한 함수에서 처리를 하지 않고 에러를 발생시킨 함수를 ‘호출’한 함수에서 처리 (throw)</li>
+</ul><h2 id="Type"><a href="#Type" class="headerlink" title="Type"></a>Type</h2><ul>
+<li>throw가 없는걸 있는 곳에 넣을 수는 있는데, 있는걸 없는 곳에 넣을 수는 없음</li>
+</ul><a id="more"></a>
+
+<p><img src="https://user-images.githubusercontent.com/15086391/73512435-f4879f00-442c-11ea-87d9-02003ed59a77.png" alt="스크린샷 2020-01-31 오후 1 23 45"></p>
+<h2 id="Try"><a href="#Try" class="headerlink" title="Try?"></a>Try?</h2><ul>
+<li>as? 와 유사함 (형변환 할 때, 성공하면 optional 타입, 안되면 nil)</li>
+<li>do~catch와 유사하게 사용함</li>
+<li>정상적으로 수행하면 optional값을 반환하고, 오류가 발생하면 nil반환</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/73512769-35cc7e80-442e-11ea-8958-4e2dcef7e59d.png" alt="스크린샷 2020-01-31 오후 1 32 58"></p>
+<p>잘 되면 data를 return 할 것이고 안되면 nil 반환</p>
+<h2 id="Try-1"><a href="#Try-1" class="headerlink" title="Try!"></a>Try!</h2><ul>
+<li><p>오류가 발생하지 않는다고 확신할 수 있는 경우에만 try! 사용</p>
+</li>
+<li><p>확신하는에 왜 굳이 try를 붙일까? throw가 붙어있는 함수를 처리할 때는 try가 필요함</p>
+</li>
+</ul>
+<h2 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h2><ul>
+<li>현재 코드블럭이 종료되기 직전에 무조건 실행되어야 하는 코드 블럭</li>
+<li>defer가 호출 되면, 등록 됨. 등록이 되어야 해당 스코프 안에서 역순으로 실행 됨 ( 호출이 안되면, 등록도 안됨, 코드가 있다고 해서 무조건 등록이 되는 것은 아니다!)</li>
+<li>예를 들어 if 문 안에 defer가 있으면, 해당 if문이 전부 다 실행되고, 마지막에 defer가 실행된다. (어디에 위치해 있든 상관없이)</li>
+<li>defer가 먼저 등록된 녀석이, 나중에 등록된 녀석보다 늦게 실행 됨</li>
+</ul>
+<p>throw를 하는 경우는 내가 직접 쓰는 경우도 있고,</p>
+<p>애플이 프레임워크를 제공해 줄 때, 사용자가 어떻게 쓸 지 모르니깐 미리 명시를 해준다.</p>
+<p>에러 처리를 어떻게 할지는 사용자가 알아서하는 거임. 라이브러리에 있는 경우가 많음</p>
+<p>throws가 있는 함수는 에러를 다른 함수로 던져서 처리하고, 없으면 내부에서 do ~ catch 써서 처리한다.</p>
+<p>반복문은 정해진 횟수 안에서 안끝나고 계속 도는게 아니라 한 반복자가 끝나면 끝났다가 다시 실행하는 거??</p>
+<h2 id="NSError"><a href="#NSError" class="headerlink" title="NSError"></a>NSError</h2>]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>iOS,</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>homework_CollectionView</title>
     <url>/2020/01/homework-CollectionView/</url>
     <content><![CDATA[<h1 id="Collection-View-과제"><a href="#Collection-View-과제" class="headerlink" title="Collection View 과제"></a>Collection View 과제</h1><div class="video-container"><iframe src="//www.youtube.com/embed/sgeLTl3eShQ" frameborder="0" allowfullscreen></iframe></div><ul>
