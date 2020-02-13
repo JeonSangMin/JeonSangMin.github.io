@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Let's Swift!" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="UI Text Field Example &amp;amp; Alert Controller 스토리보드에서 text필드 추가 가상키보드는 상단의 hardware -&amp;gt; keyboard attribute insfector에서 폰트, 텍스트 스타일 등등 바꿀 수 있음~ environment Overrides 에서 폰트크기나 다크모드 등을 실시간으로 확인 가능 단, 폰트">
+<meta name="keywords" content="iOS, Swift, Xcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UI Text Field Example &amp; Alert Controller">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;26&#x2F;index.html">
+<meta property="og:site_name" content="Let&#39;s Swift!">
+<meta property="og:description" content="UI Text Field Example &amp;amp; Alert Controller 스토리보드에서 text필드 추가 가상키보드는 상단의 hardware -&amp;gt; keyboard attribute insfector에서 폰트, 텍스트 스타일 등등 바꿀 수 있음~ environment Overrides 에서 폰트크기나 다크모드 등을 실시간으로 확인 가능 단, 폰트">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;69620901-6f28ec80-1081-11ea-920f-17a972b0730b.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;69616487-0be78c00-107a-11ea-84e9-87f28cac4993.png">
+<meta property="og:updated_time" content="2019-11-26T10:20:21.026Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;69620901-6f28ec80-1081-11ea-920f-17a972b0730b.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/26/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>UI Text Field Example & Alert Controller | Let's Swift!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Let's Swift!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">SangMin's study blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          UI Text Field Example & Alert Controller
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-26 12:40:57 / Modified: 19:20:21" itemprop="dateCreated datePublished" datetime="2019-11-26T12:40:57+09:00">2019-11-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/11/26/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/26/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="UI-Text-Field-Example-amp-Alert-Controller"><a href="#UI-Text-Field-Example-amp-Alert-Controller" class="headerlink" title="UI Text Field Example &amp; Alert Controller"></a>UI Text Field Example &amp; Alert Controller</h1><ul>
+<li>스토리보드에서 text필드 추가</li>
+<li>가상키보드는 상단의 hardware -&gt; keyboard</li>
+<li>attribute insfector에서 폰트, 텍스트 스타일 등등 바꿀 수 있음~</li>
+<li>environment Overrides 에서 폰트크기나 다크모드 등을 실시간으로 확인 가능 단, 폰트가 시스템 폰트이면 안됨</li>
+<li>Boarder Style을 조정가능</li>
+<li>Clear button : 텍스트필드 오른쪽에 텍스트 한번에 지우는 x 버튼 생길지 여부</li>
+<li>min font size : 텍스트 필드에 텍스트가 많아져서 길어질 때 크기가 줄어듦, 이 때 어느정도까지 작아지는지 한도 정하는거</li>
+</ul><a id="more"></a>
+<h2 id="Text-Field"><a href="#Text-Field" class="headerlink" title="Text Field"></a>Text Field</h2><ol>
+<li>TextField 객체 생성</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> textField = <span class="type">UITextField</span>()</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>TextField 및 keyBoard 속성 정의</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 텍스트필드 및 키보드 속성 정의</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setTextField</span><span class="params">()</span></span> &#123;</span><br><span class="line">	textField.frame.size = <span class="type">CGSize</span>(width: <span class="number">200</span>, height: <span class="number">50</span>)</span><br><span class="line">  textField.center = view.center</span><br><span class="line">  textField.borderStyle = .roundedRect</span><br><span class="line">  textField.placeholder = <span class="string">"put in text"</span></span><br><span class="line">  textField.keyboardType = .<span class="keyword">default</span></span><br><span class="line">  textField.keyboardAppearance = .<span class="keyword">default</span></span><br><span class="line">  <span class="keyword">self</span>.view.addSubview(textField)       </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>viewDidLoad에서 실행</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 텍스트 필드 객체 로드</span></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">  setTextField()        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="결과"><a href="#결과" class="headerlink" title="결과"></a>결과</h3><p><img src="https://user-images.githubusercontent.com/15086391/69620901-6f28ec80-1081-11ea-920f-17a972b0730b.png" alt="스크린샷 2019-11-26 오후 7 17 34"></p>
+<h2 id="Text-Field-Interface-Builder-속성"><a href="#Text-Field-Interface-Builder-속성" class="headerlink" title="Text Field Interface Builder 속성"></a>Text Field Interface Builder 속성</h2><ul>
+<li>text</li>
+<li>color</li>
+<li>font</li>
+<li>alignment</li>
+<li>PlaceHolder</li>
+<li>Background</li>
+<li>Disabled</li>
+<li>Border Style</li>
+<li>Clear button</li>
+<li>min font size</li>
+</ul>
+<p><em>키보드 관련 속성도 있으니 개발문서 참고</em></p>
+<h2 id="Text-Field-이벤트"><a href="#Text-Field-이벤트" class="headerlink" title="Text Field 이벤트"></a>Text Field 이벤트</h2><ul>
+<li>DidEndOnExit : 입력을 끝내고 return 키 누르면 호출</li>
+<li>Editing Changed : 입력 하는 중에 계속 호출</li>
+<li>EditingDidBegin : 텍스트필드를 선택하는 순간 호출</li>
+<li>EditingDidEnd: 텍스트필드 포커싱이 끝나면 호출</li>
+<li>primaryAction : return 키를 누르면 호출</li>
+</ul>
+<h3 id="Q-텍스트-필드가-두-개이고-하나는-이벤트-연결-안했을-때"><a href="#Q-텍스트-필드가-두-개이고-하나는-이벤트-연결-안했을-때" class="headerlink" title="Q. 텍스트 필드가 두 개이고, 하나는 이벤트 연결 안했을 때?"></a><strong>Q. 텍스트 필드가 두 개이고, 하나는 이벤트 연결 안했을 때?</strong></h3><ul>
+<li>텍스트 필드 선택 -&gt; DidBegin</li>
+<li>텍스트 필드 수정 (Editing) -&gt; editing changed</li>
+<li>return 키 안누르고 다른 텍스트 필드로 이동 : DidEnd</li>
+<li>return 키 누르고 editing 종료: DidEnd, PrimaryActionTrigger, endOnExit</li>
+</ul>
+<h3 id="Q-TextField가-여러-개인데-하나의-IBAction에-연결-할-수-있나요"><a href="#Q-TextField가-여러-개인데-하나의-IBAction에-연결-할-수-있나요" class="headerlink" title="Q. TextField가 여러 개인데, 하나의 IBAction에 연결 할 수 있나요?"></a><strong>Q. TextField가 여러 개인데, 하나의 IBAction에 연결 할 수 있나요?</strong></h3><ul>
+<li><p>가능</p>
+</li>
+<li><p>그런데 각 TF를 구분해주어야 한다.</p>
+</li>
+<li></li>
+<li><p>이 때 구분하는 방법은 IBOutlet을 만들어주거나, 각 객체에 tag를 지정</p>
+</li>
+<li><p>if 문을 사용해서 해당 액션을 수행할 TF객체만 액션을 수행하도록 지정</p>
+</li>
+<li><p><strong>Tag</strong>는 (Attribute Insfector의 View칸에서 지정 가능</p>
+</li>
+</ul>
+<ul>
+<li><h3 id="Q-sender-파라미터는-뭐하는-녀석인가요"><a href="#Q-sender-파라미터는-뭐하는-녀석인가요" class="headerlink" title="Q. sender 파라미터는 뭐하는 녀석인가요?"></a>Q. sender 파라미터는 뭐하는 녀석인가요?</h3></li>
+<li><p>내가 지금 ‘이벤트를 발생시킨 객체’를 가리킨다.</p>
+</li>
+<li><p>버튼을 눌렀으면 sender는 내가 누른 버튼</p>
+</li>
+</ul>
+<h2 id="Font-지정-하기"><a href="#Font-지정-하기" class="headerlink" title="Font 지정 하기"></a>Font 지정 하기</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 텍스트필드 폰트</span></span><br><span class="line">idTextField.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">20</span>)       </span><br><span class="line">idTextField.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">20</span>, weight: .heavy)</span><br><span class="line">idTextField.font = <span class="type">UIFont</span>.boldSystemFont(ofSize: <span class="number">30</span>)</span><br><span class="line">idTextField.textAlignment = .center</span><br><span class="line"></span><br><span class="line"><span class="comment">// 레이블 폰트</span></span><br><span class="line">lblText.font = lblText.font.withSize(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Alert-Controller"><a href="#Alert-Controller" class="headerlink" title="Alert Controller"></a>Alert Controller</h2><ul>
+<li>뷰가 아니기 때문에 Present 메소드로 띄운다. controller임</li>
+<li>addSubview는 view를 띄우는 메소드</li>
+</ul>
+<h3 id="alert-객체-생성-과정"><a href="#alert-객체-생성-과정" class="headerlink" title="alert 객체 생성 과정"></a>alert 객체 생성 과정</h3><ol>
+<li>AlertController 객체 생성</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> alert = <span class="type">UIAlertController</span>(</span><br><span class="line">	title: <span class="string">"title"</span>, <span class="comment">// 타이틀 지정</span></span><br><span class="line">	message: <span class="string">"insert massage"</span>, <span class="comment">// 메세지 지정</span></span><br><span class="line">	preferredStyle: .alert) <span class="comment">// alert or actionSheet 둘 중 하나 선택</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>alert의 버튼 객체 생성</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ok = <span class="type">UIAlertAction</span>(</span><br><span class="line">  title: <span class="string">"OK"</span>, <span class="comment">// 버튼 위 텍스트 </span></span><br><span class="line">  style: .<span class="keyword">default</span>) &#123; <span class="comment">// 버튼 스타일 default, cancle, destructive 셋 중 하나 선택</span></span><br><span class="line">  (action) <span class="keyword">in</span> <span class="comment">// 해당 버튼을 누르면 수행할 액션 정의</span></span><br><span class="line"> 	<span class="built_in">print</span>(<span class="string">"OK버튼"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>cancle &amp; destructive 스타일 버튼 생성</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cancle = <span class="type">UIAlertAction</span>(</span><br><span class="line">	title: <span class="string">"Cancle"</span>, </span><br><span class="line">	style: .cancel) &#123;</span><br><span class="line">	(action) <span class="keyword">in</span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Cancle 버튼"</span>)</span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line"><span class="keyword">let</span> destructive = <span class="type">UIAlertAction</span>(</span><br><span class="line">	title: <span class="string">"Delete"</span>, </span><br><span class="line">	style: .destructive) &#123; </span><br><span class="line">	(action) <span class="keyword">in</span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"destructive 버튼"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>생성한 alert 버튼 객체 alert에 추가</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert.addAction(ok)</span><br><span class="line">alert.addAction(cancle)</span><br><span class="line">alert.addAction(destructive)</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>버튼 객체까지 추가 완료한 후, alert 객체 띄우기</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">present(alert, animated: <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="결과-1"><a href="#결과-1" class="headerlink" title="결과"></a><strong>결과</strong></h3><p><img src="https://user-images.githubusercontent.com/15086391/69616487-0be78c00-107a-11ea-84e9-87f28cac4993.png" alt="imageTotal"></p>
+<ul>
+<li><p>왼쪽이 <strong>actionSheet</strong> / 오른쪽이 <strong>alert</strong></p>
+</li>
+<li><p>Alert 객체는 스토리보드에서 추가할 수 없음</p>
+</li>
+<li><p>cancle 액션은 추가 된 순서에 관계 없이 별도의 위치에 생긴다. 두개 일 땐 왼쪽, 세 개 이상일 땐 아래쪽</p>
+</li>
+<li><p>alert 말고, actionSheet에서도 마찬가지로 별도로 구분이 된다.</p>
+</li>
+<li><p>destructive 액션을 하면 빨간색으로 표기가 됨 자동으로! 경고성의 느낌 뭔가 파괴적인 액션일때 경고를 주기 위함</p>
+</li>
+<li><p>destructive는 alert에서는 candle 처럼 별도의 위치에 추가 되지는 않음</p>
+</li>
+</ul>
+<h3 id="TIP"><a href="#TIP" class="headerlink" title="TIP!"></a>TIP!</h3><ul>
+<li>Cmd + ctrl + E : 변수 한 개 이름 바꿀 때 일일이 안바꾸고 한번에 바꿀 수 있음</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS-Swift-Xcode/" rel="tag"># iOS, Swift, Xcode</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/markdown/" rel="next" title="Markdown Grammar Summary">
+                  <i class="fa fa-chevron-left"></i> Markdown Grammar Summary
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/27/" rel="prev" title="Calculator">
+                  Calculator <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UI-Text-Field-Example-amp-Alert-Controller"><span class="nav-number">1.</span> <span class="nav-text">UI Text Field Example &amp; Alert Controller</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-Field"><span class="nav-number">1.1.</span> <span class="nav-text">Text Field</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#결과"><span class="nav-number">1.1.1.</span> <span class="nav-text">결과</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-Field-Interface-Builder-속성"><span class="nav-number">1.2.</span> <span class="nav-text">Text Field Interface Builder 속성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-Field-이벤트"><span class="nav-number">1.3.</span> <span class="nav-text">Text Field 이벤트</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q-텍스트-필드가-두-개이고-하나는-이벤트-연결-안했을-때"><span class="nav-number">1.3.1.</span> <span class="nav-text">Q. 텍스트 필드가 두 개이고, 하나는 이벤트 연결 안했을 때?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q-TextField가-여러-개인데-하나의-IBAction에-연결-할-수-있나요"><span class="nav-number">1.3.2.</span> <span class="nav-text">Q. TextField가 여러 개인데, 하나의 IBAction에 연결 할 수 있나요?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q-sender-파라미터는-뭐하는-녀석인가요"><span class="nav-number">1.3.3.</span> <span class="nav-text">Q. sender 파라미터는 뭐하는 녀석인가요?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Font-지정-하기"><span class="nav-number">1.4.</span> <span class="nav-text">Font 지정 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Alert-Controller"><span class="nav-number">1.5.</span> <span class="nav-text">Alert Controller</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#alert-객체-생성-과정"><span class="nav-number">1.5.1.</span> <span class="nav-text">alert 객체 생성 과정</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#결과-1"><span class="nav-number">1.5.2.</span> <span class="nav-text">결과</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TIP"><span class="nav-number">1.5.3.</span> <span class="nav-text">TIP!</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SangMin Jeon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SangMin Jeon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://sandMan77.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://yoursite.com/2019/11/26/",
+            identifier: "2019/11/26/",
+            title: "UI Text Field Example & Alert Controller"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sandMan77.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>

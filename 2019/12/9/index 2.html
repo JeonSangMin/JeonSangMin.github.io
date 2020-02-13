@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Let's Swift!" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Struct구조체와 클래스 비교 공통점 값을 저장하기 위한 프로퍼티 기능을 제공하기 위한 메서드 초기 상태를 설정하기 위한 생성자 기본 구현에서 기능을 추가하기 위한 확장(Extension) 특정 값에 접근할 수 있는 첨자(Subscript) 특정한 기능을 수행하기 위한 프로토콜 채택 Upper Camel Case 사용">
+<meta name="keywords" content="Swift,iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struct, ARC">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;9&#x2F;index.html">
+<meta property="og:site_name" content="Let&#39;s Swift!">
+<meta property="og:description" content="Struct구조체와 클래스 비교 공통점 값을 저장하기 위한 프로퍼티 기능을 제공하기 위한 메서드 초기 상태를 설정하기 위한 생성자 기본 구현에서 기능을 추가하기 위한 확장(Extension) 특정 값에 접근할 수 있는 첨자(Subscript) 특정한 기능을 수행하기 위한 프로토콜 채택 Upper Camel Case 사용">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-09T06:35:38.764Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Struct, ARC | Let's Swift!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Let's Swift!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">SangMin's study blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SangMin Jeon">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's Swift!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Struct, ARC
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-09 13:07:29 / Modified: 15:35:38" itemprop="dateCreated datePublished" datetime="2019-12-09T13:07:29+09:00">2019-12-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/12/9/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h1><h2 id="구조체와-클래스-비교"><a href="#구조체와-클래스-비교" class="headerlink" title="구조체와 클래스 비교"></a>구조체와 클래스 비교</h2><ul>
+<li>공통점<ul>
+<li>값을 저장하기 위한 프로퍼티</li>
+<li>기능을 제공하기 위한 메서드</li>
+<li>초기 상태를 설정하기 위한 생성자</li>
+<li>기본 구현에서 기능을 추가하기 위한 확장(Extension)</li>
+<li>특정 값에 접근할 수 있는 첨자(Subscript)</li>
+<li>특정한 기능을 수행하기 위한 프로토콜 채택</li>
+<li>Upper Camel Case 사용</li>
+</ul>
+</li>
+</ul><a id="more"></a>
+<ul>
+<li>[클래스만 제공하는 기능]<ul>
+<li>상속 -&gt; 구조체는 상속 안됨</li>
+<li>소멸자 (Deinitializer)</li>
+<li>참조 카운트 (ARC와 관련 있을 듯)</li>
+</ul>
+</li>
+</ul>
+<h2 id="값-타입-vs-참조-타입"><a href="#값-타입-vs-참조-타입" class="headerlink" title="값 타입 vs 참조 타입"></a>값 타입 vs 참조 타입</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"토리"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"릴리"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dog = <span class="type">Dog</span>() <span class="comment">// 0x1234 -&gt; Dog() // let dog는 Dog클래스를 가리키는 주소값이 고정된 것임</span></span><br><span class="line"><span class="keyword">let</span> cat = <span class="type">Cat</span>() <span class="comment">// Cat() 요게 stack에 직접 들어감 그래서 밑에서 name = '릴리'를 '토리'로 바꾸는게 안되는 거임 상수는 변경할 수 없는 것 처럼</span></span><br><span class="line"></span><br><span class="line">dog.name = <span class="string">"릴리"</span> <span class="comment">// 토리 -&gt; 릴리로 변경 시도</span></span><br><span class="line">cat.name = <span class="string">"토리"</span> <span class="comment">// 릴리 -&gt; 토리로 변경 시도 (X)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 값은 스텍에 저장되고,</span></span><br><span class="line"><span class="comment">// 참조타입은 힙 영역에 포인터가 저장됨</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h1><ul>
+<li>다른 언어의 가비지 컬렉터는 정기적으로 동작하여 런타임 중에 더 이상 사용되지 않는 메모리를 반환하는 방식</li>
+<li>레퍼런스 카운트가 0이면 메모리에서 해제되고, 아니면 해제 되지 않음</li>
+</ul>
+<h2 id="RC-Reference-Counting"><a href="#RC-Reference-Counting" class="headerlink" title="RC (Reference Counting)"></a>RC (Reference Counting)</h2><p>변수가 생성되는 순간 카운트 + 1</p>
+<p>참조 되는 순간마다  + 1</p>
+<p>릴리즈 되는 순간  - 1</p>
+<p>0이 되는 순간 메모리에서 제거 됨</p>
+<p>-&gt; 이 과정을 ARC는 자동으로 해주는 것임 Auto!</p>
+<h2 id="Leak-vs-Dangling-Pointer"><a href="#Leak-vs-Dangling-Pointer" class="headerlink" title="Leak vs Dangling Pointer"></a>Leak vs Dangling Pointer</h2><p>Alloc, init (할당)</p>
+<p>release (해제)</p>
+<ul>
+<li><p>할당과 해제는 균형이 많아야 함</p>
+</li>
+<li><p>할당이 많으면 메모리가 낭비되고, 해제가 많으면 허상이 발생함</p>
+</li>
+<li><p>근데 이것을 수동으로 직접 코드를 입력하여 관리를 해줘야 했음 (빡셈)</p>
+</li>
+<li><p>수동으로 하기에는 너무 어려워서 초보자들에게 허들이 높았고, 숙련자들에게도 쉽지 않았음</p>
+</li>
+<li><p>기능에 대한 코드외에 메모리 관리에 대한 코드까지 추가되어서 관리도 어려움</p>
+</li>
+</ul>
+<h2 id="ARC-1"><a href="#ARC-1" class="headerlink" title="ARC"></a>ARC</h2><p>위에 나열한 어려움 등 때문에 Auto Reference Counting이 발표 됨 (2011년)</p>
+<ul>
+<li>RC 자동 관리 방식 (wwdc 2011 발표)</li>
+<li>컴파일러가 개발자를 대신하여 메모리 관리 코드를 적절한 위치에 자동으로 삽입</li>
+<li>GC (Garbage Collector) 처럼 런타임이 아닌 컴파일 단에서 처리함 (Heap 스캔이 필요없음, 앱 일시 정지 현상 없음)</li>
+<li>메모리 관리 이슈 줄고, 코딩자체에 집중!</li>
+<li>클래스의 인스턴스에만 적용 (참조 타입)</li>
+<li>활성화 된 참조 카운트가 하나라도 있을 경우 메모리에서 해제 되지 않음<ul>
+<li>강한 참조 (Strong) : 기본값 참조 될 때마다 카운트 1 증가</li>
+<li>약한 참조, 미소유 참조 : 참조 카운트 증가 X</li>
+</ul>
+</li>
+</ul>
+<h2 id="ARC-in-Struct"><a href="#ARC-in-Struct" class="headerlink" title="ARC in Struct"></a>ARC in Struct</h2><ul>
+<li>(초기화 했을 때) 스텍 영역에 직접 값이 들어감</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> x, y: <span class="type">Double</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> point1 = <span class="type">Point</span>(x: <span class="number">0</span>, y: <span class="number">0</span>)</span><br><span class="line"><span class="keyword">let</span> point2 = point1</span><br><span class="line"><span class="type">Point2</span>.x = <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>이 때 참조 타입은 point1의 값도 같이 바뀐다. 왜? 실제 값은 힙에 저장되어있고, 스텍에 저장되어있는 포인터는 같은 위치를 가리키니깐.</p>
+<p>그런데 구조체에서는 point2의 x값과 point1의 x 값은 서로 다르다. x 값이 스텍에 직접 저장되어 있기 때문이다.</p>
+<p>클래스에서 x 값은 힙에 저장되어 있음</p>
+<h2 id="Strong-Reference-Cycle"><a href="#Strong-Reference-Cycle" class="headerlink" title="Strong Reference Cycle"></a>Strong Reference Cycle</h2><ul>
+<li>RC가 0이 되지 않게 만들어버리는 상황! (주의해야함)</li>
+<li>객체에 접근 가능한 모든 연결을 끊었는데도 순환참조로 인해 메모리에 계속 쌓이는 상황, 오동작이나 오류를 발생시킬 수 있음</li>
+</ul>
+<p>순환참조!</p>
+<p>(정리해줄것)</p>
+<h2 id="Weak-Reference"><a href="#Weak-Reference" class="headerlink" title="Weak Reference"></a>Weak Reference</h2><p>순환참조에 빠지지 않도록 weak을 선언하면 RC가 올라가지 않으므로 하나가 해제되면 자연스레 0이되어서 순환참조에 빠지는 것을 예방할 수 있음</p>
+<p>강사님 수업자료 애니메이션으로 순서 파악해야함. </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Swift/" rel="tag"># Swift</a>
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/6/" rel="next" title="Sigleton, User Defaluts">
+                  <i class="fa fa-chevron-left"></i> Sigleton, User Defaluts
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/12/10/" rel="prev" title="Delegate">
+                  Delegate <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Struct"><span class="nav-number">1.</span> <span class="nav-text">Struct</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#구조체와-클래스-비교"><span class="nav-number">1.1.</span> <span class="nav-text">구조체와 클래스 비교</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#값-타입-vs-참조-타입"><span class="nav-number">1.2.</span> <span class="nav-text">값 타입 vs 참조 타입</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ARC"><span class="nav-number">2.</span> <span class="nav-text">ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RC-Reference-Counting"><span class="nav-number">2.1.</span> <span class="nav-text">RC (Reference Counting)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leak-vs-Dangling-Pointer"><span class="nav-number">2.2.</span> <span class="nav-text">Leak vs Dangling Pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC-1"><span class="nav-number">2.3.</span> <span class="nav-text">ARC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC-in-Struct"><span class="nav-number">2.4.</span> <span class="nav-text">ARC in Struct</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strong-Reference-Cycle"><span class="nav-number">2.5.</span> <span class="nav-text">Strong Reference Cycle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak-Reference"><span class="nav-number">2.6.</span> <span class="nav-text">Weak Reference</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SangMin Jeon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SangMin Jeon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://sandMan77.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://yoursite.com/2019/12/9/",
+            identifier: "2019/12/9/",
+            title: "Struct, ARC"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sandMan77.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>
