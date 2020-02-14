@@ -1,6 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>GCD,</title>
+    <url>/2020/02/13/</url>
+    <content><![CDATA[<h1 id="GCD-Grand-Central-Dispatch"><a href="#GCD-Grand-Central-Dispatch" class="headerlink" title="GCD (Grand Central Dispatch)"></a>GCD (Grand Central Dispatch)</h1><ul>
+<li>GCD는 멀티 코어 프로세서 시스템에 대한 응용 프로그램 지원을 최적화하기 위해 Apple에서 개발한 기술로 스레드 관리와 실행에 대한 책임을 어플리케이션 레벨에서 운영체제 레벨로 넘김</li>
+<li>작업의 단위는 Block이라 불리며 DispatchQueue가 이 Block들을 관리</li>
+</ul><a id="more"></a>
+<h2 id="DispatchQueue"><a href="#DispatchQueue" class="headerlink" title="DispatchQueue"></a>DispatchQueue</h2><h3 id="Concurrent-Queue"><a href="#Concurrent-Queue" class="headerlink" title="Concurrent Queue"></a>Concurrent Queue</h3><ul>
+<li>병렬<ul>
+<li>Concurrency</li>
+<li>Parallelism</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/74401559-fc036b00-4e64-11ea-97fb-8e1ab99339db.png" alt="스크린샷 2020-02-13 오후 1 30 00"></p>
+<ul>
+<li>sync, async를 언제쓰나?<ul>
+<li>네트워크 관련 업무를 할 때 사용하는 경우가 많다.</li>
+<li>큰 파일을 읽어야 하는 작업을 할 때, 해당 업무가 종료 된 후 다음 작업으로 넘어가면 비효율적이기 때문에</li>
+<li>이런 경우에 비동기(async)를 사용하는 경우가 많다.</li>
+<li>이에 반해 sync는 사용하는 경우가 많지 않다. </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>작업간의 우선순위를 구분하고 싶을 때, qos를 준다.<ul>
+<li><img src="https://user-images.githubusercontent.com/15086391/74405808-5dc9d200-4e71-11ea-81e0-0d322ffb3c77.png" alt="스크린샷 2020-02-13 오후 2 58 42"></li>
+</ul>
+</li>
+</ul>
+<h1 id="URL-Loading-System"><a href="#URL-Loading-System" class="headerlink" title="URL Loading System"></a>URL Loading System</h1><p>- </p>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>fireBase</title>
+    <url>/2020/02/fireBase/</url>
+    <content><![CDATA[<h1 id="Fire-Base"><a href="#Fire-Base" class="headerlink" title="Fire Base"></a>Fire Base</h1><ul>
+<li>pod init</li>
+<li>Firebase 로그인</li>
+<li>프로젝트 만들기</li>
+<li>아이덴티파이어 입력</li>
+<li>plist 파일 다운로드 및 복붙</li>
+<li>pod install</li>
+<li>Appdelegate 가서 import Firebase</li>
+<li>Did finish 메서드 안에 </li>
+</ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FirebaseApp.configure()</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p>SDK 설치 끝!</p>
+<p>서버를 대체해 주는 툴</p>
+<p>서버를 </p>
+<p>Fimuxd</p>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>specialLecture</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Network, Closure</title>
+    <url>/2020/02/11/</url>
+    <content><![CDATA[<h2 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h2><ul>
+<li><p>URL : 어떤 자원의 위치에 대한 절대 경로값을 지닌 문자열</p>
+<ul>
+<li>어떤 특정 주소, 또는 파일 리소스에 접근하기 위한 주소 값</li>
+</ul>
+</li>
+<li><p>URN : 위치에 독립적이고, 지속되는 형태의 자원을 가르키기 위한 유일한 식별자</p>
+<ul>
+<li>ex) ISBN</li>
+</ul>
+</li>
+<li><p>URL은 주소, URN은 주민등록번호에 비유할 수 있다.</p>
+</li>
+<li><p>URI는 URL, URN을 포괄하는 개념</p>
+</li>
+</ul><a id="more"></a>
+<p><img src="https://user-images.githubusercontent.com/15086391/74224397-1b32b900-4cfc-11ea-9fed-dc565a6f6ee0.png" alt="스크린샷 2020-02-11 오후 6 26 26"></p>
+<h2 id="IRI-International-Resource-Identifier"><a href="#IRI-International-Resource-Identifier" class="headerlink" title="IRI (International Resource Identifier)"></a>IRI (International Resource Identifier)</h2><ul>
+<li>URI의 상위 개념으로서 확장된 버젼</li>
+<li>최근에는 UTF-8로 바뀌어서 웹사이트 주소에 한글도 적을 수 있다.</li>
+<li>이를 이용해서 비슷해 보이는 문자를 악용하기도 한다.</li>
+</ul>
+<h2 id="Endian"><a href="#Endian" class="headerlink" title="Endian"></a>Endian</h2><ul>
+<li><p>컴퓨터에서 어떤 크기의 데이터를 메모리에 저장할 때 바이트 단위로 나누어 저장한다.</p>
+</li>
+<li><p>CPU 아키텍처에 따라 바이트 저장순서가 달라질 수 있기 때문에 두 가지로 나뉜다.</p>
+<ul>
+<li>Big - Endian : 낮은(시작) 주소에 상위 바이트부터 기록, Sparc / RISC CPU 계열<br>예) 32비트형 (4바이트) 값: 0x01020304</li>
+<li>Little - Endian : 낮은(시작) 주소에 하위 바이트부터 기록, Intel CPU 계열<br>예) 32비트형 (4바이트) 값: 0x01020304</li>
+</ul>
+</li>
+<li><p>위와 같이, 시스템마다 저장하는 방식이 다르다. </p>
+</li>
+<li><p>공통된 약속의 Endian을 사용하고, 수신측에서 각자의 시스템에 맞는 방식으로 변환한다.</p>
+</li>
+<li><p>다른 방법으로는 Byte 단위 전송이 있다.</p>
+<ul>
+<li>Endian 문제는 Byte 단위로 저장할 때 순서의 차이에 의해 발생하기 때문에,</li>
+<li>애초에 1Byte 단위로 데이터를 보내면 바이트 순서에 구애받지 않고 통신이 가능하다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> number: <span class="type">UInt32</span> = <span class="number">0x12345678</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> convertedToBig = number.bigEndian</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> number == convertedToBig &#123;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"BigEndian \(number)"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"LittleEndian \(number)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Rest-API"><a href="#Rest-API" class="headerlink" title="Rest API"></a>Rest API</h2><ul>
+<li>자원을 정의하고 자원에 대한 주소를 지정하는 방법 등을 의미하는 네트워크 아키텍처 원리의 모음</li>
+</ul>
+<h2 id="OSI-7계층"><a href="#OSI-7계층" class="headerlink" title="OSI 7계층"></a>OSI 7계층</h2><p><img src="https://user-images.githubusercontent.com/15086391/74224938-19b5c080-4cfd-11ea-97be-f5989ef20c97.png" alt="스크린샷 2020-02-11 오후 6 33 56"></p>
+<p><img src="https://user-images.githubusercontent.com/15086391/74224979-2f2aea80-4cfd-11ea-8f97-5085273fbadb.png" alt="스크린샷 2020-02-11 오후 6 34 39"></p>
+<h1 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h1><ul>
+<li>코드에서 사용하거나 전달할 수 있는 독립적인 기능을 가진 블럭</li>
+<li>함수도 클로저의 일종</li>
+</ul>
+<h2 id="capture-list"><a href="#capture-list" class="headerlink" title="capture list"></a>capture list</h2><ul>
+<li>[a, b] : 선언 된 시점을 기준으로 값을 저장한다.</li>
+</ul>
+<ul>
+<li>Value Type</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">c</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> result = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 1, 2, 3, 6 저장</span></span><br><span class="line">(a, b, <span class="built_in">c</span>) = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">result = a + b + <span class="built_in">c</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 여기서 [a, b]안에 [1, 2] 저장</span></span><br><span class="line"><span class="keyword">let</span> valueCapture2 = &#123; [a, b] <span class="keyword">in</span></span><br><span class="line">  result = a + b + <span class="built_in">c</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"내부 값 :"</span>, a, b, <span class="built_in">c</span>, result)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 다시 7, 8, 9, 저장</span></span><br><span class="line">(a, b, <span class="built_in">c</span>) = (<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)</span><br><span class="line">result = a + b + <span class="built_in">c</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 결과 : 7, 8, 9, 24</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"초기 값 :"</span>, a, b, <span class="built_in">c</span>, result)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 이 안에서 1, 2가 캡쳐 되어 있기 때문에 결과 값 : 1, 2, 9, 12</span></span><br><span class="line">valueCapture2()</span><br><span class="line"></span><br><span class="line"><span class="comment">// result는 캡쳐 된 이후 값을 변경해 주지 않았기 때문에</span></span><br><span class="line"><span class="comment">// 결과 : 7, 8, 9, 12</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"최종 값 :"</span>, a, b, <span class="built_in">c</span>, result)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>Reference Type</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// reference 타입은 값을 직접 가지고 있는게 아니라, 값이 저장되있는 위치를 가리키는 포인터가 저장되어있음</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">RefType</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> number = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = <span class="type">RefType</span>()</span><br><span class="line"><span class="keyword">var</span> y = <span class="type">RefType</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"초기 값 :"</span>, x.number, y.number)</span><br><span class="line"></span><br><span class="line"><span class="comment">// refCapture()를 실행해도 나중에 할당한 5가 반영된다.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//              x 캡쳐</span></span><br><span class="line"><span class="keyword">let</span> refCapture = &#123; [x] <span class="keyword">in</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"내부 값 :"</span>, x.number, y.number)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x.number = <span class="number">5</span></span><br><span class="line">y.number = <span class="number">7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 결과 : 변경 값 : 5 7</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"변경 값 :"</span>, x.number, y.number)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 캡쳐 실행!</span></span><br><span class="line">refCapture()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 결과 : 내부 값 : 5 7</span></span><br><span class="line"><span class="comment">// 얘는 먼저 캡처를 하고 나중에 x.number에 5를 할당했는데 왜 refCapture()를 실행했을 때 5가 들어가 있을까?</span></span><br><span class="line"><span class="comment">// 이 x는 값을 가진게 아니라 값을 가진 주소를 가지고 있기 때문에(reference Type) 캡처를 해도, 주소는 바뀌지 않았고, 값이 바뀌어서 캡쳐를 해봐야 의미가 없다. 캡쳐 된 것은 포인터지, 값이 아님</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 결과 : 최종 값 : 5 7</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"최종 값 :"</span>, x.number, y.number)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Capture-Example"><a href="#Capture-Example" class="headerlink" title="Capture Example"></a>Capture Example</h2><h2 id="NoEscaping"><a href="#NoEscaping" class="headerlink" title="NoEscaping"></a>NoEscaping</h2><ul>
+<li><p>기본 값</p>
+</li>
+<li><p>함수에서 사용 된 파라미터는 함수 종료와 함께 소멸</p>
+</li>
+<li><p>Self 키워드 불필요</p>
+</li>
+</ul>
+<h2 id="Escaping"><a href="#Escaping" class="headerlink" title="Escaping"></a>Escaping</h2><ul>
+<li>함수나 메서드의 파라미터 중 클로져 타입에 @escaping을 적용한다.</li>
+<li>해당 파라미터가 함수 종료 이후 시점에도 어딘가에 남아 실행 될 수 있음을 나타냄</li>
+<li>해당 파라미터가 함수 외부에 저장되거나, 비동기로 동작할 때 사용</li>
+<li>self 키워드 명시</li>
+</ul>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UIDevice</title>
+    <url>/2020/02/10/</url>
+    <content><![CDATA[<h1 id="UIDevice"><a href="#UIDevice" class="headerlink" title="UIDevice"></a>UIDevice</h1><ul>
+<li>디바이스 이름 / 모델 / 화면 방향 등</li>
+<li>OS 이름 / 버전</li>
+<li>인터페이스 형식 (phone, pad, tv 등)</li>
+<li>배터리 정보</li>
+<li>근접 센서 정보</li>
+<li>멀티태스킹 지원 여부</li>
+</ul><p>위 정보들을 담고 있다.</p>]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2nd Test Review</title>
+    <url>/2020/02/2ndTestReview/</url>
+    <content><![CDATA[<h1 id="2nd-Test-Review"><a href="#2nd-Test-Review" class="headerlink" title="2nd Test Review"></a>2nd Test Review</h1><h2 id="Up-casting과-down-Casting의-차이"><a href="#Up-casting과-down-Casting의-차이" class="headerlink" title="Up casting과 down Casting의 차이?"></a>Up casting과 down Casting의 차이?</h2><ul>
+<li>업캐스팅 : 상속관계에 있는 자식클래스가 부모클래스로 형 변환하는 것<ul>
+<li>반드시 성공하며, as 키워드 사용</li>
+</ul>
+</li>
+<li>다운캐스팅 : 형제 클래스나, 다른 서브 클래스 등 상위 클래스에서 파생된 각종 서브 클래스로의 타입 변환을 의미함<ul>
+<li>반드시 성공한다는 보장이 없으므로 as? 또는 as! 키워드 사용</li>
+</ul>
+</li>
+<li>as : 타입 변환이 확실하게 가능한 경우, (업캐스팅, 자기 자신으로의 캐스팅)에만 사용가능, 그 외에는 컴파일 에러</li>
+<li>as? : 강제 타입변환시도, 변환이 성공하면 optional값을 가지며, 실패시에는 nil 변환</li>
+<li>as! : 강제 타입변환시도, 성공시 언래핑 된 값을 가지며, 실패시 런타임에러</li>
+</ul><a id="more"></a>
+<h2 id="TableView에서-셀을-재사용할-때-사용되는-두-메서드의-차이점"><a href="#TableView에서-셀을-재사용할-때-사용되는-두-메서드의-차이점" class="headerlink" title="TableView에서 셀을 재사용할 때 사용되는 두 메서드의 차이점"></a>TableView에서 셀을 재사용할 때 사용되는 두 메서드의 차이점</h2><ul>
+<li>register메소드를 통해 사용할 셀을 등록했거나, 스토리보드에서 셀을 만들었을 때</li>
+<li>반환 타입이 옵셔널이기 때문에 입력한 identifier가 틀리거나 없어도 nil을 반환할 뿐, 오류가 발생하진 않음</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">dequeueReusableCell(withIdentifier:)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>그 외의 경우</li>
+<li>미리 등록한 identifier를 찾지 못하면, 반드시 런타임에러</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">dequeueReusableCell(withIdentifier:, <span class="keyword">for</span>:)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="safeAreaInsets-safeAreaLayoutGuide의-차이점"><a href="#safeAreaInsets-safeAreaLayoutGuide의-차이점" class="headerlink" title="safeAreaInsets, safeAreaLayoutGuide의 차이점"></a>safeAreaInsets, safeAreaLayoutGuide의 차이점</h2><ul>
+<li>safeAreaInset<ul>
+<li>view와 safeArea 영역 간의 간격 정보</li>
+<li>Frame 기반으로 레이아웃을 잡을 때 사용</li>
+</ul>
+</li>
+<li>safeAreaLayoutGuide<ul>
+<li>safeArea 영역의 경계선 부분</li>
+<li>오토레이아웃 기반으로 레이아웃을 잡을 때 사용</li>
+</ul>
+</li>
+</ul>
+<h2 id="Strong-refrence-Cycle에-대해-설명-예시코드-작성"><a href="#Strong-refrence-Cycle에-대해-설명-예시코드-작성" class="headerlink" title="Strong refrence Cycle에 대해 설명, 예시코드 작성"></a>Strong refrence Cycle에 대해 설명, 예시코드 작성</h2><ul>
+<li>서로 다른 인스턴스간 순환 cycle이 되는 강한 참조를 유지하고 있어 더 이상 사용되지 않거나 외부에서 접근할 수 있는 수단이 없음에도 불구하고, 각 인스턴스가 다른 인스턴스를 지속해서 활성 상태로 만들게 되는 상태를 말함</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> b : <span class="type">B?</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a: <span class="type">A</span></span><br><span class="line">	<span class="keyword">init</span>(a: <span class="type">A</span>) &#123; <span class="keyword">self</span>.a = a&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a: <span class="type">A?</span> = <span class="type">A</span>()</span><br><span class="line"><span class="keyword">var</span> b: <span class="type">B?</span> = <span class="type">B</span>(a: a!)</span><br><span class="line"></span><br><span class="line">a.b = b</span><br><span class="line">a = <span class="literal">nil</span></span><br><span class="line">b = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Strong-unowned-Weak-각각의-특징과-차이점에-대해-설명"><a href="#Strong-unowned-Weak-각각의-특징과-차이점에-대해-설명" class="headerlink" title="Strong, unowned, Weak 각각의 특징과 차이점에 대해 설명"></a>Strong, unowned, Weak 각각의 특징과 차이점에 대해 설명</h2><ul>
+<li>Strong :<ul>
+<li>강한참조</li>
+<li>기본 값</li>
+<li>인스턴스 참조 시 RC 1증가</li>
+</ul>
+</li>
+<li>Unowned : <ul>
+<li>미소유 참조</li>
+<li>RC 증가 x</li>
+<li>참조하는 인스턴스 해제시에도 기존 포인터 주소 유지</li>
+</ul>
+</li>
+<li>Weak : <ul>
+<li>약한 참조</li>
+<li>RC 증가 x</li>
+<li>참조하던 인스턴스 해제시 nil 값으로 변경</li>
+</ul>
+</li>
+</ul>
+<h2 id="InTrinsic-Content-Size란-무엇-어떤-특징"><a href="#InTrinsic-Content-Size란-무엇-어떤-특징" class="headerlink" title="InTrinsic Content Size란 무엇? 어떤 특징?"></a>InTrinsic Content Size란 무엇? 어떤 특징?</h2><ul>
+<li>고유의 콘텐츠 크기 (잘라내거나 줄이지 않고, 온전히 표현 할 수 있는 최소한의 크기)</li>
+<li>뷰에 따라 다른 형태를 가질 수 있음</li>
+<li>Ex) UIButton은 width, height에 대한 크기를 가지고, UISlider는 width에 대한 크기만 가짐</li>
+<li>별도의 제약을 주지 않는다면 이 크기가 오토레이아웃에서 자동으로 반영</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Test</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>iOS,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Algorithm</title>
+    <url>/2020/02/4/</url>
+    <content><![CDATA[<h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1>]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Data Structure</title>
     <url>/2020/02/3/</url>
     <content><![CDATA[<p>​    자료를 효율적으로 이용할 수 있도록 저장하는 방법을 의미</p><ul>
@@ -173,8 +456,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -189,8 +472,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -211,8 +494,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -237,8 +520,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -255,8 +538,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -271,8 +554,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -362,8 +645,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -469,8 +752,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -484,8 +767,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -559,8 +842,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -699,8 +982,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -711,8 +994,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -723,8 +1006,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -794,8 +1077,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -835,8 +1118,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -847,8 +1130,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -944,8 +1227,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1029,8 +1312,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1051,27 +1334,21 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
 <ul>
 <li>[클래스만 제공하는 기능]<ul>
 <li>상속 -&gt; 구조체는 상속 안됨</li>
-<li>소멸자 (Deinitializer)</li>
+<li>소멸자 (Deinitializer)<ul>
+<li>구조체도 소멸이 되긴하지만 소멸자(Deinit() 메소드를 사용하면 에러가 남)</li>
+</ul>
+</li>
 <li>참조 카운트 (ARC와 관련 있을 듯)</li>
 </ul>
 </li>
 </ul>
 <h2 id="값-타입-vs-참조-타입"><a href="#값-타입-vs-참조-타입" class="headerlink" title="값 타입 vs 참조 타입"></a>값 타입 vs 참조 타입</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"토리"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"릴리"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dog = <span class="type">Dog</span>() <span class="comment">// 0x1234 -&gt; Dog() // let dog는 Dog클래스를 가리키는 주소값이 고정된 것임</span></span><br><span class="line"><span class="keyword">let</span> cat = <span class="type">Cat</span>() <span class="comment">// Cat() 요게 stack에 직접 들어감 그래서 밑에서 name = '릴리'를 '토리'로 바꾸는게 안되는 거임 상수는 변경할 수 없는 것 처럼</span></span><br><span class="line"></span><br><span class="line">dog.name = <span class="string">"릴리"</span> <span class="comment">// 토리 -&gt; 릴리로 변경 시도</span></span><br><span class="line">cat.name = <span class="string">"토리"</span> <span class="comment">// 릴리 -&gt; 토리로 변경 시도 (X)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 값은 스텍에 저장되고,</span></span><br><span class="line"><span class="comment">// 참조타입은 힙 영역에 포인터가 저장됨</span></span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<ul>
+<li>dog에는 Dog()의 주소 값이 Stack에 저장되어 있고, 실제 값은 Heap에 저장되어 있음</li>
+<li>dog는 상수이지만, 어차피 주소 값이 저장 되어있어서 주소값만 변경할 수 없는거고 Heap에 저장 된 값은 변경 가능</li>
+<li>상수 cat에는 Cat() 자체가 저장되어 있기 때문에, cat.name 변경 불가</li>
+</ul>
 <h1 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h1><ul>
 <li>다른 언어의 가비지 컬렉터는 정기적으로 동작하여 런타임 중에 더 이상 사용되지 않는 메모리를 반환하는 방식</li>
 <li>레퍼런스 카운트가 0이면 메모리에서 해제되고, 아니면 해제 되지 않음</li>
@@ -1081,6 +1358,7 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
 <p>릴리즈 되는 순간  - 1</p>
 <p>0이 되는 순간 메모리에서 제거 됨</p>
 <p>-&gt; 이 과정을 ARC는 자동으로 해주는 것임 Auto!</p>
+<p>강한참조 : let dog = Dog() 도그클래스를 만드는 순간에 해당 인스턴스가  만들어 질때 도그라는 변수가 그 타입의 참조 카운트를 1 증가</p>
 <h2 id="Leak-vs-Dangling-Pointer"><a href="#Leak-vs-Dangling-Pointer" class="headerlink" title="Leak vs Dangling Pointer"></a>Leak vs Dangling Pointer</h2><p>Alloc, init (할당)</p>
 <p>release (해제)</p>
 <ul>
@@ -1129,8 +1407,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1176,8 +1454,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1298,8 +1576,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
         <tag>타입캐스팅</tag>
         <tag>typeCasting</tag>
       </tags>
@@ -1336,8 +1614,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1428,8 +1706,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1656,8 +1934,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
         <tag>Codding</tag>
       </tags>
   </entry>
@@ -1683,8 +1961,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>따라해봄</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
         <tag>한글링</tag>
         <tag>Stanford_iOS</tag>
       </tags>
@@ -2269,8 +2547,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -2469,8 +2747,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>

@@ -52,14 +52,14 @@
 </script>
 
   <meta name="description" content="Struct구조체와 클래스 비교 공통점 값을 저장하기 위한 프로퍼티 기능을 제공하기 위한 메서드 초기 상태를 설정하기 위한 생성자 기본 구현에서 기능을 추가하기 위한 확장(Extension) 특정 값에 접근할 수 있는 첨자(Subscript) 특정한 기능을 수행하기 위한 프로토콜 채택 Upper Camel Case 사용">
-<meta name="keywords" content="Swift,iOS">
+<meta name="keywords" content="iOS,Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Struct, ARC">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;9&#x2F;index.html">
 <meta property="og:site_name" content="Let&#39;s Swift!">
 <meta property="og:description" content="Struct구조체와 클래스 비교 공통점 값을 저장하기 위한 프로퍼티 기능을 제공하기 위한 메서드 초기 상태를 설정하기 위한 생성자 기본 구현에서 기능을 추가하기 위한 확장(Extension) 특정 값에 접근할 수 있는 첨자(Subscript) 특정한 기능을 수행하기 위한 프로토콜 채택 Upper Camel Case 사용">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-09T06:35:38.764Z">
+<meta property="og:updated_time" content="2020-02-12T07:44:33.211Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/12/9/">
@@ -238,10 +238,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-09 13:07:29 / Modified: 15:35:38" itemprop="dateCreated datePublished" datetime="2019-12-09T13:07:29+09:00">2019-12-09</time>
+              <time title="Created: 2019-12-09 13:07:29" itemprop="dateCreated datePublished" datetime="2019-12-09T13:07:29+09:00">2019-12-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-12 16:44:33" itemprop="dateModified" datetime="2020-02-12T16:44:33+09:00">2020-02-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -294,27 +300,21 @@
 <ul>
 <li>[클래스만 제공하는 기능]<ul>
 <li>상속 -&gt; 구조체는 상속 안됨</li>
-<li>소멸자 (Deinitializer)</li>
+<li>소멸자 (Deinitializer)<ul>
+<li>구조체도 소멸이 되긴하지만 소멸자(Deinit() 메소드를 사용하면 에러가 남)</li>
+</ul>
+</li>
 <li>참조 카운트 (ARC와 관련 있을 듯)</li>
 </ul>
 </li>
 </ul>
 <h2 id="값-타입-vs-참조-타입"><a href="#값-타입-vs-참조-타입" class="headerlink" title="값 타입 vs 참조 타입"></a>값 타입 vs 참조 타입</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"토리"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"릴리"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dog = <span class="type">Dog</span>() <span class="comment">// 0x1234 -&gt; Dog() // let dog는 Dog클래스를 가리키는 주소값이 고정된 것임</span></span><br><span class="line"><span class="keyword">let</span> cat = <span class="type">Cat</span>() <span class="comment">// Cat() 요게 stack에 직접 들어감 그래서 밑에서 name = '릴리'를 '토리'로 바꾸는게 안되는 거임 상수는 변경할 수 없는 것 처럼</span></span><br><span class="line"></span><br><span class="line">dog.name = <span class="string">"릴리"</span> <span class="comment">// 토리 -&gt; 릴리로 변경 시도</span></span><br><span class="line">cat.name = <span class="string">"토리"</span> <span class="comment">// 릴리 -&gt; 토리로 변경 시도 (X)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 값은 스텍에 저장되고,</span></span><br><span class="line"><span class="comment">// 참조타입은 힙 영역에 포인터가 저장됨</span></span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<ul>
+<li>dog에는 Dog()의 주소 값이 Stack에 저장되어 있고, 실제 값은 Heap에 저장되어 있음</li>
+<li>dog는 상수이지만, 어차피 주소 값이 저장 되어있어서 주소값만 변경할 수 없는거고 Heap에 저장 된 값은 변경 가능</li>
+<li>상수 cat에는 Cat() 자체가 저장되어 있기 때문에, cat.name 변경 불가</li>
+</ul>
 <h1 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h1><ul>
 <li>다른 언어의 가비지 컬렉터는 정기적으로 동작하여 런타임 중에 더 이상 사용되지 않는 메모리를 반환하는 방식</li>
 <li>레퍼런스 카운트가 0이면 메모리에서 해제되고, 아니면 해제 되지 않음</li>
@@ -324,6 +324,7 @@
 <p>릴리즈 되는 순간  - 1</p>
 <p>0이 되는 순간 메모리에서 제거 됨</p>
 <p>-&gt; 이 과정을 ARC는 자동으로 해주는 것임 Auto!</p>
+<p>강한참조 : let dog = Dog() 도그클래스를 만드는 순간에 해당 인스턴스가  만들어 질때 도그라는 변수가 그 타입의 참조 카운트를 1 증가</p>
 <h2 id="Leak-vs-Dangling-Pointer"><a href="#Leak-vs-Dangling-Pointer" class="headerlink" title="Leak vs Dangling Pointer"></a>Leak vs Dangling Pointer</h2><p>Alloc, init (할당)</p>
 <p>release (해제)</p>
 <ul>
@@ -376,8 +377,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Swift/" rel="tag"># Swift</a>
               <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/Swift/" rel="tag"># Swift</a>
           </div>
 
         
@@ -454,18 +455,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
