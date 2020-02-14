@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>3rd_TestReview</title>
+    <url>/2020/02/3rd-TestReview/</url>
+    <content><![CDATA[<h1 id="3차-시험-리뷰"><a href="#3차-시험-리뷰" class="headerlink" title="3차 시험 리뷰"></a>3차 시험 리뷰</h1><h2 id="이론"><a href="#이론" class="headerlink" title="[이론]"></a>[이론]</h2><h3 id="try-try-try-의-공통점과-차이점"><a href="#try-try-try-의-공통점과-차이점" class="headerlink" title="try, try? try! 의 공통점과 차이점"></a>try, try? try! 의 공통점과 차이점</h3><ul>
+<li>공통점 : throws 키워드가 사용된 함수를 사용할 때, 오류 발생에 대비해 처리 방법을 결정한다.</li>
+</ul><ul>
+<li><p>try : do ~ catch 구문 내에서만 사용하며, 오류 발생 시에는 catch문에서 처리</p>
+</li>
+<li><p>try? : Optional 값을 반환하며, 오류 발생 시 nil 반환. Do ~ catch 필요 x</p>
+</li>
+<li><p>try! : Optional 강제 언래핑, 오류 발생시 앱 종료. Do ~ catch 필요 x</p>
+</li>
+</ul><a id="more"></a>
+
+<h3 id="forEach-map-filter-reduce에-대해-설명"><a href="#forEach-map-filter-reduce에-대해-설명" class="headerlink" title="forEach, map, filter, reduce에 대해 설명"></a>forEach, map, filter, reduce에 대해 설명</h3><ul>
+<li>forEach : 컬렉션의 각 요소에 동일 연산을 적용하며, 반환 값이 없는 형태</li>
+<li>map : 컬렉션의 각 요소에 동일 연산 적용, 변형된 새 컬렉션 반환</li>
+<li>filter : 컬렉션의 각 요소를 평가하여, 조건을 만족하는 요소만을 새로운 컬렉션으로 반환</li>
+<li>reduce : 컬렉션의 각 요소들을 결합하여 단일 타입으로 반환</li>
+</ul>
+<h3 id="Geocode와-Reverse-Geocode의-차이"><a href="#Geocode와-Reverse-Geocode의-차이" class="headerlink" title="Geocode와 Reverse Geocode의 차이"></a>Geocode와 Reverse Geocode의 차이</h3><ul>
+<li><p>Geocode : Coordinate -&gt; Placemark (좌표를 지명으로 변환)</p>
+</li>
+<li><p>reverse Geocode : Placemark -&gt; Coordinate (지명을 좌표로 변환)</p>
+</li>
+</ul>
+<h2 id="실습"><a href="#실습" class="headerlink" title="[실습]"></a>[실습]</h2><h3 id="1-x-y-까지의-숫자-중-홀수만-더하되-while문과-defer를-사용해서-풀이"><a href="#1-x-y-까지의-숫자-중-홀수만-더하되-while문과-defer를-사용해서-풀이" class="headerlink" title="1. x ~ y 까지의 숫자 중 홀수만 더하되, while문과 defer를 사용해서 풀이"></a>1. x ~ y 까지의 숫자 중 홀수만 더하되, while문과 defer를 사용해서 풀이</h3><ul>
+<li>defer : defer 내부의 코드를, defer가 위치한 현재 스코프를 벗어 날 때 실행한다.<ul>
+<li>defer 문을 이용해서 등록한 코드는 메모리의 stack에 쌓이게 되어, 해당 스코프를 빠져나오는 시점에  정의 된 <strong><u>역순으로 실행된다.</u></strong></li>
+<li>while문은 조건이 true일때 내부 코드들이 반복적으로 실행되고, false일 때 실행이 중단된다. </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sumOddNumbers</span><span class="params">(from lowerBound: Int, to upperBound: Int)</span></span> &#123;</span><br><span class="line">  <span class="comment">// 시작 숫자가 끝 숫자보다 작을 때만 실행</span></span><br><span class="line">  <span class="keyword">guard</span> lowerBound &lt;= upperBound <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">  <span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">  <span class="comment">// lowerBound부터 시작</span></span><br><span class="line">  <span class="keyword">var</span> number = lowerBound</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// upperBound에서 끝</span></span><br><span class="line">  <span class="keyword">while</span> number &lt;= upperBound &#123;</span><br><span class="line">    <span class="comment">// 마지막에 실행</span></span><br><span class="line">    <span class="keyword">defer</span> &#123; number += <span class="number">1</span> &#125;</span><br><span class="line">    <span class="comment">// 짝수면 넘어가고, 홀수면 홀수 합</span></span><br><span class="line">    <span class="keyword">if</span> number % <span class="number">2</span> == <span class="number">0</span> &#123; <span class="keyword">continue</span> &#125;</span><br><span class="line">    sum += number</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">print</span>(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sumOddNumbers(from: <span class="number">1</span>, to: <span class="number">10</span>)    <span class="comment">// 25</span></span><br><span class="line">sumOddNumbers(from: <span class="number">1</span>, to: <span class="number">100</span>)    <span class="comment">// 2500</span></span><br><span class="line">sumOddNumbers(from: <span class="number">100</span>, to: <span class="number">500</span>)    <span class="comment">// 60000</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="고차함수-high-order-function-만을-이용하여-출력"><a href="#고차함수-high-order-function-만을-이용하여-출력" class="headerlink" title="고차함수(high order function)만을 이용하여 출력"></a>고차함수(high order function)만을 이용하여 출력</h3><h4 id="2-1-1부터-100까지의-숫자를-가진-배열에서-홀수만을-골라-각-숫자에-1씩-더해준-배열-출력"><a href="#2-1-1부터-100까지의-숫자를-가진-배열에서-홀수만을-골라-각-숫자에-1씩-더해준-배열-출력" class="headerlink" title="2-1. 1부터 100까지의 숫자를 가진 배열에서 홀수만을 골라 각 숫자에 1씩 더해준 배열 출력"></a>2-1. 1부터 100까지의 숫자를 가진 배열에서 홀수만을 골라 각 숫자에 1씩 더해준 배열 출력</h4><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> oneToHundred = <span class="type">Array</span>(<span class="number">1</span>...<span class="number">100</span>)</span><br><span class="line"><span class="built_in">print</span>(oneToHundred.<span class="built_in">filter</span> &#123;!$<span class="number">0</span>.isMultiple(of: <span class="number">2</span>)&#125;.<span class="built_in">map</span> &#123; $<span class="number">0</span> + <span class="number">1</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-“1”-“2”-“3”-“4”-“5”-“A”-“B”-“C”-“D”-배열에서-숫자만-골라-그것을-제곱한-숫자들을-모두-더한-결과를-출력"><a href="#2-2-“1”-“2”-“3”-“4”-“5”-“A”-“B”-“C”-“D”-배열에서-숫자만-골라-그것을-제곱한-숫자들을-모두-더한-결과를-출력" class="headerlink" title="2-2. [“1”, “2”, “3”, “4”, “5”, “A”, “B”, “C”, “D”] 배열에서 숫자만 골라 그것을 제곱한 숫자들을 모두 더한 결과를 출력"></a>2-2. [“1”, “2”, “3”, “4”, “5”, “A”, “B”, “C”, “D”] 배열에서 숫자만 골라 그것을 제곱한 숫자들을 모두 더한 결과를 출력</h4><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> strings = [<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>, <span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>, <span class="string">"D"</span>]</span><br><span class="line"><span class="built_in">print</span>(strings.compactMap(<span class="type">Int</span>.<span class="keyword">init</span>).<span class="built_in">map</span>&#123;$<span class="number">0</span> * $<span class="number">0</span>&#125;.<span class="built_in">reduce</span>(<span class="number">0</span>, +))</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="단일-연결-리스트-Sigle-Linked-List-구현하기"><a href="#단일-연결-리스트-Sigle-Linked-List-구현하기" class="headerlink" title="단일 연결 리스트 (Sigle Linked List) 구현하기"></a>단일 연결 리스트 (Sigle Linked List) 구현하기</h3><ul>
+<li>조건</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">LinkedListStack</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> isEmpty: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125; <span class="comment">// 노드가 있는지 여부</span></span><br><span class="line">  <span class="keyword">var</span> size: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;     <span class="comment">// 전체 개수</span></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">push</span><span class="params">(node: Node)</span></span>     <span class="comment">// 데이터 삽입</span></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">pop</span><span class="params">()</span></span> -&gt; <span class="type">String?</span>     <span class="comment">// 데이터 추출</span></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">peek</span><span class="params">()</span></span> -&gt; <span class="type">String?</span>    <span class="comment">// 마지막 데이터 확인</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> value: <span class="type">String?</span></span><br><span class="line">  <span class="keyword">var</span> next: <span class="type">Node?</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">init</span>(value: <span class="type">String?</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.value = value</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>풀이</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleLinkedList</span>: <span class="title">LinkedListStack</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 빈 value를 가진 Node를 head로 지정</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> head: <span class="type">Node</span> = <span class="type">Node</span>(value: <span class="literal">nil</span>)</span><br><span class="line">  <span class="comment">// head의 다음 노드가 없으면 true 그렇지 않으면 false</span></span><br><span class="line">  <span class="keyword">var</span> isEmpty: <span class="type">Bool</span> &#123; head.next == <span class="literal">nil</span> &#125;</span><br><span class="line">  <span class="keyword">var</span> size = <span class="number">0</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 마지막 노드 설정</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> lastNode: <span class="type">Node?</span> &#123;</span><br><span class="line">    <span class="comment">// head의 다음 노드가 없으면 head가 마지막 노드 </span></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">var</span> node = head.next <span class="keyword">else</span> &#123; <span class="keyword">return</span> head &#125;</span><br><span class="line">    <span class="comment">// next가 없는 노드를 찾을 때까지 반복</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">let</span> nextNode = node.next &#123;</span><br><span class="line">      node = nextNode</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> node</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">push</span><span class="params">(node newNode: Node)</span></span> &#123;</span><br><span class="line">    size += <span class="number">1</span></span><br><span class="line">    <span class="comment">// 마지막 노드의 뒤에 새로운 노드 추가</span></span><br><span class="line">    <span class="comment">// 추가한 노드가 마지막 노드가 될 수 있도록</span></span><br><span class="line">    lastNode?.next = newNode</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 마지막 노드의 값 출력</span></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">peek</span><span class="params">()</span></span> -&gt; <span class="type">String?</span> &#123;</span><br><span class="line">    lastNode?.value</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// next 값이 있는 노드를 </span></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">pop</span><span class="params">()</span></span> -&gt; <span class="type">String?</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> node = head</span><br><span class="line">    <span class="comment">// 해당 노드의 다음 노드가 next 노드가 있을 때까지만 반복</span></span><br><span class="line">    <span class="comment">// 다음 노드가 next가 없다면 다음 노드는 마지막 노드이므로, 마지막 노드의 직전 노드를 찾는 과정</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">let</span> <span class="number">_</span> = node.next?.next &#123;</span><br><span class="line">      node = node.next!</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 노드의 다음 값이 없다는 의미는 현재 리스트에 head만 남았다는 의미이므로 nil 반환 </span></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> popValue = node.next?.value <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line">    <span class="comment">// nil을 삽입하여 마지막 노드 삭제</span></span><br><span class="line">    node.next = <span class="literal">nil</span></span><br><span class="line">    size -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> popValue</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>출력</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> linkedList = <span class="type">SingleLinkedList</span>()</span><br><span class="line">linkedList.isEmpty</span><br><span class="line"></span><br><span class="line">linkedList.push(node: <span class="type">Node</span>(value: <span class="string">"A"</span>))</span><br><span class="line">linkedList.push(node: <span class="type">Node</span>(value: <span class="string">"B"</span>))</span><br><span class="line">linkedList.peek()</span><br><span class="line">linkedList.size</span><br><span class="line"></span><br><span class="line">linkedList.isEmpty</span><br><span class="line">linkedList.pop()</span><br><span class="line">linkedList.push(node: <span class="type">Node</span>(value: <span class="string">"C"</span>))</span><br><span class="line">linkedList.peek()</span><br><span class="line">linkedList.size</span><br><span class="line"></span><br><span class="line">linkedList.pop()</span><br><span class="line">linkedList.pop()</span><br><span class="line">linkedList.pop()</span><br><span class="line">linkedList.size</span><br><span class="line">linkedList.isEmpty</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Test</category>
+      </categories>
+      <tags>
+        <tag>iOS,</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GCD,</title>
     <url>/2020/02/13/</url>
     <content><![CDATA[<h1 id="GCD-Grand-Central-Dispatch"><a href="#GCD-Grand-Central-Dispatch" class="headerlink" title="GCD (Grand Central Dispatch)"></a>GCD (Grand Central Dispatch)</h1><ul>
@@ -36,8 +105,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -163,8 +232,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -182,8 +251,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -268,8 +337,8 @@
         <category>Test</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -456,8 +525,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -472,8 +541,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -494,8 +563,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -520,8 +589,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -538,8 +607,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -554,8 +623,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -645,8 +714,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -752,8 +821,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -767,8 +836,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -842,8 +911,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -982,8 +1051,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -994,8 +1063,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1006,8 +1075,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1077,8 +1146,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1118,8 +1187,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1130,8 +1199,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1227,8 +1296,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1312,8 +1381,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1407,8 +1476,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1454,8 +1523,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1576,8 +1645,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
         <tag>타입캐스팅</tag>
         <tag>typeCasting</tag>
       </tags>
@@ -1614,8 +1683,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS,</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1706,8 +1775,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1934,8 +2003,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
         <tag>Codding</tag>
       </tags>
   </entry>
@@ -1961,8 +2030,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>따라해봄</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
         <tag>한글링</tag>
         <tag>Stanford_iOS</tag>
       </tags>
@@ -2547,8 +2616,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -2747,8 +2816,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Swift</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
