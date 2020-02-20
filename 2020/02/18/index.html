@@ -52,7 +52,7 @@
 </script>
 
   <meta name="description" content="Codable encodable과 decodable 두 프로토콜을 합쳐서 codable이라 한다.  부호화  정보의 형태나 형식을 표준화, 보안, 처리 속도 향상, 저장 공간 절약 등을 위해서 목적에 맞는 다른 형태나 형식으로 변환하는 처리 혹은 그 처리 방식   복호화  압축 파일을 다시 풀거나 암호화 된 내용을 원래 내용으로 되돌리는 일">
-<meta name="keywords" content="iOS,,Swift">
+<meta name="keywords" content="Swift,iOS,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codable">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;18&#x2F;index.html">
@@ -60,10 +60,9 @@
 <meta property="og:description" content="Codable encodable과 decodable 두 프로토콜을 합쳐서 codable이라 한다.  부호화  정보의 형태나 형식을 표준화, 보안, 처리 속도 향상, 저장 공간 절약 등을 위해서 목적에 맞는 다른 형태나 형식으로 변환하는 처리 혹은 그 처리 방식   복호화  압축 파일을 다시 풀거나 암호화 된 내용을 원래 내용으로 되돌리는 일">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74703666-3f891b00-5251-11ea-9420-719216d71b83.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74704223-e3bf9180-5252-11ea-80ab-09f336c3c865.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74704320-4dd83680-5253-11ea-8689-ae9e2f37f9fc.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74704501-f71f2c80-5253-11ea-98bd-ebf7e4c0417e.png">
-<meta property="og:updated_time" content="2020-02-18T05:25:36.937Z">
+<meta property="og:updated_time" content="2020-02-20T10:07:19.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74703666-3f891b00-5251-11ea-9420-719216d71b83.png">
 
@@ -243,10 +242,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-02-18 12:58:12 / Modified: 14:25:36" itemprop="dateCreated datePublished" datetime="2020-02-18T12:58:12+09:00">2020-02-18</time>
+              <time title="Created: 2020-02-18 12:58:12" itemprop="dateCreated datePublished" datetime="2020-02-18T12:58:12+09:00">2020-02-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-20 19:07:19" itemprop="dateModified" datetime="2020-02-20T19:07:19+09:00">2020-02-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -306,7 +311,6 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://user-images.githubusercontent.com/15086391/74704223-e3bf9180-5252-11ea-80ab-09f336c3c865.png" alt="스크린샷 2020-02-18 오후 1 30 47"></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Dog</span>: <span class="title">Decodable</span> </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> age: <span class="type">Int</span></span><br><span class="line">	<span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">enum</span> <span class="title">CodingKeys</span>: <span class="title">String</span>, <span class="title">CodingKey</span> </span>&#123;</span><br><span class="line"><span class="keyword">case</span> age</span><br><span class="line"><span class="keyword">case</span> name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">init</span>(from decoder: <span class="type">Decoder</span>) <span class="keyword">throws</span> &#123;</span><br><span class="line"><span class="keyword">let</span> values = <span class="keyword">try</span> decoder.container(keyBy: <span class="type">CodingKeys</span>.<span class="keyword">self</span>)</span><br><span class="line">age = <span class="keyword">try</span> values.decode(<span class="type">Int</span>.<span class="keyword">self</span>, forKey: .age)</span><br><span class="line">name = <span class="keyword">try</span> values.decode(<span class="type">String</span>.<span class="keyword">self</span>, forKey: .name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -342,8 +346,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/iOS/" rel="tag"># iOS,</a>
               <a href="/tags/Swift/" rel="tag"># Swift</a>
+              <a href="/tags/iOS/" rel="tag"># iOS,</a>
           </div>
 
         

@@ -9,20 +9,20 @@
 <li>라이브러리에 관해 전반적으로 관리할 수 있는 것을 이야기한다.</li>
 </ul><h2 id="Cocoa-pod"><a href="#Cocoa-pod" class="headerlink" title="Cocoa pod"></a>Cocoa pod</h2><ul>
 <li>설치</li>
-</ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure><a id="more"></a>
+</ul><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ pod init </span><br><span class="line">$ vi Podfile</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">target &apos;CocoaPodsExample&apos; do use_frameworks!</span><br><span class="line">pod &apos;SnapKit&apos; // 사용할 라이브러리 작성 end</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod init </span><br><span class="line">$ vi Podfile</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">target <span class="string">'CocoaPodsExample'</span> <span class="keyword">do</span> use_frameworks!</span><br><span class="line">pod <span class="string">'SnapKit'</span> // 사용할 라이브러리 작성 end</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ pod repo update</span><br><span class="line">$ pod install</span><br><span class="line">// pod install을 이전에 한 번도 수행한 적이 없을 경우 약 5 ~ 15분 소요</span><br><span class="line">$ open [ProjectName].xcworkspace</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo update</span><br><span class="line">$ pod install</span><br><span class="line">// pod install을 이전에 한 번도 수행한 적이 없을 경우 약 5 ~ 15분 소요</span><br><span class="line">$ open [ProjectName].xcworkspace</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="Carthage"><a href="#Carthage" class="headerlink" title="Carthage"></a>Carthage</h2><ul>
 <li>Cocoa pod 보다 늦게 나옴</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ brew update &amp;&amp; brew install carthage</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew update &amp;&amp; brew install carthage</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>코코아 팟 과는 다르게, 깃헙에 직접 접근해서 사용하는 것임</p>
@@ -43,14 +43,20 @@
 </li>
 <li><p>터미널에서 해당 프로젝트 경로로 이동</p>
 </li>
-<li><pre><code>vi Cartfile
+<li><pre><code class="bash">vi Cartfile
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">4. 사용할 라이브러리 작성</span><br><span class="line"></span><br><span class="line">   -</span><br></pre></td></tr></table></figure>
-  github &quot;SnapKit/SnapKit&quot;
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">5. 저장 후 터미널에서 </span><br><span class="line"></span><br><span class="line">   -</span><br></pre></td></tr></table></figure>
-  carthage update
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">6. 프로젝트를 켜고 Build Phase -&gt; Link Binary With Libraries -&gt; &apos;+&apos;버튼 -&gt; &apos;Add Other...&apos; -&gt; &apos;Add files&apos; -&gt; 프로젝트의 폴더에서 &apos;Carthage&apos; 폴더 -&gt; &apos;Build&apos; -&gt; &apos;iOS&apos; -&gt; &apos;SnapKit.framework&apos; -&gt; 열기</span><br><span class="line"></span><br><span class="line">![스크린샷 2020-02-20 오후 7 00 49](https://user-images.githubusercontent.com/15086391/74922962-58d9c500-5413-11ea-8bb9-59b23e96560d.png)</span><br><span class="line"></span><br><span class="line">7. 왼쪽 상단의 &apos;+&apos; 버튼 -&gt; &apos;New Run Script Phase&apos; -&gt; shell 부분에 </span><br><span class="line"></span><br><span class="line">~~~swift</span><br><span class="line">/usr/local/bin/carthage copy-frameworks</span><br></pre></td></tr></table></figure>
-</code></pre></li>
+  github <span class="string">"SnapKit/SnapKit"</span>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">5. 저장 후 터미널에서 </span><br><span class="line"></span><br><span class="line">   - ~~~bash</span><br><span class="line">     carthage update</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><p>프로젝트를 켜고 Build Phase -&gt; Link Binary With Libraries -&gt; ‘+’버튼 -&gt; ‘Add Other…’ -&gt; ‘Add files’ -&gt; 프로젝트의 폴더에서 ‘Carthage’ 폴더 -&gt; ‘Build’ -&gt; ‘iOS’ -&gt; ‘SnapKit.framework’ -&gt; 열기</p>
+</li>
 </ol>
+<p><img src="https://user-images.githubusercontent.com/15086391/74922962-58d9c500-5413-11ea-8bb9-59b23e96560d.png" alt="스크린샷 2020-02-20 오후 7 00 49"></p>
+<ol start="7">
+<li>왼쪽 상단의 ‘+’ 버튼 -&gt; ‘New Run Script Phase’ -&gt; shell 부분에 </li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">/usr/local/bin/carthage copy-frameworks</span><br></pre></td></tr></table></figure>
+
 <p>-&gt; Input Files에 $(SRCROOT)/Carthage/Build/iOS/SnapKit.framework</p>
 <p><img src="https://user-images.githubusercontent.com/15086391/74923169-a81ff580-5413-11ea-822f-01330f8067c2.png" alt="스크린샷 2020-02-20 오후 7 03 10"></p>
 <ol start="8">
@@ -66,8 +72,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -131,7 +137,6 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://user-images.githubusercontent.com/15086391/74704223-e3bf9180-5252-11ea-80ab-09f336c3c865.png" alt="스크린샷 2020-02-18 오후 1 30 47"></p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Dog</span>: <span class="title">Decodable</span> </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> age: <span class="type">Int</span></span><br><span class="line">	<span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">enum</span> <span class="title">CodingKeys</span>: <span class="title">String</span>, <span class="title">CodingKey</span> </span>&#123;</span><br><span class="line"><span class="keyword">case</span> age</span><br><span class="line"><span class="keyword">case</span> name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">init</span>(from decoder: <span class="type">Decoder</span>) <span class="keyword">throws</span> &#123;</span><br><span class="line"><span class="keyword">let</span> values = <span class="keyword">try</span> decoder.container(keyBy: <span class="type">CodingKeys</span>.<span class="keyword">self</span>)</span><br><span class="line">age = <span class="keyword">try</span> values.decode(<span class="type">Int</span>.<span class="keyword">self</span>, forKey: .age)</span><br><span class="line">name = <span class="keyword">try</span> values.decode(<span class="type">String</span>.<span class="keyword">self</span>, forKey: .name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -163,8 +168,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -198,8 +203,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -267,8 +272,8 @@
         <category>Test</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -434,14 +439,68 @@
 
 
 
-<h1 id="URL-Loading-System"><a href="#URL-Loading-System" class="headerlink" title="URL Loading System"></a>URL Loading System</h1><p>- </p>
+<h1 id="URL-Loading-System"><a href="#URL-Loading-System" class="headerlink" title="URL Loading System"></a>URL Loading System</h1><ul>
+<li>URL과 상호작용하고, 표준 인터넷 프로토콜을 통해 서버와 통신하기 위한 시스템</li>
+<li>주요 클래스 URLSession, URL, URLSessionTasks, URLRequest, URLResponse 􏰵등</li>
+</ul>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><ul>
+<li>클라이언트와 웹 서버간 네트워크 연결이 지속 유지 되어지고 있는 상태를 말한다.<ul>
+<li>사용자가 브라우저를 열어 서버에 접속한 뒤 접속을 종료할 때 시점까지</li>
+</ul>
+</li>
+<li>http 프로토콜은 클라이언트가 서버에 request를 보내면, 서버는 클라이언트에게 response를 하고, 서로 접속을 끊는다. 그리고 접속을 끊는 순간 클라이언트와 서버의 통신은 끝나고, 상태 정보는 유지 되지 않는다.</li>
+<li>그렇기 때문에 통신을 할 때마다 클라이언트는 자신이 누구인지 계속 인증을 해야하는 비효율성이 존재함<ul>
+<li>예를 들면 네이버에 로그인을 하고, 서비스를 이용 하면서 이동 할 때마다 새로 로그인을 해야하는 것!</li>
+</ul>
+</li>
+<li>이를 해결하기 위해 쿠키와 세션을 사용함</li>
+</ul>
+<h2 id="URL-Session"><a href="#URL-Session" class="headerlink" title="URL Session"></a>URL Session</h2><ul>
+<li>네트워크 데이터 전송 작업에 관련된 클래스 그룹을 조정하는 객체</li>
+<li>대부분의 네트워킹 API와 마찬가지로 URLSession API 역시 비동기 동작<ul>
+<li>네트워크와 통신을 하려면 몇 초이든 분명 시간이 걸리기 때문에 동기로 동작하게 되면 그 시간 동안 사용자가 아무 동작도 수행할 수 없기 때문에 비동기로 동작한다.</li>
+</ul>
+</li>
+<li>URLSessionCon􏱱guration에 의해 세션 동작 결정</li>
+<li>HTTP 요청을 보내고 받는 핵심 객체</li>
+</ul>
+<h2 id="Network-API-LifeCycle"><a href="#Network-API-LifeCycle" class="headerlink" title="Network API LifeCycle"></a>Network API LifeCycle</h2><ul>
+<li><p>SessionCon􏱱guration을 설정하고, Session 생성</p>
+</li>
+<li><p>URL 또는 URLRequest 객체 생성</p>
+</li>
+<li><p>사용 목적에 맞는 Task를 결정하고, 이에 해당하는 Completion Handler 파라미터 전달, 또는 Delegate메서드 구현</p>
+</li>
+<li><p>생성한 Session을 통해 Task 수행</p>
+</li>
+<li><p>작업 완료 후 미리 설정한 Completion Handler 또는 Delegate 메서드가 호출되고 실행 종료</p>
+</li>
+</ul>
+<h2 id="요청에-대한-응답-처리"><a href="#요청에-대한-응답-처리" class="headerlink" title="요청에 대한 응답 처리"></a>요청에 대한 응답 처리</h2><ul>
+<li>Completion handler 와 delegate 중 선택</li>
+<li>Completion handler 구현 시 delegate 메서드는 호출되지 않음<ul>
+<li>둘 중 하나를 선택하여 사용하는데, 왠만하면 delegate 쓸 일은 별로 없을듯</li>
+</ul>
+</li>
+<li>비교적 간단한 응답 처리는 completion handler를 이용하고, 세세한 처리가 필요할 때는 delegate 구현</li>
+</ul>
+<h2 id="URLSession-Configuration"><a href="#URLSession-Configuration" class="headerlink" title="URLSession Configuration"></a>URLSession Configuration</h2><ul>
+<li><p>URLSession이 데이터 업로딩/다운로딩을 수행할 때 사용되는 정책과 동작을 정의하기 위한 설정 객체</p>
+</li>
+<li><p>URLSession 사용을 위한 첫 단계</p>
+</li>
+<li><p>시간 제한, 캐싱 정책, Cellular 제한 여부, 연결 요구사항 등 URLSession에서 사용할 여러 유형의 정보를 설정</p>
+</li>
+<li><p>URLSession 생성시 Configuration 객체의 설정을 복사하는 형태이므로, 그 이후의 설정 변경은 반영되지 않음 새로운 설정을 적용해야 한다면 새로운 세션 객체를 만들어서 사용</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -570,8 +629,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -589,8 +648,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -675,8 +734,8 @@
         <category>Test</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -863,8 +922,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -879,8 +938,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -901,8 +960,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -927,8 +986,8 @@
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -945,8 +1004,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -961,8 +1020,8 @@
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1052,8 +1111,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1159,8 +1218,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1174,8 +1233,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1249,8 +1308,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1389,8 +1448,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1401,8 +1460,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1413,8 +1472,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1484,8 +1543,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1525,8 +1584,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1537,8 +1596,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1634,8 +1693,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1719,8 +1778,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -1814,8 +1873,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1861,8 +1920,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1983,8 +2042,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
         <tag>타입캐스팅</tag>
         <tag>typeCasting</tag>
       </tags>
@@ -2021,8 +2080,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>Homework</category>
       </categories>
       <tags>
-        <tag>iOS,</tag>
         <tag>Swift</tag>
+        <tag>iOS,</tag>
       </tags>
   </entry>
   <entry>
@@ -2113,8 +2172,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -2341,8 +2400,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
         <tag>Codding</tag>
       </tags>
   </entry>
@@ -2368,8 +2427,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>따라해봄</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
         <tag>한글링</tag>
         <tag>Stanford_iOS</tag>
       </tags>
@@ -2954,8 +3013,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -3154,8 +3213,8 @@ scrollView.setZoomScale(zoomScale * <span class="number">2</span>, animated: <sp
         <category>TIL</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>iOS</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
