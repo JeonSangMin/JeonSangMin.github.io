@@ -1,6 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Dependency Manager</title>
+    <url>/2020/02/20/</url>
+    <content><![CDATA[<h1 id="Dependency-Manager"><a href="#Dependency-Manager" class="headerlink" title="Dependency Manager"></a>Dependency Manager</h1><ul>
+<li>여러가지 라이브러리를 사용할 때 </li>
+<li>버전을 구분해서 사용해야 하는 경우, 서로 충돌나지 않도록, 혹은 버전을 쉽게 알 수 있도록</li>
+<li>라이브러리에 관해 전반적으로 관리할 수 있는 것을 이야기한다.</li>
+</ul><h2 id="Cocoa-pod"><a href="#Cocoa-pod" class="headerlink" title="Cocoa pod"></a>Cocoa pod</h2><ul>
+<li>설치</li>
+</ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ pod init </span><br><span class="line">$ vi Podfile</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">target &apos;CocoaPodsExample&apos; do use_frameworks!</span><br><span class="line">pod &apos;SnapKit&apos; // 사용할 라이브러리 작성 end</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ pod repo update</span><br><span class="line">$ pod install</span><br><span class="line">// pod install을 이전에 한 번도 수행한 적이 없을 경우 약 5 ~ 15분 소요</span><br><span class="line">$ open [ProjectName].xcworkspace</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Carthage"><a href="#Carthage" class="headerlink" title="Carthage"></a>Carthage</h2><ul>
+<li>Cocoa pod 보다 늦게 나옴</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ brew update &amp;&amp; brew install carthage</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>코코아 팟 과는 다르게, 깃헙에 직접 접근해서 사용하는 것임</p>
+<ul>
+<li><p>코코아 팟은 코코아 팟에 등록 된 라이브러리만 사용 가능</p>
+</li>
+<li><p>코드도 볼 수 없음 바이너리화 되어있어서</p>
+</li>
+<li><p>대신 이미 빌드가 되어있기 때문에 빌드 시간이 코코아팟보다 짧음</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Carthage 빌드</p>
+<ol>
+<li><p>프로젝트 생성</p>
+</li>
+<li><p>터미널에서 해당 프로젝트 경로로 이동</p>
+</li>
+<li><pre><code>vi Cartfile
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">4. 사용할 라이브러리 작성</span><br><span class="line"></span><br><span class="line">   -</span><br></pre></td></tr></table></figure>
+  github &quot;SnapKit/SnapKit&quot;
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">5. 저장 후 터미널에서 </span><br><span class="line"></span><br><span class="line">   -</span><br></pre></td></tr></table></figure>
+  carthage update
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">6. 프로젝트를 켜고 Build Phase -&gt; Link Binary With Libraries -&gt; &apos;+&apos;버튼 -&gt; &apos;Add Other...&apos; -&gt; &apos;Add files&apos; -&gt; 프로젝트의 폴더에서 &apos;Carthage&apos; 폴더 -&gt; &apos;Build&apos; -&gt; &apos;iOS&apos; -&gt; &apos;SnapKit.framework&apos; -&gt; 열기</span><br><span class="line"></span><br><span class="line">![스크린샷 2020-02-20 오후 7 00 49](https://user-images.githubusercontent.com/15086391/74922962-58d9c500-5413-11ea-8bb9-59b23e96560d.png)</span><br><span class="line"></span><br><span class="line">7. 왼쪽 상단의 &apos;+&apos; 버튼 -&gt; &apos;New Run Script Phase&apos; -&gt; shell 부분에 </span><br><span class="line"></span><br><span class="line">~~~swift</span><br><span class="line">/usr/local/bin/carthage copy-frameworks</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+</ol>
+<p>-&gt; Input Files에 $(SRCROOT)/Carthage/Build/iOS/SnapKit.framework</p>
+<p><img src="https://user-images.githubusercontent.com/15086391/74923169-a81ff580-5413-11ea-822f-01330f8067c2.png" alt="스크린샷 2020-02-20 오후 7 03 10"></p>
+<ol start="8">
+<li><pre><code class="swift"><span class="keyword">import</span> SnapKit
+&lt;!--￼<span class="number">7</span>--&gt;
+</code></pre>
+</li>
+</ol>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>iOS,</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FireBase_2nd</title>
+    <url>/2020/02/FireBase-2nd/</url>
+    <content><![CDATA[<h1 id="Analytics"><a href="#Analytics" class="headerlink" title="Analytics"></a>Analytics</h1><ul>
+<li>하나의 서비스를 내면, 이걸 쓸까? 어떤걸 더 좋아할까?에 대해 궁금하게 됨</li>
+<li>어떤 액션이 일어났을 때, 로그가 찍히고 저장이 되도록 하면</li>
+<li>해당 로그 정보 데이터를 이용할 수 있음 이때 analytics가 필요</li>
+</ul><h2 id="Event-Logging"><a href="#Event-Logging" class="headerlink" title="Event Logging"></a>Event Logging</h2><h3 id="실시간-디버깅"><a href="#실시간-디버깅" class="headerlink" title="실시간 디버깅"></a>실시간 디버깅</h3><p>설정 필요함 </p><a id="more"></a>
+
+<ul>
+<li>Edit scheme -&gt; Run -&gt; Arguments -&gt;’-FIRAnalyticsDebugEnabled’ 입력</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 입력 할 때마다 로그를 보내고 싶음</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">enterAction</span><span class="params">(<span class="number">_</span> sender: UIButton)</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.saveUserInfo()</span><br><span class="line">        <span class="comment">// 이벤트 로깅</span></span><br><span class="line">        <span class="type">Analytics</span>.logEvent(<span class="string">"입력하기_버튼_로그_보내기"</span>, parameters: [<span class="string">"키"</span> : <span class="number">1</span>, <span class="string">"기기"</span> : <span class="type">UIDevice</span>.current.name]) <span class="comment">// 어떤 내용을 전달하고 싶으면 parameter에</span></span><br><span class="line">      </span><br><span class="line">        <span class="type">Analytics</span>.logEvent(<span class="string">"입력하기_버튼_클릭"</span>, parameters: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Remote-Config"><a href="#Remote-Config" class="headerlink" title="Remote Config"></a>Remote Config</h2><ul>
+<li>개발자와 기획자는 사용자가 좋아할까? 궁금함</li>
+<li>예를 들어 하트 버튼을 좋아할까? 좋아요 버튼을 좋아할까? 궁금함</li>
+<li>어떤 버튼이 더 반응이 좋은지 테스트 할 수 있음</li>
+<li>그래서 같은 버전의 사용자여도 앱의 모양이 다른 경우가 지금 실험중인 기능</li>
+</ul>
+<ul>
+<li>(이미지)</li>
+<li>키를 만들어줌 </li>
+</ul>
+<h2 id="Test-Code"><a href="#Test-Code" class="headerlink" title="Test Code"></a>Test Code</h2><ul>
+<li>짜보면 많이 도움이 된다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> XCTest</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FastCampusFirebaseExampleTests</span>: <span class="title">XCTestCase</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Codable</title>
+    <url>/2020/02/18/</url>
+    <content><![CDATA[<h1 id="Codable"><a href="#Codable" class="headerlink" title="Codable"></a>Codable</h1><ul>
+<li><p>encodable과 decodable 두 프로토콜을 합쳐서 codable이라 한다.</p>
+</li>
+<li><p>부호화</p>
+<ul>
+<li>정보의 형태나 형식을 표준화, 보안, 처리 속도 향상, 저장 공간 절약 등을 위해서 목적에 맞는 다른 형태나 형식으로 변환하는 처리 혹은 그 처리 방식</li>
+</ul>
+</li>
+<li><p>복호화</p>
+<ul>
+<li>압축 파일을 다시 풀거나 암호화 된 내용을 원래 내용으로 되돌리는 일</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/74703666-3f891b00-5251-11ea-9420-719216d71b83.png" alt="스크린샷 2020-02-18 오후 1 18 47"></p>
+</li>
+</ul><a id="more"></a>
+<ul>
+<li>Coding Key<ul>
+<li>딕셔너리의 키 처럼 사용하는 키</li>
+<li>키를 이용해서 파싱하겠다!</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/74704223-e3bf9180-5252-11ea-80ab-09f336c3c865.png" alt="스크린샷 2020-02-18 오후 1 30 47"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Dog</span>: <span class="title">Decodable</span> </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> age: <span class="type">Int</span></span><br><span class="line">	<span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">enum</span> <span class="title">CodingKeys</span>: <span class="title">String</span>, <span class="title">CodingKey</span> </span>&#123;</span><br><span class="line"><span class="keyword">case</span> age</span><br><span class="line"><span class="keyword">case</span> name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">init</span>(from decoder: <span class="type">Decoder</span>) <span class="keyword">throws</span> &#123;</span><br><span class="line"><span class="keyword">let</span> values = <span class="keyword">try</span> decoder.container(keyBy: <span class="type">CodingKeys</span>.<span class="keyword">self</span>)</span><br><span class="line">age = <span class="keyword">try</span> values.decode(<span class="type">Int</span>.<span class="keyword">self</span>, forKey: .age)</span><br><span class="line">name = <span class="keyword">try</span> values.decode(<span class="type">String</span>.<span class="keyword">self</span>, forKey: .name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>특정 타입의 배열로 변환 할 때</p>
+</li>
+<li><p>딕셔너리로 변환할 때도 역시 타입을 명시해주어야 한다.</p>
+</li>
+</ul>
+<h2 id="Nasted-Key"><a href="#Nasted-Key" class="headerlink" title="Nasted Key"></a>Nasted Key</h2><ul>
+<li>Latitude, longitude, AdditionalInfo가 같은 레벨의 키이고,</li>
+<li>elevation은 AdditionalInfo의 value가 되는 dictionary의 키인 상황이다.</li>
+<li>elevation이 한 단계 안쪽의 레벨이기 때문에 Latitude, longitude, AdditionalInfo와 동일 선상에서 파싱할수 없기 때문에</li>
+<li>키 enum이 더 필요하다</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/15086391/74704320-4dd83680-5253-11ea-8689-ae9e2f37f9fc.png" alt="스크린샷 2020-02-18 오후 1 33 45"></p>
+<h2 id="Encoding-Error"><a href="#Encoding-Error" class="headerlink" title="Encoding Error"></a>Encoding Error</h2><ul>
+<li>주어진 값으로 인코딩 할 수 없을 때</li>
+</ul>
+<h2 id="Decoding-Error"><a href="#Decoding-Error" class="headerlink" title="Decoding Error"></a>Decoding Error</h2><p><img src="https://user-images.githubusercontent.com/15086391/74704501-f71f2c80-5253-11ea-98bd-ebf7e4c0417e.png" alt="스크린샷 2020-02-18 오후 1 38 25"></p>
+<ul>
+<li>userDefault에 는 커스텀 타입을 그대로 넣을 수가 없기 때문에<ul>
+<li>파일로 저장하기 위한 데이터가 아니라, 메모리에서 바로 쓰기 위함 이기 때문에</li>
+</ul>
+</li>
+<li>encode한 후, decode 해야함</li>
+</ul>
+]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>iOS,</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JSON</title>
+    <url>/2020/02/17/</url>
+    <content><![CDATA[<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><ul>
+<li>현재 거의 표준으로 사용되고 있는 데이터 교환 형식</li>
+<li>두 개의 구조를 기본으로 가짐<ul>
+<li>Name: Value 형태의 쌍</li>
+<li>값 들의 순서화 된 리스트. </li>
+</ul>
+</li>
+<li>XML에 비해 기능이 적고 구조가 단순하여, 파싱이 쉽고 빠르고 적은 용량<ul>
+<li>사람 뿐만 아니라, 기계가 분석하고 생성하는 것에도 상대적으로 용이함</li>
+</ul>
+</li>
+</ul><a id="more"></a>
+<h2 id="swift에서-json사용하기"><a href="#swift에서-json사용하기" class="headerlink" title="swift에서 json사용하기"></a>swift에서 json사용하기</h2><p><img src="https://user-images.githubusercontent.com/15086391/74626338-b01d3280-5192-11ea-9681-4015fca49f7e.png" alt="스크린샷 2020-02-17 오후 2 34 26"></p>
+<ul>
+<li><p>json형식의 String</p>
+</li>
+<li><p>String을 data로 변환</p>
+</li>
+<li><p>datafmf json객체로 변환</p>
+</li>
+<li><p>Json data로 변환 가능한지 여부는 isValidJSONObject(_:) 메서드를 통해 확인 가능</p>
+</li>
+</ul>
+<h3 id><a href="#" class="headerlink" title></a></h3>]]></content>
+      <categories>
+        <category>TIL</category>
+      </categories>
+      <tags>
+        <tag>iOS,</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>3rd_TestReview</title>
     <url>/2020/02/3rd-TestReview/</url>
     <content><![CDATA[<h1 id="3차-시험-리뷰"><a href="#3차-시험-리뷰" class="headerlink" title="3차 시험 리뷰"></a>3차 시험 리뷰</h1><h2 id="이론"><a href="#이론" class="headerlink" title="[이론]"></a>[이론]</h2><h3 id="try-try-try-의-공통점과-차이점"><a href="#try-try-try-의-공통점과-차이점" class="headerlink" title="try, try? try! 의 공통점과 차이점"></a>try, try? try! 의 공통점과 차이점</h3><ul>
@@ -21,9 +223,9 @@
 <li>reduce : 컬렉션의 각 요소들을 결합하여 단일 타입으로 반환</li>
 </ul>
 <h3 id="Geocode와-Reverse-Geocode의-차이"><a href="#Geocode와-Reverse-Geocode의-차이" class="headerlink" title="Geocode와 Reverse Geocode의 차이"></a>Geocode와 Reverse Geocode의 차이</h3><ul>
-<li><p>Geocode : Coordinate -&gt; Placemark (좌표를 지명으로 변환)</p>
+<li><p>Geocode : Placemark -&gt; Coordinate (지명을 좌표로 변환)</p>
 </li>
-<li><p>reverse Geocode : Placemark -&gt; Coordinate (지명을 좌표로 변환)</p>
+<li><p>Geocode reverse  : Coordinate -&gt; Placemark (좌표를 지명으로 변환)</p>
 </li>
 </ul>
 <h2 id="실습"><a href="#실습" class="headerlink" title="[실습]"></a>[실습]</h2><h3 id="1-x-y-까지의-숫자-중-홀수만-더하되-while문과-defer를-사용해서-풀이"><a href="#1-x-y-까지의-숫자-중-홀수만-더하되-while문과-defer를-사용해서-풀이" class="headerlink" title="1. x ~ y 까지의 숫자 중 홀수만 더하되, while문과 defer를 사용해서 풀이"></a>1. x ~ y 까지의 숫자 중 홀수만 더하되, while문과 defer를 사용해서 풀이</h3><ul>
@@ -76,16 +278,41 @@
 <li>GCD는 멀티 코어 프로세서 시스템에 대한 응용 프로그램 지원을 최적화하기 위해 Apple에서 개발한 기술로 스레드 관리와 실행에 대한 책임을 어플리케이션 레벨에서 운영체제 레벨로 넘김</li>
 <li>작업의 단위는 Block이라 불리며 DispatchQueue가 이 Block들을 관리</li>
 </ul><a id="more"></a>
-<h2 id="DispatchQueue"><a href="#DispatchQueue" class="headerlink" title="DispatchQueue"></a>DispatchQueue</h2><h3 id="Concurrent-Queue"><a href="#Concurrent-Queue" class="headerlink" title="Concurrent Queue"></a>Concurrent Queue</h3><ul>
+<h2 id="DispatchQueue"><a href="#DispatchQueue" class="headerlink" title="DispatchQueue"></a>DispatchQueue</h2><h3 id="Serial-queue"><a href="#Serial-queue" class="headerlink" title="Serial queue"></a>Serial queue</h3><ul>
+<li><p>직렬</p>
+<ul>
+<li><p><img src="https://user-images.githubusercontent.com/15086391/74802678-e6d38400-531d-11ea-9428-615390198b42.png" alt="스크린샷 2020-02-19 오후 1 43 47"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Concurrent-Queue"><a href="#Concurrent-Queue" class="headerlink" title="Concurrent Queue"></a>Concurrent Queue</h3><ul>
 <li>병렬<ul>
-<li>Concurrency</li>
-<li>Parallelism</li>
+<li>동시 수행</li>
+<li>그렇지만 병렬 방식도 종류가 나뉜다.<ul>
+<li>Concurrency : 논리적인 병렬성 - 쓰레드가 나뉘어서 여러 작업을 동시에 실행</li>
+<li>Parallelism : 물리적인 병렬성 - 겉으로 보기에는 동시에 실행 되는 것처럼 보이지만 아주 빠른 속도로 두 가지 작업을 번갈아 가면서 실행 (context switching)</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <p><img src="https://user-images.githubusercontent.com/15086391/74401559-fc036b00-4e64-11ea-97fb-8e1ab99339db.png" alt="스크린샷 2020-02-13 오후 1 30 00"></p>
+<h2 id="Work-Item-Execution"><a href="#Work-Item-Execution" class="headerlink" title="Work Item Execution"></a>Work Item Execution</h2><p><img src="https://user-images.githubusercontent.com/15086391/74803182-5a29c580-531f-11ea-8b6c-a9da5cb57d66.png" alt="스크린샷 2020-02-19 오후 1 54 21"></p>
 <ul>
-<li>sync, async를 언제쓰나?<ul>
+<li>Synchronous : sync 메서드를 이용해 동기적으로 실행되면, 작업이 완료 될 때까지 대기한 뒤 메서드에서 return 호출 해당 스레드의 다른 작업들은 모두 정지<ul>
+<li>특정 작업이 완료 되어야 다른 작업을 실행할 수 있음</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Asynchronous : Async 메서드를 이용해 비동기적으로 실행되면, 즉시 메서드에서 return을 호출하고 작업 수행</p>
+<ul>
+<li>작업을 등록만 하고 return하고 끝내버린 후,  그 뒤에 있는 작업을 실행하고, 비동기로 실행한 작업은 별도로 다른 곳에서 실행</li>
+</ul>
+</li>
+<li><p>sync, async를 언제쓰나?</p>
+<ul>
 <li>네트워크 관련 업무를 할 때 사용하는 경우가 많다.</li>
 <li>큰 파일을 읽어야 하는 작업을 할 때, 해당 업무가 종료 된 후 다음 작업으로 넘어가면 비효율적이기 때문에</li>
 <li>이런 경우에 비동기(async)를 사용하는 경우가 많다.</li>
@@ -93,12 +320,120 @@
 </ul>
 </li>
 </ul>
-<ul>
+<h2 id="System-Dispatch-Queue"><a href="#System-Dispatch-Queue" class="headerlink" title="System Dispatch Queue"></a>System Dispatch Queue</h2><ul>
+<li>system이 제공하는 queue</li>
+<li>main과 global이 있으며, 앱 실행 시 생성된다.<ul>
+<li>Main : UI와 관련 된 작업은 모두 main 큐를 통해서 수행하며, Serial queue에 해당된다<ul>
+<li>Main 큐를 sync 메서드로 동작시키면 교착상태에 빠진다</li>
+<li>우리가 실행하는 작업 때문에, 시스템에서 실행해야 하는 작업을 수행하지 못하게 된다면, 문제가 될 것이기 때문에 sync 메서드를 사용할 수 없다.</li>
+<li>Main 큐는 비동기로 동작한다.</li>
+<li>특히, UI와 관련 된 작업은 모두 main큐를 통해서 수행하게 된다.</li>
+<li>앱을 켰을 때, 다른 작업이 실행중이어도 UI는 그려져있는 상태여야 하기 때문 </li>
+</ul>
+</li>
+<li>Global : UI를 제외한 작업에서 사용하며, Concurrent Queue에 해당<ul>
+<li>sync, async 메서드 모두 사용 가능</li>
+<li>QoS 클래스를 지정하여 우선 순위 설정 가능</li>
+</ul>
+</li>
 <li>작업간의 우선순위를 구분하고 싶을 때, qos를 준다.<ul>
 <li><img src="https://user-images.githubusercontent.com/15086391/74405808-5dc9d200-4e71-11ea-81e0-0d322ffb3c77.png" alt="스크린샷 2020-02-13 오후 2 58 42"></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+<h2 id="QoS"><a href="#QoS" class="headerlink" title="QoS"></a>QoS</h2><ul>
+<li><p>우선 순위가 높을 수록 더 빨리 수행되고, 많은 전력 소모</p>
+</li>
+<li><p>수행 작업에 적절한 QoS 클래스를 지정해주어야 더 반응성이 좋아지며, 효율적인 에너지 사용 가능</p>
+<ul>
+<li>User Interactive : 즉각 반응해야 하는 작업, 반응성과 성능에 중점<ul>
+<li>Main 쓰레드에서 동작하는 인터페이스 새로 고침, 애니메이션 작업 등 즉각 수행 되는 유저와의 상호작용 작업에 할당</li>
+</ul>
+</li>
+<li>User Initiated: 몇 초 이내의 짧은 시간 내 수행해야 하는 작업으로 반응성 및 성능에 중점<ul>
+<li>문서를 열거나, 버튼을 클릭해 액션을 수행하는 것 처럼 빠른 결과를 요구하는 유저와의 상호작용 작업에 할당</li>
+</ul>
+</li>
+<li>Utility<ul>
+<li>수 초에서 수 분에 걸쳐 수행되는 작업</li>
+<li>데이터를 읽어들이거나 다운로드 하는 등 작업을 완료하는데 어느정도 시간이 걸릴 수 있으며 보통 진행 표시줄로 표현</li>
+</ul>
+</li>
+<li>BackGround : 수 분에서 수 시간에 걸쳐 수행되는 작업<ul>
+<li>색인 생성, 동기화, 백업 같이 사용자가 볼 수 없는 작업에 할당</li>
+<li>저전력 모드에서는 네트워킹을 포함하여, 백그라운드 작업은 일시 중지</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Custom-Dispatch-Queue"><a href="#Custom-Dispatch-Queue" class="headerlink" title="Custom Dispatch Queue"></a>Custom Dispatch Queue</h2><ul>
+<li>개발자가 별도로 만들어서 사용하는 Dispath Queue</li>
+<li>main 쓰레드가 아닌 곳에서 실행이 됨</li>
+<li>Serial, Concurrent 및 QoS 등의 여러 옵션을 지정하여 생성 가능</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 커스텀 큐 생성</span></span><br><span class="line"><span class="keyword">let</span> <span class="type">Queue</span> = <span class="type">DispatchQueue</span>(label: <span class="string">"com.fastCampus.example"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 옵션까지 설정하는 커스텀 큐 생성</span></span><br><span class="line"><span class="keyword">let</span> queueOptions = <span class="type">DispatchQueue</span>(label: <span class="string">"com.fastCampus.example"</span>,</span><br><span class="line">																	qos: .userInteractive,</span><br><span class="line">																	attributes: [.concurrent])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Work-Item"><a href="#Work-Item" class="headerlink" title="Work Item"></a>Work Item</h2><ul>
+<li>custom queue에서 실행해야 하는 특정 작업을 미리 생성해 둘 수 있다. (WorkItem)</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// work Item 생성</span></span><br><span class="line"><span class="comment">// 이런식으로 동작하는 워크 아이템을 만들어 둔다.</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">createDispatchWorkItem</span><span class="params">()</span></span> -&gt; <span class="type">DispatchWorkItem</span> &#123;</span><br><span class="line">        <span class="comment">// 25%, 50% , 75%, 100%</span></span><br><span class="line">        <span class="keyword">let</span> workItem = <span class="type">DispatchWorkItem</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> bigNumber = <span class="number">8_000_000</span></span><br><span class="line">            <span class="keyword">let</span> divideNumber = <span class="number">2_000_000</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...bigNumber &#123;</span><br><span class="line">                <span class="keyword">guard</span> i % divideNumber == <span class="number">0</span> <span class="keyword">else</span> &#123; <span class="keyword">continue</span> &#125;</span><br><span class="line">                <span class="built_in">print</span>(i / divideNumber * <span class="number">25</span>, <span class="string">"%"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> workItem</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> workItem = createDispatchWorkItem()</span><br><span class="line">				<span class="comment">// 커스텀 큐 생성</span></span><br><span class="line">        <span class="keyword">let</span> myQueue = <span class="type">DispatchQueue</span>(label: <span class="string">"kr.giftbot.myQueue"</span>)</span><br><span class="line">        </span><br><span class="line">				<span class="comment">// 해당 커스텀 큐가 해야 할 작업을 미리 만들어 둔 workItem으로 할당한다.</span></span><br><span class="line">        myQueue.async(execute: workItem)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="wait"><a href="#wait" class="headerlink" title="wait()"></a>wait()</h3><ul>
+<li>wait() 메소드를 사용하면, async 메소드를, sync 메소드 처럼 사용 할 수 있다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">myQueue.async(execute: workItem)</span><br><span class="line">				<span class="comment">// 비동기이기 때문에 일단 workItem 등록하고 return </span></span><br><span class="line">        myQueue.async(execute: workItem)</span><br><span class="line"></span><br><span class="line">				<span class="comment">// 아래의 두 프린트 먼저 실행 된 후, 뒤늦게 myQueue의 workItem 실행</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"before waiting"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"after waiting"</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">myQueue.async(execute: workItem)</span><br><span class="line">				</span><br><span class="line"><span class="comment">// before Wating이 실행 된 후, workItem이 실행 되고, 마지막으로 after를 실행하고 싶으면??</span></span><br><span class="line">        myQueue.async(execute: workItem)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"before waiting"</span>)</span><br><span class="line">				<span class="comment">// wait()를 사용한다.</span></span><br><span class="line">				<span class="comment">// async를 sync 처럼 쓸 수 있기 때문에</span></span><br><span class="line">				<span class="comment">// before가 실행 된 후, workItem이 실행 되고, 종료 된 이후에 after가 실행된다.</span></span><br><span class="line">				workItem.wait() <span class="comment">// 해당 큐의 작업이 완료 될 때 까지 다음 작업 실행 대기 </span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"after waiting"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>대기 시간을 지정할 수도 있다</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 3초로 가정</span></span><br><span class="line"><span class="keyword">let</span> timeLimit = <span class="number">3.0</span></span><br><span class="line"><span class="comment">// 3초간만 wait, 이후 작업 실행</span></span><br><span class="line"><span class="keyword">let</span> timeoutResult = <span class="keyword">self</span>.workItem.wait(timeout: .now() + timeLimit)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Initially-inactive"><a href="#Initially-inactive" class="headerlink" title="Initially inactive"></a>Initially inactive</h2><ul>
+<li>커스텀 큐를 생성 할 때 설정한다</li>
+<li>.initiallyInactive로 설정한 큐는 등록만 해놓고 실행이 되지 않는다.</li>
+<li>activate()는 등록 된 작업을 실행하겠다. 라는 의미이다.</li>
+<li>그렇기 때문에 activate()를 연달아 여러 번 사용해도 작업이 여러 번 실행되지는 않는다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> inactiveQueue = <span class="type">DispatchQueue</span>(</span><br><span class="line">       label: <span class="string">"kr.giftbot.inactiveQueue"</span>,</span><br><span class="line">  <span class="comment">// 여기</span></span><br><span class="line">       attributes: [.initiallyInactive, .concurrent]</span><br><span class="line">   )</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>설정 값이 .initiallyInactive인 커스텀 큐는 실행이 되지 않다가, activate() 함수가 실행되는 순간부터 작업을 실행한다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> workItem = createDispatchWorkItem()</span><br><span class="line">			<span class="comment">// 다른 큐는 여기서 등록해놓고 아래의 do something을 실행하지만 </span></span><br><span class="line">			<span class="comment">// inactiveQueue는 .initiallyInactive로 설정 되었기 때문에 실행되지 않는다.</span></span><br><span class="line">       inactiveQueue.async(execute: workItem)</span><br><span class="line">       </span><br><span class="line">       <span class="built_in">print</span>(<span class="string">"= Do Something... ="</span>)</span><br><span class="line">       </span><br><span class="line">       <span class="comment">// 아래의 activate 메서드를 통해 활성화 한다.</span></span><br><span class="line">			<span class="comment">// activate 메서드를 통해 필요한 타이밍에 커스텀 큐를 실행할 수 있다.</span></span><br><span class="line">       inactiveQueue.activate()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Group-Notify"><a href="#Group-Notify" class="headerlink" title="Group Notify"></a>Group Notify</h2><ul>
+<li>순서 보장과는 관계없이 복수의 task를 그룹화 하고, 해당 그룹의 작업이 끝난 시점을 알려주는 것을 말한다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> group = <span class="type">DispatchGroup</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 세 가지 task, 각각 종료하는데 걸리는 시간이 다름</span></span><br><span class="line">customQueue1.async(group: group) &#123; calculate(task:<span class="number">1</span>, limit: <span class="number">12_000_000</span>)&#125;</span><br><span class="line">customQueue2.async(group: group) &#123; calculate(task:<span class="number">1</span>, limit: <span class="number">5_000_000</span>)&#125;</span><br><span class="line">customQueue3.async(group: group) &#123; calculate(task:<span class="number">1</span>, limit: <span class="number">2_000_000</span>)&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 그룹화</span></span><br><span class="line"><span class="comment">// 위의 세 task를 그룹으로 묶었기 때문에 모든 작업이 끝난후 main큐에서 print 메소드가 실행된다.</span></span><br><span class="line">group.notify(queue: .main) &#123; <span class="built_in">print</span>(<span class="string">"모든 작업 완료"</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Cancel"><a href="#Cancel" class="headerlink" title="Cancel"></a>Cancel</h2><ul>
+<li>task를 취소하는 메소드 isCanclled 프로퍼티가 필요하다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">				myWorkItem = <span class="type">DispatchWorkItem</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> bigNumber = <span class="number">8_000_000</span></span><br><span class="line">            <span class="keyword">let</span> divideNumber = bigNumber / <span class="number">4</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...bigNumber &#123;</span><br><span class="line">                <span class="keyword">guard</span> i % divideNumber == <span class="number">0</span> <span class="keyword">else</span> &#123; <span class="keyword">continue</span> &#125;</span><br><span class="line">                <span class="comment">// cancel() 메소드가 호출되면, true로 바뀜</span></span><br><span class="line">                <span class="keyword">guard</span> !<span class="keyword">self</span>.myWorkItem.isCancelled <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">                <span class="built_in">print</span>(i / divideNumber * <span class="number">25</span>, <span class="string">"%"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//  N초안에 실행 안되면 취소하고 싶은 task</span></span><br><span class="line">        <span class="type">DispatchQueue</span>.global().async(execute: myWorkItem)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 3초로 지정</span></span><br><span class="line">        <span class="keyword">let</span> timeLimit = <span class="number">3.0</span> <span class="comment">// N</span></span><br><span class="line">        <span class="type">DispatchQueue</span>.global().async &#123;</span><br><span class="line">            <span class="keyword">let</span> timeoutResult = <span class="keyword">self</span>.myWorkItem.wait(timeout: .now() + timeLimit)</span><br><span class="line">            <span class="keyword">switch</span> timeoutResult &#123;</span><br><span class="line">              <span class="comment">// 시간 안에 실행이 완료되면 success case</span></span><br><span class="line">            <span class="keyword">case</span> .success: <span class="built_in">print</span>(<span class="string">"success within \(timeLimit) seconds"</span>)</span><br><span class="line">              <span class="comment">// 시간 안에 실행이 완료되지 못하면 timeOut</span></span><br><span class="line">            <span class="keyword">case</span> .timedOut:</span><br><span class="line">                <span class="keyword">self</span>.myWorkItem.cancel()</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"timed out"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 <h1 id="URL-Loading-System"><a href="#URL-Loading-System" class="headerlink" title="URL Loading System"></a>URL Loading System</h1><p>- </p>
 ]]></content>
       <categories>
@@ -147,6 +482,8 @@
 <li>어떤 특정 주소, 또는 파일 리소스에 접근하기 위한 주소 값</li>
 </ul>
 </li>
+<li><p>어떤 자원의 위치에 대한 절대 경로 값을 지닌 문자열</p>
+</li>
 <li><p>URN : 위치에 독립적이고, 지속되는 형태의 자원을 가르키기 위한 유일한 식별자</p>
 <ul>
 <li>ex) ISBN</li>
@@ -154,7 +491,7 @@
 </li>
 <li><p>URL은 주소, URN은 주민등록번호에 비유할 수 있다.</p>
 </li>
-<li><p>URI는 URL, URN을 포괄하는 개념</p>
+<li><p>URI는 URL, URN을 포괄하는 개념 </p>
 </li>
 </ul><a id="more"></a>
 <p><img src="https://user-images.githubusercontent.com/15086391/74224397-1b32b900-4cfc-11ea-9fed-dc565a6f6ee0.png" alt="스크린샷 2020-02-11 오후 6 26 26"></p>
@@ -162,6 +499,7 @@
 <li>URI의 상위 개념으로서 확장된 버젼</li>
 <li>최근에는 UTF-8로 바뀌어서 웹사이트 주소에 한글도 적을 수 있다.</li>
 <li>이를 이용해서 비슷해 보이는 문자를 악용하기도 한다.</li>
+<li>URI (ASCII character set)</li>
 </ul>
 <h2 id="Endian"><a href="#Endian" class="headerlink" title="Endian"></a>Endian</h2><ul>
 <li><p>컴퓨터에서 어떤 크기의 데이터를 메모리에 저장할 때 바이트 단위로 나누어 저장한다.</p>

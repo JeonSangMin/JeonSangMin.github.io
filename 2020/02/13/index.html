@@ -59,11 +59,13 @@
 <meta property="og:site_name" content="Let&#39;s Swift!">
 <meta property="og:description" content="GCD (Grand Central Dispatch) GCD는 멀티 코어 프로세서 시스템에 대한 응용 프로그램 지원을 최적화하기 위해 Apple에서 개발한 기술로 스레드 관리와 실행에 대한 책임을 어플리케이션 레벨에서 운영체제 레벨로 넘김 작업의 단위는 Block이라 불리며 DispatchQueue가 이 Block들을 관리">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74802678-e6d38400-531d-11ea-9428-615390198b42.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74401559-fc036b00-4e64-11ea-97fb-8e1ab99339db.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74803182-5a29c580-531f-11ea-8b6c-a9da5cb57d66.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74405808-5dc9d200-4e71-11ea-81e0-0d322ffb3c77.png">
-<meta property="og:updated_time" content="2020-02-13T06:44:03.504Z">
+<meta property="og:updated_time" content="2020-02-19T09:51:45.646Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74401559-fc036b00-4e64-11ea-97fb-8e1ab99339db.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;15086391&#x2F;74802678-e6d38400-531d-11ea-9428-615390198b42.png">
 
 <link rel="canonical" href="http://yoursite.com/2020/02/13/">
 
@@ -241,10 +243,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-02-13 13:16:28 / Modified: 15:44:03" itemprop="dateCreated datePublished" datetime="2020-02-13T13:16:28+09:00">2020-02-13</time>
+              <time title="Created: 2020-02-13 13:16:28" itemprop="dateCreated datePublished" datetime="2020-02-13T13:16:28+09:00">2020-02-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-19 18:51:45" itemprop="dateModified" datetime="2020-02-19T18:51:45+09:00">2020-02-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -286,16 +294,41 @@
 <li>GCD는 멀티 코어 프로세서 시스템에 대한 응용 프로그램 지원을 최적화하기 위해 Apple에서 개발한 기술로 스레드 관리와 실행에 대한 책임을 어플리케이션 레벨에서 운영체제 레벨로 넘김</li>
 <li>작업의 단위는 Block이라 불리며 DispatchQueue가 이 Block들을 관리</li>
 </ul><a id="more"></a>
-<h2 id="DispatchQueue"><a href="#DispatchQueue" class="headerlink" title="DispatchQueue"></a>DispatchQueue</h2><h3 id="Concurrent-Queue"><a href="#Concurrent-Queue" class="headerlink" title="Concurrent Queue"></a>Concurrent Queue</h3><ul>
+<h2 id="DispatchQueue"><a href="#DispatchQueue" class="headerlink" title="DispatchQueue"></a>DispatchQueue</h2><h3 id="Serial-queue"><a href="#Serial-queue" class="headerlink" title="Serial queue"></a>Serial queue</h3><ul>
+<li><p>직렬</p>
+<ul>
+<li><p><img src="https://user-images.githubusercontent.com/15086391/74802678-e6d38400-531d-11ea-9428-615390198b42.png" alt="스크린샷 2020-02-19 오후 1 43 47"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Concurrent-Queue"><a href="#Concurrent-Queue" class="headerlink" title="Concurrent Queue"></a>Concurrent Queue</h3><ul>
 <li>병렬<ul>
-<li>Concurrency</li>
-<li>Parallelism</li>
+<li>동시 수행</li>
+<li>그렇지만 병렬 방식도 종류가 나뉜다.<ul>
+<li>Concurrency : 논리적인 병렬성 - 쓰레드가 나뉘어서 여러 작업을 동시에 실행</li>
+<li>Parallelism : 물리적인 병렬성 - 겉으로 보기에는 동시에 실행 되는 것처럼 보이지만 아주 빠른 속도로 두 가지 작업을 번갈아 가면서 실행 (context switching)</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <p><img src="https://user-images.githubusercontent.com/15086391/74401559-fc036b00-4e64-11ea-97fb-8e1ab99339db.png" alt="스크린샷 2020-02-13 오후 1 30 00"></p>
+<h2 id="Work-Item-Execution"><a href="#Work-Item-Execution" class="headerlink" title="Work Item Execution"></a>Work Item Execution</h2><p><img src="https://user-images.githubusercontent.com/15086391/74803182-5a29c580-531f-11ea-8b6c-a9da5cb57d66.png" alt="스크린샷 2020-02-19 오후 1 54 21"></p>
 <ul>
-<li>sync, async를 언제쓰나?<ul>
+<li>Synchronous : sync 메서드를 이용해 동기적으로 실행되면, 작업이 완료 될 때까지 대기한 뒤 메서드에서 return 호출 해당 스레드의 다른 작업들은 모두 정지<ul>
+<li>특정 작업이 완료 되어야 다른 작업을 실행할 수 있음</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Asynchronous : Async 메서드를 이용해 비동기적으로 실행되면, 즉시 메서드에서 return을 호출하고 작업 수행</p>
+<ul>
+<li>작업을 등록만 하고 return하고 끝내버린 후,  그 뒤에 있는 작업을 실행하고, 비동기로 실행한 작업은 별도로 다른 곳에서 실행</li>
+</ul>
+</li>
+<li><p>sync, async를 언제쓰나?</p>
+<ul>
 <li>네트워크 관련 업무를 할 때 사용하는 경우가 많다.</li>
 <li>큰 파일을 읽어야 하는 작업을 할 때, 해당 업무가 종료 된 후 다음 작업으로 넘어가면 비효율적이기 때문에</li>
 <li>이런 경우에 비동기(async)를 사용하는 경우가 많다.</li>
@@ -303,12 +336,120 @@
 </ul>
 </li>
 </ul>
-<ul>
+<h2 id="System-Dispatch-Queue"><a href="#System-Dispatch-Queue" class="headerlink" title="System Dispatch Queue"></a>System Dispatch Queue</h2><ul>
+<li>system이 제공하는 queue</li>
+<li>main과 global이 있으며, 앱 실행 시 생성된다.<ul>
+<li>Main : UI와 관련 된 작업은 모두 main 큐를 통해서 수행하며, Serial queue에 해당된다<ul>
+<li>Main 큐를 sync 메서드로 동작시키면 교착상태에 빠진다</li>
+<li>우리가 실행하는 작업 때문에, 시스템에서 실행해야 하는 작업을 수행하지 못하게 된다면, 문제가 될 것이기 때문에 sync 메서드를 사용할 수 없다.</li>
+<li>Main 큐는 비동기로 동작한다.</li>
+<li>특히, UI와 관련 된 작업은 모두 main큐를 통해서 수행하게 된다.</li>
+<li>앱을 켰을 때, 다른 작업이 실행중이어도 UI는 그려져있는 상태여야 하기 때문 </li>
+</ul>
+</li>
+<li>Global : UI를 제외한 작업에서 사용하며, Concurrent Queue에 해당<ul>
+<li>sync, async 메서드 모두 사용 가능</li>
+<li>QoS 클래스를 지정하여 우선 순위 설정 가능</li>
+</ul>
+</li>
 <li>작업간의 우선순위를 구분하고 싶을 때, qos를 준다.<ul>
 <li><img src="https://user-images.githubusercontent.com/15086391/74405808-5dc9d200-4e71-11ea-81e0-0d322ffb3c77.png" alt="스크린샷 2020-02-13 오후 2 58 42"></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+<h2 id="QoS"><a href="#QoS" class="headerlink" title="QoS"></a>QoS</h2><ul>
+<li><p>우선 순위가 높을 수록 더 빨리 수행되고, 많은 전력 소모</p>
+</li>
+<li><p>수행 작업에 적절한 QoS 클래스를 지정해주어야 더 반응성이 좋아지며, 효율적인 에너지 사용 가능</p>
+<ul>
+<li>User Interactive : 즉각 반응해야 하는 작업, 반응성과 성능에 중점<ul>
+<li>Main 쓰레드에서 동작하는 인터페이스 새로 고침, 애니메이션 작업 등 즉각 수행 되는 유저와의 상호작용 작업에 할당</li>
+</ul>
+</li>
+<li>User Initiated: 몇 초 이내의 짧은 시간 내 수행해야 하는 작업으로 반응성 및 성능에 중점<ul>
+<li>문서를 열거나, 버튼을 클릭해 액션을 수행하는 것 처럼 빠른 결과를 요구하는 유저와의 상호작용 작업에 할당</li>
+</ul>
+</li>
+<li>Utility<ul>
+<li>수 초에서 수 분에 걸쳐 수행되는 작업</li>
+<li>데이터를 읽어들이거나 다운로드 하는 등 작업을 완료하는데 어느정도 시간이 걸릴 수 있으며 보통 진행 표시줄로 표현</li>
+</ul>
+</li>
+<li>BackGround : 수 분에서 수 시간에 걸쳐 수행되는 작업<ul>
+<li>색인 생성, 동기화, 백업 같이 사용자가 볼 수 없는 작업에 할당</li>
+<li>저전력 모드에서는 네트워킹을 포함하여, 백그라운드 작업은 일시 중지</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Custom-Dispatch-Queue"><a href="#Custom-Dispatch-Queue" class="headerlink" title="Custom Dispatch Queue"></a>Custom Dispatch Queue</h2><ul>
+<li>개발자가 별도로 만들어서 사용하는 Dispath Queue</li>
+<li>main 쓰레드가 아닌 곳에서 실행이 됨</li>
+<li>Serial, Concurrent 및 QoS 등의 여러 옵션을 지정하여 생성 가능</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 커스텀 큐 생성</span></span><br><span class="line"><span class="keyword">let</span> <span class="type">Queue</span> = <span class="type">DispatchQueue</span>(label: <span class="string">"com.fastCampus.example"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 옵션까지 설정하는 커스텀 큐 생성</span></span><br><span class="line"><span class="keyword">let</span> queueOptions = <span class="type">DispatchQueue</span>(label: <span class="string">"com.fastCampus.example"</span>,</span><br><span class="line">																	qos: .userInteractive,</span><br><span class="line">																	attributes: [.concurrent])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Work-Item"><a href="#Work-Item" class="headerlink" title="Work Item"></a>Work Item</h2><ul>
+<li>custom queue에서 실행해야 하는 특정 작업을 미리 생성해 둘 수 있다. (WorkItem)</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// work Item 생성</span></span><br><span class="line"><span class="comment">// 이런식으로 동작하는 워크 아이템을 만들어 둔다.</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">createDispatchWorkItem</span><span class="params">()</span></span> -&gt; <span class="type">DispatchWorkItem</span> &#123;</span><br><span class="line">        <span class="comment">// 25%, 50% , 75%, 100%</span></span><br><span class="line">        <span class="keyword">let</span> workItem = <span class="type">DispatchWorkItem</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> bigNumber = <span class="number">8_000_000</span></span><br><span class="line">            <span class="keyword">let</span> divideNumber = <span class="number">2_000_000</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...bigNumber &#123;</span><br><span class="line">                <span class="keyword">guard</span> i % divideNumber == <span class="number">0</span> <span class="keyword">else</span> &#123; <span class="keyword">continue</span> &#125;</span><br><span class="line">                <span class="built_in">print</span>(i / divideNumber * <span class="number">25</span>, <span class="string">"%"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> workItem</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> workItem = createDispatchWorkItem()</span><br><span class="line">				<span class="comment">// 커스텀 큐 생성</span></span><br><span class="line">        <span class="keyword">let</span> myQueue = <span class="type">DispatchQueue</span>(label: <span class="string">"kr.giftbot.myQueue"</span>)</span><br><span class="line">        </span><br><span class="line">				<span class="comment">// 해당 커스텀 큐가 해야 할 작업을 미리 만들어 둔 workItem으로 할당한다.</span></span><br><span class="line">        myQueue.async(execute: workItem)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="wait"><a href="#wait" class="headerlink" title="wait()"></a>wait()</h3><ul>
+<li>wait() 메소드를 사용하면, async 메소드를, sync 메소드 처럼 사용 할 수 있다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">myQueue.async(execute: workItem)</span><br><span class="line">				<span class="comment">// 비동기이기 때문에 일단 workItem 등록하고 return </span></span><br><span class="line">        myQueue.async(execute: workItem)</span><br><span class="line"></span><br><span class="line">				<span class="comment">// 아래의 두 프린트 먼저 실행 된 후, 뒤늦게 myQueue의 workItem 실행</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"before waiting"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"after waiting"</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">myQueue.async(execute: workItem)</span><br><span class="line">				</span><br><span class="line"><span class="comment">// before Wating이 실행 된 후, workItem이 실행 되고, 마지막으로 after를 실행하고 싶으면??</span></span><br><span class="line">        myQueue.async(execute: workItem)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"before waiting"</span>)</span><br><span class="line">				<span class="comment">// wait()를 사용한다.</span></span><br><span class="line">				<span class="comment">// async를 sync 처럼 쓸 수 있기 때문에</span></span><br><span class="line">				<span class="comment">// before가 실행 된 후, workItem이 실행 되고, 종료 된 이후에 after가 실행된다.</span></span><br><span class="line">				workItem.wait() <span class="comment">// 해당 큐의 작업이 완료 될 때 까지 다음 작업 실행 대기 </span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"after waiting"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>대기 시간을 지정할 수도 있다</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3초로 가정</span></span><br><span class="line"><span class="keyword">let</span> timeLimit = <span class="number">3.0</span></span><br><span class="line"><span class="comment">// 3초간만 wait, 이후 작업 실행</span></span><br><span class="line"><span class="keyword">let</span> timeoutResult = <span class="keyword">self</span>.workItem.wait(timeout: .now() + timeLimit)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Initially-inactive"><a href="#Initially-inactive" class="headerlink" title="Initially inactive"></a>Initially inactive</h2><ul>
+<li>커스텀 큐를 생성 할 때 설정한다</li>
+<li>.initiallyInactive로 설정한 큐는 등록만 해놓고 실행이 되지 않는다.</li>
+<li>activate()는 등록 된 작업을 실행하겠다. 라는 의미이다.</li>
+<li>그렇기 때문에 activate()를 연달아 여러 번 사용해도 작업이 여러 번 실행되지는 않는다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> inactiveQueue = <span class="type">DispatchQueue</span>(</span><br><span class="line">       label: <span class="string">"kr.giftbot.inactiveQueue"</span>,</span><br><span class="line">  <span class="comment">// 여기</span></span><br><span class="line">       attributes: [.initiallyInactive, .concurrent]</span><br><span class="line">   )</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>설정 값이 .initiallyInactive인 커스텀 큐는 실행이 되지 않다가, activate() 함수가 실행되는 순간부터 작업을 실행한다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> workItem = createDispatchWorkItem()</span><br><span class="line">			<span class="comment">// 다른 큐는 여기서 등록해놓고 아래의 do something을 실행하지만 </span></span><br><span class="line">			<span class="comment">// inactiveQueue는 .initiallyInactive로 설정 되었기 때문에 실행되지 않는다.</span></span><br><span class="line">       inactiveQueue.async(execute: workItem)</span><br><span class="line">       </span><br><span class="line">       <span class="built_in">print</span>(<span class="string">"= Do Something... ="</span>)</span><br><span class="line">       </span><br><span class="line">       <span class="comment">// 아래의 activate 메서드를 통해 활성화 한다.</span></span><br><span class="line">			<span class="comment">// activate 메서드를 통해 필요한 타이밍에 커스텀 큐를 실행할 수 있다.</span></span><br><span class="line">       inactiveQueue.activate()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Group-Notify"><a href="#Group-Notify" class="headerlink" title="Group Notify"></a>Group Notify</h2><ul>
+<li>순서 보장과는 관계없이 복수의 task를 그룹화 하고, 해당 그룹의 작업이 끝난 시점을 알려주는 것을 말한다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> group = <span class="type">DispatchGroup</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 세 가지 task, 각각 종료하는데 걸리는 시간이 다름</span></span><br><span class="line">customQueue1.async(group: group) &#123; calculate(task:<span class="number">1</span>, limit: <span class="number">12_000_000</span>)&#125;</span><br><span class="line">customQueue2.async(group: group) &#123; calculate(task:<span class="number">1</span>, limit: <span class="number">5_000_000</span>)&#125;</span><br><span class="line">customQueue3.async(group: group) &#123; calculate(task:<span class="number">1</span>, limit: <span class="number">2_000_000</span>)&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 그룹화</span></span><br><span class="line"><span class="comment">// 위의 세 task를 그룹으로 묶었기 때문에 모든 작업이 끝난후 main큐에서 print 메소드가 실행된다.</span></span><br><span class="line">group.notify(queue: .main) &#123; <span class="built_in">print</span>(<span class="string">"모든 작업 완료"</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Cancel"><a href="#Cancel" class="headerlink" title="Cancel"></a>Cancel</h2><ul>
+<li>task를 취소하는 메소드 isCanclled 프로퍼티가 필요하다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">				myWorkItem = <span class="type">DispatchWorkItem</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> bigNumber = <span class="number">8_000_000</span></span><br><span class="line">            <span class="keyword">let</span> divideNumber = bigNumber / <span class="number">4</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...bigNumber &#123;</span><br><span class="line">                <span class="keyword">guard</span> i % divideNumber == <span class="number">0</span> <span class="keyword">else</span> &#123; <span class="keyword">continue</span> &#125;</span><br><span class="line">                <span class="comment">// cancel() 메소드가 호출되면, true로 바뀜</span></span><br><span class="line">                <span class="keyword">guard</span> !<span class="keyword">self</span>.myWorkItem.isCancelled <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">                <span class="built_in">print</span>(i / divideNumber * <span class="number">25</span>, <span class="string">"%"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//  N초안에 실행 안되면 취소하고 싶은 task</span></span><br><span class="line">        <span class="type">DispatchQueue</span>.global().async(execute: myWorkItem)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 3초로 지정</span></span><br><span class="line">        <span class="keyword">let</span> timeLimit = <span class="number">3.0</span> <span class="comment">// N</span></span><br><span class="line">        <span class="type">DispatchQueue</span>.global().async &#123;</span><br><span class="line">            <span class="keyword">let</span> timeoutResult = <span class="keyword">self</span>.myWorkItem.wait(timeout: .now() + timeLimit)</span><br><span class="line">            <span class="keyword">switch</span> timeoutResult &#123;</span><br><span class="line">              <span class="comment">// 시간 안에 실행이 완료되면 success case</span></span><br><span class="line">            <span class="keyword">case</span> .success: <span class="built_in">print</span>(<span class="string">"success within \(timeLimit) seconds"</span>)</span><br><span class="line">              <span class="comment">// 시간 안에 실행이 완료되지 못하면 timeOut</span></span><br><span class="line">            <span class="keyword">case</span> .timedOut:</span><br><span class="line">                <span class="keyword">self</span>.myWorkItem.cancel()</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"timed out"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 <h1 id="URL-Loading-System"><a href="#URL-Loading-System" class="headerlink" title="URL Loading System"></a>URL Loading System</h1><p>- </p>
 
     </div>
@@ -383,7 +524,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD-Grand-Central-Dispatch"><span class="nav-number">1.</span> <span class="nav-text">GCD (Grand Central Dispatch)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DispatchQueue"><span class="nav-number">1.1.</span> <span class="nav-text">DispatchQueue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Concurrent-Queue"><span class="nav-number">1.1.1.</span> <span class="nav-text">Concurrent Queue</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#URL-Loading-System"><span class="nav-number">2.</span> <span class="nav-text">URL Loading System</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD-Grand-Central-Dispatch"><span class="nav-number">1.</span> <span class="nav-text">GCD (Grand Central Dispatch)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DispatchQueue"><span class="nav-number">1.1.</span> <span class="nav-text">DispatchQueue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Serial-queue"><span class="nav-number">1.1.1.</span> <span class="nav-text">Serial queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concurrent-Queue"><span class="nav-number">1.1.2.</span> <span class="nav-text">Concurrent Queue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Work-Item-Execution"><span class="nav-number">1.2.</span> <span class="nav-text">Work Item Execution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-Dispatch-Queue"><span class="nav-number">1.3.</span> <span class="nav-text">System Dispatch Queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QoS"><span class="nav-number">1.4.</span> <span class="nav-text">QoS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Custom-Dispatch-Queue"><span class="nav-number">1.5.</span> <span class="nav-text">Custom Dispatch Queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Work-Item"><span class="nav-number">1.6.</span> <span class="nav-text">Work Item</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#wait"><span class="nav-number">1.6.1.</span> <span class="nav-text">wait()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initially-inactive"><span class="nav-number">1.7.</span> <span class="nav-text">Initially inactive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Group-Notify"><span class="nav-number">1.8.</span> <span class="nav-text">Group Notify</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cancel"><span class="nav-number">1.9.</span> <span class="nav-text">Cancel</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#URL-Loading-System"><span class="nav-number">2.</span> <span class="nav-text">URL Loading System</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -397,7 +538,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
